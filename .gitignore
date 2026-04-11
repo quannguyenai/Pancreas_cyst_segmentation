@@ -1,0 +1,73 @@
+# ─── Virtual environments ─────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ─── Python bytecode ──────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# ─── Medical imaging data (obtain via data access; not distributed) ───────────
+data/images/
+data/masks/
+data/masks_fixed/
+
+# ─── NIfTI files everywhere (catch-all for any accidentally added scans) ──────
+*.nii
+*.nii.gz
+
+# ─── nnU-Net runtime directories (nnUnet/ is the actual folder name) ──────────
+nnUnet/nnUNet_preprocessed/
+nnUnet/nnUNet_results/
+nnUnet/nnUNet_raw/Dataset*/imagesTr/
+nnUnet/nnUNet_raw/Dataset*/labelsTr/
+nnUnet/nnUNet_raw/Dataset*/imagesTs/
+nnUnet/plan_and_preprocess.log
+nnUnet/train_*.log
+
+# ─── Model checkpoints ────────────────────────────────────────────────────────
+**/*.pth
+**/*.pt
+**/*.ckpt
+**/*.pkl
+**/*.npz
+
+# ─── Inference outputs and logs ───────────────────────────────────────────────
+*.log
+logs/
+predictions/
+outputs/
+runs/
+approach_a/predictions/
+approach_b/pancreas_preds/
+approach_b/cropped/
+approach_b/predictions/
+approach_c/predictions/
+approach_c/checkpoints/
+comparison/checkpoints/
+comparison/predictions/
+
+# ─── Jupyter artifacts ────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ─── Build artifacts ──────────────────────────────────────────────────────────
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ─── OS artifacts ─────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── IDE ──────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo

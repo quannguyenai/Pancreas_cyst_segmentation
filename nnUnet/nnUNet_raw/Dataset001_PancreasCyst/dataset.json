@@ -1,0 +1,1155 @@
+{
+  "channel_names": {
+    "0": "CT"
+  },
+  "labels": {
+    "background": 0,
+    "cyst": 1
+  },
+  "numTraining": 284,
+  "file_ending": ".nii.gz",
+  "name": "PancreasCyst",
+  "description": "Pancreatic cyst segmentation from CT scans",
+  "reference": "AIMA",
+  "licence": "internal",
+  "release": "1.0",
+  "overwrite_image_reader_writer": "SimpleITKIO",
+  "training": [
+    {
+      "image": "./imagesTr/EMC024_0000.nii.gz",
+      "label": "./labelsTr/EMC024.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU9_0000.nii.gz",
+      "label": "./labelsTr/IU9.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC092_0000.nii.gz",
+      "label": "./labelsTr/EMC092.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU51_0000.nii.gz",
+      "label": "./labelsTr/NU51.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0075_0000.nii.gz",
+      "label": "./labelsTr/NYU0075.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0069_0000.nii.gz",
+      "label": "./labelsTr/NYU0069.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU101_0000.nii.gz",
+      "label": "./labelsTr/NU101.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF10_0000.nii.gz",
+      "label": "./labelsTr/MCF10.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCA22_0000.nii.gz",
+      "label": "./labelsTr/MCA22.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU19_0000.nii.gz",
+      "label": "./labelsTr/IU19.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU127_0000.nii.gz",
+      "label": "./labelsTr/NU127.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD182_0000.nii.gz",
+      "label": "./labelsTr/CAD182.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU131_0000.nii.gz",
+      "label": "./labelsTr/NU131.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD152_0000.nii.gz",
+      "label": "./labelsTr/CAD152.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD155_0000.nii.gz",
+      "label": "./labelsTr/CAD155.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD118_0000.nii.gz",
+      "label": "./labelsTr/CAD118.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD252_0000.nii.gz",
+      "label": "./labelsTr/CAD252.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU98_0000.nii.gz",
+      "label": "./labelsTr/NU98.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCA140_0000.nii.gz",
+      "label": "./labelsTr/MCA140.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0039_0000.nii.gz",
+      "label": "./labelsTr/NYU0039.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD153_0000.nii.gz",
+      "label": "./labelsTr/CAD153.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD315_0000.nii.gz",
+      "label": "./labelsTr/CAD315.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC007_0000.nii.gz",
+      "label": "./labelsTr/EMC007.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC036_0000.nii.gz",
+      "label": "./labelsTr/EMC036.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU117_0000.nii.gz",
+      "label": "./labelsTr/NU117.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU18_0000.nii.gz",
+      "label": "./labelsTr/NU18.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC021_0000.nii.gz",
+      "label": "./labelsTr/EMC021.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU23_0000.nii.gz",
+      "label": "./labelsTr/IU23.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU72_0000.nii.gz",
+      "label": "./labelsTr/IU72.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0150_0000.nii.gz",
+      "label": "./labelsTr/NYU0150.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF28_0000.nii.gz",
+      "label": "./labelsTr/MCF28.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC122_0000.nii.gz",
+      "label": "./labelsTr/EMC122.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF42_0000.nii.gz",
+      "label": "./labelsTr/MCF42.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD226_0000.nii.gz",
+      "label": "./labelsTr/CAD226.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC033_0000.nii.gz",
+      "label": "./labelsTr/EMC033.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD138_0000.nii.gz",
+      "label": "./labelsTr/CAD138.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF04_0000.nii.gz",
+      "label": "./labelsTr/MCF04.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU77_0000.nii.gz",
+      "label": "./labelsTr/NU77.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD258_0000.nii.gz",
+      "label": "./labelsTr/CAD258.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD189_0000.nii.gz",
+      "label": "./labelsTr/CAD189.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD219_0000.nii.gz",
+      "label": "./labelsTr/CAD219.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD150_0000.nii.gz",
+      "label": "./labelsTr/CAD150.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU169_0000.nii.gz",
+      "label": "./labelsTr/NU169.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU47_0000.nii.gz",
+      "label": "./labelsTr/NU47.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD171_0000.nii.gz",
+      "label": "./labelsTr/CAD171.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD120_0000.nii.gz",
+      "label": "./labelsTr/CAD120.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD137_0000.nii.gz",
+      "label": "./labelsTr/CAD137.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU27_0000.nii.gz",
+      "label": "./labelsTr/NU27.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0134_0000.nii.gz",
+      "label": "./labelsTr/NYU0134.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU121_0000.nii.gz",
+      "label": "./labelsTr/NU121.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0020_0000.nii.gz",
+      "label": "./labelsTr/NYU0020.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU62_0000.nii.gz",
+      "label": "./labelsTr/IU62.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU26_0000.nii.gz",
+      "label": "./labelsTr/IU26.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD265_0000.nii.gz",
+      "label": "./labelsTr/CAD265.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD107_0000.nii.gz",
+      "label": "./labelsTr/CAD107.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU34_0000.nii.gz",
+      "label": "./labelsTr/NU34.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU30_0000.nii.gz",
+      "label": "./labelsTr/NU30.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD292_0000.nii.gz",
+      "label": "./labelsTr/CAD292.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU78_0000.nii.gz",
+      "label": "./labelsTr/NU78.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0135_0000.nii.gz",
+      "label": "./labelsTr/NYU0135.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU57_0000.nii.gz",
+      "label": "./labelsTr/NU57.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0122_0000.nii.gz",
+      "label": "./labelsTr/NYU0122.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC071_0000.nii.gz",
+      "label": "./labelsTr/EMC071.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0101_0000.nii.gz",
+      "label": "./labelsTr/NYU0101.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0144_0000.nii.gz",
+      "label": "./labelsTr/NYU0144.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0159_0000.nii.gz",
+      "label": "./labelsTr/NYU0159.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU153_0000.nii.gz",
+      "label": "./labelsTr/NU153.nii.gz"
+    },
+    {
+      "image": "./imagesTr/AHN21_0000.nii.gz",
+      "label": "./labelsTr/AHN21.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU29_0000.nii.gz",
+      "label": "./labelsTr/NU29.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0056_0000.nii.gz",
+      "label": "./labelsTr/NYU0056.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0143_0000.nii.gz",
+      "label": "./labelsTr/NYU0143.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD127_0000.nii.gz",
+      "label": "./labelsTr/CAD127.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD283_0000.nii.gz",
+      "label": "./labelsTr/CAD283.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD139_0000.nii.gz",
+      "label": "./labelsTr/CAD139.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU37_0000.nii.gz",
+      "label": "./labelsTr/NU37.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0172_0000.nii.gz",
+      "label": "./labelsTr/NYU0172.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF06_0000.nii.gz",
+      "label": "./labelsTr/MCF06.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0119_0000.nii.gz",
+      "label": "./labelsTr/NYU0119.nii.gz"
+    },
+    {
+      "image": "./imagesTr/AHN29_0000.nii.gz",
+      "label": "./labelsTr/AHN29.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD284_0000.nii.gz",
+      "label": "./labelsTr/CAD284.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC041_0000.nii.gz",
+      "label": "./labelsTr/EMC041.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0164_0000.nii.gz",
+      "label": "./labelsTr/NYU0164.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU72_0000.nii.gz",
+      "label": "./labelsTr/NU72.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC075_0000.nii.gz",
+      "label": "./labelsTr/EMC075.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0018_0000.nii.gz",
+      "label": "./labelsTr/NYU0018.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0022_0000.nii.gz",
+      "label": "./labelsTr/NYU0022.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0149_0000.nii.gz",
+      "label": "./labelsTr/NYU0149.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU147_0000.nii.gz",
+      "label": "./labelsTr/NU147.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU99_0000.nii.gz",
+      "label": "./labelsTr/NU99.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU32_0000.nii.gz",
+      "label": "./labelsTr/NU32.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0140_0000.nii.gz",
+      "label": "./labelsTr/NYU0140.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0105_0000.nii.gz",
+      "label": "./labelsTr/NYU0105.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCA05_0000.nii.gz",
+      "label": "./labelsTr/MCA05.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD124_0000.nii.gz",
+      "label": "./labelsTr/CAD124.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU67_0000.nii.gz",
+      "label": "./labelsTr/NU67.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD145_0000.nii.gz",
+      "label": "./labelsTr/CAD145.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC091_0000.nii.gz",
+      "label": "./labelsTr/EMC091.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD142_0000.nii.gz",
+      "label": "./labelsTr/CAD142.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF18_0000.nii.gz",
+      "label": "./labelsTr/MCF18.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD250_0000.nii.gz",
+      "label": "./labelsTr/CAD250.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD225_0000.nii.gz",
+      "label": "./labelsTr/CAD225.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF14_0000.nii.gz",
+      "label": "./labelsTr/MCF14.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU168_0000.nii.gz",
+      "label": "./labelsTr/NU168.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU89_0000.nii.gz",
+      "label": "./labelsTr/NU89.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC018_0000.nii.gz",
+      "label": "./labelsTr/EMC018.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0160_0000.nii.gz",
+      "label": "./labelsTr/NYU0160.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0073_0000.nii.gz",
+      "label": "./labelsTr/NYU0073.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU114_0000.nii.gz",
+      "label": "./labelsTr/NU114.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF20_0000.nii.gz",
+      "label": "./labelsTr/MCF20.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0157_0000.nii.gz",
+      "label": "./labelsTr/NYU0157.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCA138_0000.nii.gz",
+      "label": "./labelsTr/MCA138.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0081_0000.nii.gz",
+      "label": "./labelsTr/NYU0081.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0077_0000.nii.gz",
+      "label": "./labelsTr/NYU0077.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU40_0000.nii.gz",
+      "label": "./labelsTr/IU40.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0053_0000.nii.gz",
+      "label": "./labelsTr/NYU0053.nii.gz"
+    },
+    {
+      "image": "./imagesTr/AHN79_0000.nii.gz",
+      "label": "./labelsTr/AHN79.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU18_0000.nii.gz",
+      "label": "./labelsTr/IU18.nii.gz"
+    },
+    {
+      "image": "./imagesTr/AHN11_0000.nii.gz",
+      "label": "./labelsTr/AHN11.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0173_0000.nii.gz",
+      "label": "./labelsTr/NYU0173.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0116_0000.nii.gz",
+      "label": "./labelsTr/NYU0116.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU42_0000.nii.gz",
+      "label": "./labelsTr/IU42.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU13_0000.nii.gz",
+      "label": "./labelsTr/NU13.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU69_0000.nii.gz",
+      "label": "./labelsTr/NU69.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0032_0000.nii.gz",
+      "label": "./labelsTr/NYU0032.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU16_0000.nii.gz",
+      "label": "./labelsTr/NU16.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU160_0000.nii.gz",
+      "label": "./labelsTr/NU160.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0129_0000.nii.gz",
+      "label": "./labelsTr/NYU0129.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU78_0000.nii.gz",
+      "label": "./labelsTr/IU78.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0033_0000.nii.gz",
+      "label": "./labelsTr/NYU0033.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU41_0000.nii.gz",
+      "label": "./labelsTr/NU41.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0098_0000.nii.gz",
+      "label": "./labelsTr/NYU0098.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD313_0000.nii.gz",
+      "label": "./labelsTr/CAD313.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF16_0000.nii.gz",
+      "label": "./labelsTr/MCF16.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU34_0000.nii.gz",
+      "label": "./labelsTr/IU34.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0091_0000.nii.gz",
+      "label": "./labelsTr/NYU0091.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0100_0000.nii.gz",
+      "label": "./labelsTr/NYU0100.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD146_0000.nii.gz",
+      "label": "./labelsTr/CAD146.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCA63_0000.nii.gz",
+      "label": "./labelsTr/MCA63.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC073_0000.nii.gz",
+      "label": "./labelsTr/EMC073.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU149_0000.nii.gz",
+      "label": "./labelsTr/NU149.nii.gz"
+    },
+    {
+      "image": "./imagesTr/AHN09_0000.nii.gz",
+      "label": "./labelsTr/AHN09.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD306_0000.nii.gz",
+      "label": "./labelsTr/CAD306.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD119_0000.nii.gz",
+      "label": "./labelsTr/CAD119.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD135_0000.nii.gz",
+      "label": "./labelsTr/CAD135.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD183_0000.nii.gz",
+      "label": "./labelsTr/CAD183.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCA26_0000.nii.gz",
+      "label": "./labelsTr/MCA26.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU63_0000.nii.gz",
+      "label": "./labelsTr/IU63.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD213_0000.nii.gz",
+      "label": "./labelsTr/CAD213.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU104_0000.nii.gz",
+      "label": "./labelsTr/NU104.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU156_0000.nii.gz",
+      "label": "./labelsTr/NU156.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU135_0000.nii.gz",
+      "label": "./labelsTr/NU135.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU3_0000.nii.gz",
+      "label": "./labelsTr/IU3.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU39_0000.nii.gz",
+      "label": "./labelsTr/NU39.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU144_0000.nii.gz",
+      "label": "./labelsTr/NU144.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0074_0000.nii.gz",
+      "label": "./labelsTr/NYU0074.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU108_0000.nii.gz",
+      "label": "./labelsTr/NU108.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU118_0000.nii.gz",
+      "label": "./labelsTr/NU118.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD149_0000.nii.gz",
+      "label": "./labelsTr/CAD149.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0040_0000.nii.gz",
+      "label": "./labelsTr/NYU0040.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD228_0000.nii.gz",
+      "label": "./labelsTr/CAD228.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0044_0000.nii.gz",
+      "label": "./labelsTr/NYU0044.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCA14_0000.nii.gz",
+      "label": "./labelsTr/MCA14.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC101_0000.nii.gz",
+      "label": "./labelsTr/EMC101.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD251_0000.nii.gz",
+      "label": "./labelsTr/CAD251.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD290_0000.nii.gz",
+      "label": "./labelsTr/CAD290.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU56_0000.nii.gz",
+      "label": "./labelsTr/NU56.nii.gz"
+    },
+    {
+      "image": "./imagesTr/AHN12_0000.nii.gz",
+      "label": "./labelsTr/AHN12.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU33_0000.nii.gz",
+      "label": "./labelsTr/IU33.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD175_0000.nii.gz",
+      "label": "./labelsTr/CAD175.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU16_0000.nii.gz",
+      "label": "./labelsTr/IU16.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU68_0000.nii.gz",
+      "label": "./labelsTr/NU68.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU15_0000.nii.gz",
+      "label": "./labelsTr/IU15.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU55_0000.nii.gz",
+      "label": "./labelsTr/NU55.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU36_0000.nii.gz",
+      "label": "./labelsTr/NU36.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD209_0000.nii.gz",
+      "label": "./labelsTr/CAD209.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC083_0000.nii.gz",
+      "label": "./labelsTr/EMC083.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU151_0000.nii.gz",
+      "label": "./labelsTr/NU151.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU32_0000.nii.gz",
+      "label": "./labelsTr/IU32.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD269_0000.nii.gz",
+      "label": "./labelsTr/CAD269.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF03_0000.nii.gz",
+      "label": "./labelsTr/MCF03.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU130_0000.nii.gz",
+      "label": "./labelsTr/NU130.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU145_0000.nii.gz",
+      "label": "./labelsTr/NU145.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU113_0000.nii.gz",
+      "label": "./labelsTr/NU113.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU161_0000.nii.gz",
+      "label": "./labelsTr/NU161.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU51_0000.nii.gz",
+      "label": "./labelsTr/IU51.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC034_0000.nii.gz",
+      "label": "./labelsTr/EMC034.nii.gz"
+    },
+    {
+      "image": "./imagesTr/AHN39_0000.nii.gz",
+      "label": "./labelsTr/AHN39.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU165_0000.nii.gz",
+      "label": "./labelsTr/NU165.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD297_0000.nii.gz",
+      "label": "./labelsTr/CAD297.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD234_0000.nii.gz",
+      "label": "./labelsTr/CAD234.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCA30_0000.nii.gz",
+      "label": "./labelsTr/MCA30.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC049_0000.nii.gz",
+      "label": "./labelsTr/EMC049.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD224_0000.nii.gz",
+      "label": "./labelsTr/CAD224.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU43_0000.nii.gz",
+      "label": "./labelsTr/NU43.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC009_0000.nii.gz",
+      "label": "./labelsTr/EMC009.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD167_0000.nii.gz",
+      "label": "./labelsTr/CAD167.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD170_0000.nii.gz",
+      "label": "./labelsTr/CAD170.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU60_0000.nii.gz",
+      "label": "./labelsTr/NU60.nii.gz"
+    },
+    {
+      "image": "./imagesTr/AHN75_0000.nii.gz",
+      "label": "./labelsTr/AHN75.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU134_0000.nii.gz",
+      "label": "./labelsTr/NU134.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU76_0000.nii.gz",
+      "label": "./labelsTr/NU76.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF26_0000.nii.gz",
+      "label": "./labelsTr/MCF26.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCA15_0000.nii.gz",
+      "label": "./labelsTr/MCA15.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU12_0000.nii.gz",
+      "label": "./labelsTr/IU12.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU31_0000.nii.gz",
+      "label": "./labelsTr/IU31.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD310_0000.nii.gz",
+      "label": "./labelsTr/CAD310.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU52_0000.nii.gz",
+      "label": "./labelsTr/IU52.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0127_0000.nii.gz",
+      "label": "./labelsTr/NYU0127.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD160_0000.nii.gz",
+      "label": "./labelsTr/CAD160.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD232_0000.nii.gz",
+      "label": "./labelsTr/CAD232.nii.gz"
+    },
+    {
+      "image": "./imagesTr/AHN64_0000.nii.gz",
+      "label": "./labelsTr/AHN64.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF38_0000.nii.gz",
+      "label": "./labelsTr/MCF38.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC047_0000.nii.gz",
+      "label": "./labelsTr/EMC047.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0065_0000.nii.gz",
+      "label": "./labelsTr/NYU0065.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0166_0000.nii.gz",
+      "label": "./labelsTr/NYU0166.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD227_0000.nii.gz",
+      "label": "./labelsTr/CAD227.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0010_0000.nii.gz",
+      "label": "./labelsTr/NYU0010.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0054_0000.nii.gz",
+      "label": "./labelsTr/NYU0054.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0151_0000.nii.gz",
+      "label": "./labelsTr/NYU0151.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD178_0000.nii.gz",
+      "label": "./labelsTr/CAD178.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD162_0000.nii.gz",
+      "label": "./labelsTr/CAD162.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF41_0000.nii.gz",
+      "label": "./labelsTr/MCF41.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0094_0000.nii.gz",
+      "label": "./labelsTr/NYU0094.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD255_0000.nii.gz",
+      "label": "./labelsTr/CAD255.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC010_0000.nii.gz",
+      "label": "./labelsTr/EMC010.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU15_0000.nii.gz",
+      "label": "./labelsTr/NU15.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU36_0000.nii.gz",
+      "label": "./labelsTr/IU36.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0029_0000.nii.gz",
+      "label": "./labelsTr/NYU0029.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0137_0000.nii.gz",
+      "label": "./labelsTr/NYU0137.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC040_0000.nii.gz",
+      "label": "./labelsTr/EMC040.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC045_0000.nii.gz",
+      "label": "./labelsTr/EMC045.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0035_0000.nii.gz",
+      "label": "./labelsTr/NYU0035.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU73_0000.nii.gz",
+      "label": "./labelsTr/NU73.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC012_0000.nii.gz",
+      "label": "./labelsTr/EMC012.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD247_0000.nii.gz",
+      "label": "./labelsTr/CAD247.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU190_0000.nii.gz",
+      "label": "./labelsTr/NU190.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU155_0000.nii.gz",
+      "label": "./labelsTr/NU155.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD294_0000.nii.gz",
+      "label": "./labelsTr/CAD294.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU64_0000.nii.gz",
+      "label": "./labelsTr/NU64.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0049_0000.nii.gz",
+      "label": "./labelsTr/NYU0049.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD174_0000.nii.gz",
+      "label": "./labelsTr/CAD174.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD288_0000.nii.gz",
+      "label": "./labelsTr/CAD288.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU39_0000.nii.gz",
+      "label": "./labelsTr/IU39.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC068_0000.nii.gz",
+      "label": "./labelsTr/EMC068.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU2_0000.nii.gz",
+      "label": "./labelsTr/IU2.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCA124_0000.nii.gz",
+      "label": "./labelsTr/MCA124.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU06_0000.nii.gz",
+      "label": "./labelsTr/NU06.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC030_0000.nii.gz",
+      "label": "./labelsTr/EMC030.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0095_0000.nii.gz",
+      "label": "./labelsTr/NYU0095.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0112_0000.nii.gz",
+      "label": "./labelsTr/NYU0112.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD230_0000.nii.gz",
+      "label": "./labelsTr/CAD230.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU102_0000.nii.gz",
+      "label": "./labelsTr/NU102.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD233_0000.nii.gz",
+      "label": "./labelsTr/CAD233.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD238_0000.nii.gz",
+      "label": "./labelsTr/CAD238.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU59_0000.nii.gz",
+      "label": "./labelsTr/NU59.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0142_0000.nii.gz",
+      "label": "./labelsTr/NYU0142.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU189_0000.nii.gz",
+      "label": "./labelsTr/NU189.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU37_0000.nii.gz",
+      "label": "./labelsTr/IU37.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU21_0000.nii.gz",
+      "label": "./labelsTr/IU21.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC076_0000.nii.gz",
+      "label": "./labelsTr/EMC076.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0168_0000.nii.gz",
+      "label": "./labelsTr/NYU0168.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU45_0000.nii.gz",
+      "label": "./labelsTr/IU45.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD295_0000.nii.gz",
+      "label": "./labelsTr/CAD295.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU138_0000.nii.gz",
+      "label": "./labelsTr/NU138.nii.gz"
+    },
+    {
+      "image": "./imagesTr/IU1_0000.nii.gz",
+      "label": "./labelsTr/IU1.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC121_0000.nii.gz",
+      "label": "./labelsTr/EMC121.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCA45_0000.nii.gz",
+      "label": "./labelsTr/MCA45.nii.gz"
+    },
+    {
+      "image": "./imagesTr/AHN77_0000.nii.gz",
+      "label": "./labelsTr/AHN77.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU110_0000.nii.gz",
+      "label": "./labelsTr/NU110.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF30_0000.nii.gz",
+      "label": "./labelsTr/MCF30.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0131_0000.nii.gz",
+      "label": "./labelsTr/NYU0131.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU142_0000.nii.gz",
+      "label": "./labelsTr/NU142.nii.gz"
+    },
+    {
+      "image": "./imagesTr/EMC065_0000.nii.gz",
+      "label": "./labelsTr/EMC065.nii.gz"
+    },
+    {
+      "image": "./imagesTr/AHN16_0000.nii.gz",
+      "label": "./labelsTr/AHN16.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD242_0000.nii.gz",
+      "label": "./labelsTr/CAD242.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD286_0000.nii.gz",
+      "label": "./labelsTr/CAD286.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0096_0000.nii.gz",
+      "label": "./labelsTr/NYU0096.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD205_0000.nii.gz",
+      "label": "./labelsTr/CAD205.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU66_0000.nii.gz",
+      "label": "./labelsTr/NU66.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NU26_0000.nii.gz",
+      "label": "./labelsTr/NU26.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCA126_0000.nii.gz",
+      "label": "./labelsTr/MCA126.nii.gz"
+    },
+    {
+      "image": "./imagesTr/MCF25_0000.nii.gz",
+      "label": "./labelsTr/MCF25.nii.gz"
+    },
+    {
+      "image": "./imagesTr/CAD102_0000.nii.gz",
+      "label": "./labelsTr/CAD102.nii.gz"
+    },
+    {
+      "image": "./imagesTr/NYU0130_0000.nii.gz",
+      "label": "./labelsTr/NYU0130.nii.gz"
+    }
+  ]
+}
