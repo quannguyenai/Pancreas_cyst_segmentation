@@ -110,16 +110,19 @@ def main() -> None:
                 if gt.sum() > 0:
                     try:
                         m = calculate_metric_percase(pred > 0, gt > 0)
-                        metrics.append({"case": stem, "dice": m[0], "hd95": m[1]})
-                        print(f"  {stem}: Dice={m[0]:.4f}  HD95={m[1]:.2f}")
+                        # m = (dc, jc, hd95, asd)
+                        metrics.append({"case": stem, "dice": m[0], "hd95": m[2], "asd": m[3]})
+                        print(f"  {stem}: Dice={m[0]:.4f}  HD95={m[2]:.2f}  ASD={m[3]:.2f}")
                     except Exception:
                         pass
 
     if metrics:
         dice_vals = [m["dice"] for m in metrics]
         hd95_vals = [m["hd95"] for m in metrics]
+        asd_vals  = [m["asd"]  for m in metrics]
         print(f"\nDice: {np.mean(dice_vals):.4f} ± {np.std(dice_vals):.4f}")
         print(f"HD95: {np.mean(hd95_vals):.2f} ± {np.std(hd95_vals):.2f}")
+        print(f"ASD:  {np.mean(asd_vals):.2f} ± {np.std(asd_vals):.2f}")
 
     print(f"\nPredictions saved to: {output_dir}")
 

@@ -100,8 +100,9 @@ def main() -> None:
 
         if label.sum() > 0:
             m = calculate_metric_percase(prediction == 1, label == 1)
-            metrics.append({"case": image_path, "dice": m[0], "hd95": m[1]})
-            logging.info(f"{Path(image_path).stem}: Dice={m[0]:.4f}  HD95={m[1]:.2f}")
+            # m = (dc, jc, hd95, asd)
+            metrics.append({"case": image_path, "dice": m[0], "hd95": m[2], "asd": m[3]})
+            logging.info(f"{Path(image_path).stem}: Dice={m[0]:.4f}  HD95={m[2]:.2f}  ASD={m[3]:.2f}")
 
         if output_dir:
             pred_nib = nib.Nifti1Image(
@@ -115,10 +116,12 @@ def main() -> None:
     if metrics:
         dice_vals = [m["dice"] for m in metrics]
         hd95_vals = [m["hd95"] for m in metrics]
+        asd_vals  = [m["asd"]  for m in metrics]
         print(f"\n{'='*50}")
         print(f"Results on {args.split} split ({len(metrics)} cases with GT):")
         print(f"  Dice: {np.mean(dice_vals):.4f} ± {np.std(dice_vals):.4f}")
         print(f"  HD95: {np.mean(hd95_vals):.2f} ± {np.std(hd95_vals):.2f}")
+        print(f"  ASD:  {np.mean(asd_vals):.2f} ± {np.std(asd_vals):.2f}")
         print(f"{'='*50}")
 
 

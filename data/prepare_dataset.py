@@ -156,7 +156,7 @@ DATASET_JSON_TEMPLATE = {
     "labels": {"background": 0, "cyst": 1},
     "numTraining": 0,
     "file_ending": ".nii.gz",
-    "overwrite_image_reader_writer": "NibabelIOWithReorient",
+    "overwrite_image_reader_writer": "SimpleITKIO",
 }
 
 

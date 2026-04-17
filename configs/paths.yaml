@@ -22,9 +22,9 @@ data:
 # These map directly to the three env vars nnUNetv2 requires:
 #   nnUNet_raw, nnUNet_preprocessed, nnUNet_results
 nnunet:
-  raw:           ${root}/nnunet/nnUNet_raw
-  preprocessed:  ${root}/nnunet/nnUNet_preprocessed
-  results:       ${root}/nnunet/nnUNet_results
+  raw:           ${root}/nnUnet/nnUNet_raw
+  preprocessed:  ${root}/nnUnet/nnUNet_preprocessed
+  results:       ${root}/nnUnet/nnUNet_results
   dataset_id:    1
   dataset_name:  Dataset001_PancreasCyst
 

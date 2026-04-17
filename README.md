@@ -8,6 +8,33 @@ ongoing research project in medical image analysis.
 
 ---
 
+## Quick Start on a Fresh GPU Machine
+
+```bash
+# 1. Clone and enter repo
+git clone git@github.com:quannguyenai/Pancreas_cyst_segmentation.git
+cd Pancreas_cyst_segmentation
+
+# 2. Install everything (creates .venv, installs PyTorch + all deps)
+bash scripts/setup_gpu.sh
+
+# 3. Place dataset files
+#    data/images/EMC024.nii.gz  …  (358 CT scans)
+#    data/masks/cyst_emc_024.nii.gz  …  (358 masks)
+
+# 4. Prepare data (update paths, build nnUNet raw, preprocess)
+source .venv/bin/activate
+bash scripts/prepare_data.sh
+
+# 5. Train (Approach A — nnUNet, recommended)
+bash approach_a/train_mixed.sh 0
+```
+
+That is everything. Steps 2 and 4 are one-time; subsequent training sessions
+only need `source .venv/bin/activate && source scripts/set_nnunet_env.sh`.
+
+---
+
 ## Table of Contents
 
 1. [Overview](#overview)
@@ -115,6 +142,8 @@ pancreas-cyst-seg/
 │   └── evaluate.py             # Cross-approach comparison table
 │
 ├── scripts/
+│   ├── setup_gpu.sh            # One-shot env setup on a fresh GPU machine
+│   ├── prepare_data.sh         # Update paths + build nnUNet raw + preprocess
 │   └── set_nnunet_env.sh       # Export nnUNet_raw/preprocessed/results vars
 │
 └── baseline/                   # Original semi-supervised baseline code (preserved)
