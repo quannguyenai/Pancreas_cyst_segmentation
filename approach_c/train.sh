@@ -31,7 +31,16 @@ echo "  Config : ${REPO_ROOT}/configs/paths.yaml"
 echo "  GPU    : ${GPU}"
 echo "========================================================"
 
+# Auto-resume from latest checkpoint if it exists
+LATEST="${REPO_ROOT}/approach_c/checkpoints/checkpoint_latest.pth"
+RESUME_FLAG=""
+if [[ -f "${LATEST}" ]]; then
+    RESUME_FLAG="--resume ${LATEST}"
+    echo "Checkpoint found — resuming from checkpoint_latest.pth"
+fi
+
 python "${REPO_ROOT}/approach_c/finetune_trainer.py" \
     --config "${REPO_ROOT}/configs/paths.yaml" \
     --gpu "${GPU}" \
+    ${RESUME_FLAG} \
     "$@"

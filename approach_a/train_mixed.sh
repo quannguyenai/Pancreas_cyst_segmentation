@@ -26,15 +26,26 @@ FOLD="${1:-0}"
 CONFIG="${2:-3d_fullres}"
 DATASET_ID=1
 
+RESULTS_DIR="${nnUNet_results}/Dataset$(printf '%03d' ${DATASET_ID})_PancreasCyst/nnUNetTrainer__nnUNetPlans__${CONFIG}/fold_${FOLD}"
+LATEST_CKPT="${RESULTS_DIR}/checkpoint_latest.pth"
+
+# Auto-resume if a checkpoint already exists
+RESUME_FLAG=""
+if [[ -f "${LATEST_CKPT}" ]]; then
+    RESUME_FLAG="--c"
+    echo "Checkpoint found — resuming from ${LATEST_CKPT}"
+fi
+
 echo "========================================================"
 echo "Approach A1 — Full mixed dataset training"
 echo "  Dataset  : Dataset$(printf '%03d' ${DATASET_ID})_PancreasCyst"
 echo "  Config   : ${CONFIG}"
 echo "  Fold     : ${FOLD}"
 echo "  Results  : ${nnUNet_results}"
+echo "  Resume   : ${RESUME_FLAG:-no}"
 echo "========================================================"
 
-nnUNetv2_train "${DATASET_ID}" "${CONFIG}" "${FOLD}" --npz
+nnUNetv2_train "${DATASET_ID}" "${CONFIG}" "${FOLD}" --npz ${RESUME_FLAG}
 
 echo "Training complete. Checkpoint saved to:"
 echo "  ${nnUNet_results}/Dataset$(printf '%03d' ${DATASET_ID})_PancreasCyst/nnUNetTrainer__nnUNetPlans__${CONFIG}/fold_${FOLD}/"

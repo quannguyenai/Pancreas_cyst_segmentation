@@ -254,18 +254,26 @@ class PanSegNetFinetuner:
         ckpt = torch.load(path, map_location="cpu")
         self.model.load_state_dict(ckpt["model"])
         self.optimizer.load_state_dict(ckpt["optimizer"])
-        self.start_epoch = ckpt.get("epoch", 0) + 1
-        self.best_dice   = ckpt.get("best_dice", 0.0)
-        logging.info(f"Resumed from {path} (epoch {self.start_epoch})")
+        if "scheduler" in ckpt:
+            self.scheduler.load_state_dict(ckpt["scheduler"])
+        self.start_epoch     = ckpt.get("epoch", 0)
+        self.best_dice       = ckpt.get("best_dice", 0.0)
+        self.no_improve_cnt  = ckpt.get("no_improve_cnt", 0)
+        logging.info(f"Resumed from {path} (epoch {self.start_epoch}, best_dice={self.best_dice:.4f})")
 
     def _save_checkpoint(self, epoch: int, val_dice: float) -> None:
         path = self.output_dir / f"epoch_{epoch:03d}_dice_{val_dice:.4f}.pth"
-        torch.save({
-            "epoch":      epoch,
-            "model":      self.model.state_dict(),
-            "optimizer":  self.optimizer.state_dict(),
-            "best_dice":  self.best_dice,
-        }, path)
+        state = {
+            "epoch":         epoch,
+            "model":         self.model.state_dict(),
+            "optimizer":     self.optimizer.state_dict(),
+            "scheduler":     self.scheduler.state_dict(),
+            "best_dice":     self.best_dice,
+            "no_improve_cnt": self.no_improve_cnt,
+        }
+        torch.save(state, path)
+        # Always keep a latest checkpoint for crash recovery
+        torch.save(state, self.output_dir / "checkpoint_latest.pth")
         logging.info(f"  → Checkpoint: {path.name}")
 
     def train_epoch(self, epoch: int) -> float:
@@ -352,6 +360,15 @@ class PanSegNetFinetuner:
                 )
             else:
                 self.no_improve_cnt += 1
+                # Still update latest checkpoint so crash recovery works
+                torch.save({
+                    "epoch":          epoch + 1,
+                    "model":          self.model.state_dict(),
+                    "optimizer":      self.optimizer.state_dict(),
+                    "scheduler":      self.scheduler.state_dict(),
+                    "best_dice":      self.best_dice,
+                    "no_improve_cnt": self.no_improve_cnt,
+                }, self.output_dir / "checkpoint_latest.pth")
 
             if self.no_improve_cnt >= self.patience:
                 logging.info(

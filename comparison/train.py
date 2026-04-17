@@ -72,6 +72,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--consistency", type=float, default=0.0)
     p.add_argument("--consistency-rampup", type=float, default=40.0)
     p.add_argument("--u-weight", type=float, default=0.5)
+    p.add_argument("--resume", default=None,
+                   help="Path to checkpoint_latest.pth to resume interrupted training")
     return p.parse_args()
 
 
@@ -157,9 +159,20 @@ def main() -> None:
     ce_loss   = nn.CrossEntropyLoss()
     dice_loss = losses.DiceLoss(2)
 
-    best_dice = 0.0
+    best_dice   = 0.0
+    start_epoch = 0
 
-    for epoch in range(args.max_epoch):
+    # Resume from checkpoint if requested or if latest checkpoint exists
+    resume_path = args.resume or str(ckpt_dir / "checkpoint_latest.pth")
+    if Path(resume_path).exists():
+        ckpt = torch.load(resume_path, map_location="cpu")
+        model.load_state_dict(ckpt["model"])
+        optimizer.load_state_dict(ckpt["optimizer"])
+        start_epoch = ckpt.get("epoch", 0) + 1
+        best_dice   = ckpt.get("best_dice", 0.0)
+        logging.info(f"Resumed from {resume_path} (epoch {start_epoch}, best_dice={best_dice:.4f})")
+
+    for epoch in range(start_epoch, args.max_epoch):
         model.train()
         epoch_loss = 0.0
         for batch in tqdm(train_loader, desc=f"Epoch {epoch+1}/{args.max_epoch}"):
@@ -183,6 +196,14 @@ def main() -> None:
         lr = args.base_lr * (1 - epoch / args.max_epoch) ** 0.9
         for pg in optimizer.param_groups:
             pg["lr"] = lr
+
+        # Save latest checkpoint every epoch for crash recovery
+        torch.save({
+            "epoch":      epoch,
+            "model":      model.state_dict(),
+            "optimizer":  optimizer.state_dict(),
+            "best_dice":  best_dice,
+        }, ckpt_dir / "checkpoint_latest.pth")
 
         # Validation every 5 epochs
         if (epoch + 1) % 5 == 0:
