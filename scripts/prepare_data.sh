@@ -43,9 +43,39 @@ python data/prepare_dataset.py \
 
 # ── Step 3: nnUNet plan and preprocess ───────────────────────────────────────
 echo ""
-echo "[3/3] Running nnUNet plan and preprocess (-np 8 workers) ..."
+echo "[3/4] Running nnUNet plan and preprocess (-np 8 workers) ..."
 source scripts/set_nnunet_env.sh
 nnUNetv2_plan_and_preprocess -d 1 --verify_dataset_integrity -np 8
+
+# ── Step 4: Write predefined splits_final.json ───────────────────────────────
+# Without this, nnUNet generates random 5-fold CV splits on first train call,
+# discarding the predefined 247/37 split from data/train.txt and data/val.txt.
+echo ""
+echo "[4/4] Writing predefined splits_final.json (fold 0: 247 train / 37 val) ..."
+REPO_ROOT="$REPO_ROOT" python3 - <<'EOF'
+import json, os
+from pathlib import Path
+
+repo = Path(os.environ.get("REPO_ROOT", "."))
+
+def stems(txt: Path):
+    return [
+        Path(line.strip().split(",")[0]).name.replace(".nii.gz", "")
+        for line in txt.read_text().splitlines()[1:]
+        if line.strip()
+    ]
+
+train_stems = stems(repo / "data/train.txt")
+val_stems   = stems(repo / "data/val.txt")
+
+# Read preprocessed dir from nnUNet env
+preprocessed = Path(os.environ["nnUNet_preprocessed"]) / "Dataset001_PancreasCyst"
+out = preprocessed / "splits_final.json"
+out.write_text(json.dumps([{"train": train_stems, "val": val_stems}], indent=2) + "\n")
+
+print(f"  Written: {out}")
+print(f"  Fold 0 — train: {len(train_stems)}, val: {len(val_stems)}")
+EOF
 
 echo ""
 echo "============================================================"
