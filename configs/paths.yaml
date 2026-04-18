@@ -26,7 +26,7 @@ nnunet:
   preprocessed:  ${root}/nnUnet/nnUNet_preprocessed
   results:       ${root}/nnUnet/nnUNet_results
   dataset_id:    1
-  dataset_name:  Dataset001_PancreasCyst
+  dataset_name:  PancreasCyst
 
 # ─── Approach A: Direct nnUNet Baseline ──────────────────────────────────────
 # A1: single model trained on the full mixed dataset (all institutions)
