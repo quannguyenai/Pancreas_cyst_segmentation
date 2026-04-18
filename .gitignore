@@ -4,6 +4,12 @@ venv/
 env/
 ENV/
 
+# ─── Approach D (PaNSegNet / nnTransUNetTrainerV2) — fully isolated ───────────
+approach_d/.venv/
+approach_d/PaNSegNet/
+approach_d/nnunet_v1/
+approach_d/predictions/
+
 # ─── Python bytecode ──────────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
