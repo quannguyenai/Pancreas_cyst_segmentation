@@ -167,15 +167,19 @@ def build_nnunet_raw(
     nnunet_raw_dir: Path,
     dataset_id: int,
     dataset_name: str,
+    val_txt: Path | None = None,
 ) -> None:
     """Create nnUNet Dataset folder structure with symlinks.
 
     Structure created:
         nnUNet_raw/Dataset{id:03d}_{name}/
-            imagesTr/CASE_0000.nii.gz  (symlink)
-            labelsTr/CASE.nii.gz        (symlink)
-            imagesTs/CASE_0000.nii.gz   (symlink, test images only)
+            imagesTr/CASE_0000.nii.gz  (symlink — train + val cases)
+            labelsTr/CASE.nii.gz        (symlink — train + val cases)
+            imagesTs/CASE_0000.nii.gz   (symlink — test images only)
             dataset.json
+
+    Both train and val cases go into imagesTr so nnUNet can access them.
+    The splits_final.json determines which val cases are held out per fold.
     """
     dataset_folder = nnunet_raw_dir / f"Dataset{dataset_id:03d}_{dataset_name}"
     images_tr = dataset_folder / "imagesTr"
@@ -185,26 +189,26 @@ def build_nnunet_raw(
     for d in (images_tr, labels_tr, images_ts):
         d.mkdir(parents=True, exist_ok=True)
 
-    # Read training case stems from train.txt
-    train_stems: set[str] = set()
-    if train_txt.exists():
-        for line in train_txt.read_text().splitlines()[1:]:
+    def _read_stems(txt: Path) -> set[str]:
+        if not txt.exists():
+            return set()
+        stems = set()
+        for line in txt.read_text().splitlines()[1:]:
             line = line.strip()
             if line:
-                stem = Path(line.split(",")[0]).name.replace(".nii.gz", "")
-                train_stems.add(stem)
+                stems.add(Path(line.split(",")[0]).name.replace(".nii.gz", ""))
+        return stems
 
-    test_stems: set[str] = set()
-    if test_txt.exists():
-        for line in test_txt.read_text().splitlines()[1:]:
-            line = line.strip()
-            if line:
-                stem = Path(line.split(",")[0]).name.replace(".nii.gz", "")
-                test_stems.add(stem)
+    # Train + val both go into imagesTr (nnUNet requires all labelled cases there)
+    train_stems = _read_stems(train_txt)
+    val_stems   = _read_stems(val_txt) if val_txt else set()
+    imagestr_stems = train_stems | val_stems
+
+    test_stems = _read_stems(test_txt)
 
     n_train = 0
     for stem, (img_path, mask_path) in cases.items():
-        if stem in train_stems:
+        if stem in imagestr_stems:
             dst_img  = images_tr / f"{stem}_0000.nii.gz"
             dst_mask = labels_tr  / f"{stem}.nii.gz"
             for dst, src in [(dst_img, img_path), (dst_mask, mask_path)]:
@@ -332,6 +336,7 @@ def main() -> None:
         build_nnunet_raw(
             cases,
             train_txt=data_dir / "train.txt",
+            val_txt=data_dir / "val.txt",
             test_txt=data_dir / "test.txt",
             nnunet_raw_dir=nnunet_raw,
             dataset_id=dataset_id,
