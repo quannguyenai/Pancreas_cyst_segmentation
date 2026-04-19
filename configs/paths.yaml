@@ -67,7 +67,7 @@ approach_b:
 # ─── Approach C: Fine-tune Pretrained PanSegNet for Cyst ─────────────────────
 # Encoder from PanSegNet, head replaced for binary cyst segmentation
 approach_c:
-  pretrained_weights: ${root}/pansegnet_weights/Task111_PancreasT2MRI/nnTransUNetTrainerV2__nnUNetPlansv2.1/fold_0/model_best.model
+  pretrained_weights: ${root}/pansegnet_weights/averaged_T1T2.model  # T1+T2 model soup for mixed-modality data
   output_dir:         ${root}/approach_c/checkpoints
   predictions:        ${root}/approach_c/predictions
   max_epochs:         300
