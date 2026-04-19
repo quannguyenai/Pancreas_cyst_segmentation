@@ -260,10 +260,23 @@ class CystPatchDataset(Dataset):
         return img[i0:i0+pH, j0:j0+pW, k0:k0+pD], lbl[i0:i0+pH, j0:j0+pW, k0:k0+pD]
 
     def _augment(self, img: np.ndarray, lbl: np.ndarray):
+        # Flips
         for axis in range(3):
             if random.random() < 0.5:
                 img = np.flip(img, axis=axis).copy()
                 lbl = np.flip(lbl, axis=axis).copy()
+        # 90° rotations in each plane
+        for axes in [(0, 1), (0, 2), (1, 2)]:
+            k = random.randint(0, 3)
+            if k:
+                img = np.rot90(img, k=k, axes=axes).copy()
+                lbl = np.rot90(lbl, k=k, axes=axes).copy()
+        # Intensity jitter (CT HU-space: ±15 HU / scale ±10%)
+        if random.random() < 0.5:
+            img = img + random.uniform(-0.06, 0.06)  # ~±15HU after [−100,400] norm
+        if random.random() < 0.5:
+            img = img * random.uniform(0.9, 1.1)
+        img = np.clip(img, 0.0, 1.0)
         return img, lbl
 
 

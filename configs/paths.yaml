@@ -38,31 +38,45 @@ approach_a:
   base_dataset_id:   2   # A2 uses Dataset002_AHN … Dataset009_NU
 
 # ─── Approach B: Cascaded Pancreas → Crop → Cyst ────────────────────────────
-# Stage 1: pretrained PanSegNet infers pancreas masks
+# Stage 1: pretrained PaNSegNet infers pancreas masks
 # Stage 2: crop volumes to pancreas ROI + margin, train nnUNet on cropped data
 approach_b:
-  pancreas_model_dir:  ${root}/approach_b/pancreas_model  # place PanSegNet weights here
-  pancreas_preds:      ${root}/approach_b/pancreas_preds
-  cropped_images:      ${root}/approach_b/cropped/images
-  cropped_masks:       ${root}/approach_b/cropped/masks
-  crop_stats_json:     ${root}/approach_b/crop_stats.json
-  crop_margin_pct:     0.05          # expand bbox 5% per side
-  nnunet_dataset_id:   10            # Dataset010_CroppedCyst
-  predictions_cropped: ${root}/approach_b/predictions/cropped
-  predictions_full:    ${root}/approach_b/predictions/full_space
+  pancreas_model_dir:      ${root}/pansegnet_weights
+  pancreas_model_task_id:  111
+  pancreas_model_config:   3d_fullres
+  pancreas_model_trainer:  nnTransUNetTrainerV2
+  pancreas_model_plans:    nnUNetPlansv2.1
+  pancreas_model_folds:    [0]
+  pancreas_preds:          ${root}/approach_b/pancreas_preds
+  cropped_images:          ${root}/approach_b/cropped/images
+  cropped_masks:           ${root}/approach_b/cropped/masks
+  cropped_train_txt:       ${root}/approach_b/splits/train_cropped.txt
+  cropped_val_txt:         ${root}/approach_b/splits/val_cropped.txt
+  cropped_test_txt:        ${root}/approach_b/splits/test_cropped.txt
+  crop_stats_json:         ${root}/approach_b/crop_stats.json
+  crop_stats_test_json:    ${root}/approach_b/crop_stats_test.json
+  crop_margin_pct:         0.05          # expand bbox by 5% of bbox size per side
+  nnunet_dataset_id:       10            # Dataset010_CroppedCyst
+  nnunet_dataset_name:     CroppedCyst
+  predictions_cropped:     ${root}/approach_b/predictions/cropped
+  predictions_full:        ${root}/approach_b/predictions/full_space
+  unet_experiment:         approach_b_unet3d
+  unet_predictions_cropped: ${root}/approach_b/predictions_unet/cropped
+  unet_predictions_full:   ${root}/approach_b/predictions_unet/full_space
 
 # ─── Approach C: Fine-tune Pretrained PanSegNet for Cyst ─────────────────────
 # Encoder from PanSegNet, head replaced for binary cyst segmentation
 approach_c:
-  pretrained_weights: ${root}/approach_c/pretrained/PanSegNet.pth  # obtain from authors
+  pretrained_weights: ${root}/pansegnet_weights/Task111_PancreasT2MRI/nnTransUNetTrainerV2__nnUNetPlansv2.1/fold_0/model_best.model
   output_dir:         ${root}/approach_c/checkpoints
   predictions:        ${root}/approach_c/predictions
-  max_epochs:         100
-  warmup_freeze_epochs: 5           # freeze encoder for first N epochs
-  lr:                 1.0e-4
+  max_epochs:         300
+  warmup_freeze_epochs: 10          # freeze encoder for first 10 epochs (fine-tuning head only)
+  lr:                 3.0e-5        # lower LR for fine-tuning
   batch_size:         2
   patch_size:         [96, 96, 96]
-  early_stop_patience: 15
+  early_stop_patience: 40
+  samples_per_volume: 4
 
 # ─── Comparison: Baseline Model Benchmarks ────────────────────────────────────
 # Consolidates baseline/2D-UNet and baseline/3D-VNet into comparison/

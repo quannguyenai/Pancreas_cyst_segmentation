@@ -528,24 +528,26 @@ def load_pansegnet_weights(
     import logging
     from pathlib import Path
 
-    ckpt = torch.load(checkpoint_path, map_location="cpu")
+    ckpt = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
     if isinstance(ckpt, dict):
-        state = ckpt.get("model", ckpt.get("state_dict", ckpt))
+        # nnUNet v1 .model files use 'state_dict'; .pth files may use 'model'
+        state = ckpt.get("state_dict", ckpt.get("model", ckpt))
     else:
         state = ckpt
 
-    # Remove positional encoding buffer (sinusoidal — will be re-computed)
+    # Remove positional encoding buffer (sinusoidal — size depends on pretrain patch_size)
     state.pop("self_atten.pos_encode.pe", None)
 
-    # Remove seg heads if class count differs (Conv3d shape mismatch)
-    model_seg_keys = {k for k in model.state_dict() if k.startswith("seg_outputs")}
-    ckpt_seg_keys  = {k for k in state if k.startswith("seg_outputs")}
-    for k in list(ckpt_seg_keys):
-        if k in model_seg_keys:
-            ours  = model.state_dict()[k].shape
-            theirs = state[k].shape
-            if ours != theirs:
-                state.pop(k)
+    # Remove ALL shape-mismatched keys (e.g. anisotropic [1,3,3] kernels from MRI model)
+    our_state = model.state_dict()
+    skipped = []
+    for k in list(state.keys()):
+        if k in our_state and state[k].shape != our_state[k].shape:
+            skipped.append(f"{k}: ckpt{tuple(state[k].shape)} vs ours{tuple(our_state[k].shape)}")
+            state.pop(k)
+    if skipped:
+        logging.info(f"  Skipped {len(skipped)} shape-mismatched keys (anisotropic→isotropic): "
+                     + ", ".join(skipped[:3]) + ("..." if len(skipped) > 3 else ""))
 
     missing, unexpected = model.load_state_dict(state, strict=False)
     logging.info(
