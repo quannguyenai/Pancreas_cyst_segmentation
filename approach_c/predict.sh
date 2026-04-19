@@ -27,7 +27,7 @@ FOLD="${1:-0}"
 CKPT="${2:-model_best}"
 
 # ── Install custom trainer into nnUNet package ────────────────────────────────
-NNUNET_TRAINER_DIR="$(python3 -c "import nnunet, os; print(os.path.join(os.path.dirname(nnunet.__file__), 'training', 'network_training'))")"
+NNUNET_TRAINER_DIR="$(python3 -c "import nnunet, os; print(os.path.join(os.path.dirname(nnunet.__file__), 'training', 'network_training'))" 2>/dev/null)"
 cp approach_c/nnTransUNetTrainerV2_Pretrained.py "${NNUNET_TRAINER_DIR}/"
 
 INPUT_DIR="${nnUNet_raw_data_base}/nnUNet_raw_data/Task$(printf '%03d' ${TASK_ID})_${TASK_NAME}/imagesTs"

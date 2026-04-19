@@ -33,7 +33,7 @@ CONFIG="3d_fullres"
 FOLD=0
 
 # ── Install custom trainer into nnUNet package ────────────────────────────────
-NNUNET_TRAINER_DIR="$(python3 -c "import nnunet, os; print(os.path.join(os.path.dirname(nnunet.__file__), 'training', 'network_training'))")"
+NNUNET_TRAINER_DIR="$(python3 -c "import nnunet, os; print(os.path.join(os.path.dirname(nnunet.__file__), 'training', 'network_training'))" 2>/dev/null)"
 cp approach_c/nnTransUNetTrainerV2_Pretrained.py "${NNUNET_TRAINER_DIR}/"
 echo "Custom trainer installed to ${NNUNET_TRAINER_DIR}/"
 
