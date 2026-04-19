@@ -212,6 +212,7 @@ class CystPatchDataset(Dataset):
         self.patch_size  = patch_size
         self.mode        = mode
         self.samples_per = num_samples_per_volume
+        self._cache: dict[int, tuple[np.ndarray, np.ndarray]] = {}
 
         with open(txt_path) as f:
             lines = f.readlines()[1:]
@@ -221,13 +222,17 @@ class CystPatchDataset(Dataset):
     def __len__(self) -> int:
         return len(self.pairs) * (self.samples_per if self.mode == "train" else 1)
 
+    def _load_volume(self, vol_idx: int) -> tuple[np.ndarray, np.ndarray]:
+        if vol_idx not in self._cache:
+            img_path, mask_path = self.pairs[vol_idx]
+            image = nib.load(img_path.strip()).get_fdata().astype(np.float32)
+            label = nib.load(mask_path.strip()).get_fdata().astype(np.float32)
+            self._cache[vol_idx] = (_normalize(image), label)
+        return self._cache[vol_idx]
+
     def __getitem__(self, idx: int) -> dict:
         vol_idx  = idx // self.samples_per if self.mode == "train" else idx
-        img_path, mask_path = self.pairs[vol_idx]
-
-        image = nib.load(img_path.strip()).get_fdata().astype(np.float32)
-        label = nib.load(mask_path.strip()).get_fdata().astype(np.float32)
-        image = _normalize(image)
+        image, label = self._load_volume(vol_idx)
 
         if self.mode == "train":
             image, label = self._random_crop(image, label)
@@ -330,10 +335,10 @@ class PanSegNetFinetuner:
         )
         self.train_loader = DataLoader(
             train_ds, batch_size=batch_size, shuffle=True,
-            num_workers=num_workers, pin_memory=True, drop_last=True,
+            num_workers=0, pin_memory=True, drop_last=True,
         )
         self.val_loader = DataLoader(
-            val_ds, batch_size=1, shuffle=False, num_workers=num_workers,
+            val_ds, batch_size=1, shuffle=False, num_workers=0,
         )
 
         # ── Optimiser & loss ──────────────────────────────────────────────────
