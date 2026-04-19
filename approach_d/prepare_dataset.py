@@ -55,6 +55,9 @@ def _read_stems_and_paths(txt: Path) -> list[tuple[str, Path, Path | None]]:
         img = Path(parts[0])
         mask = Path(parts[1]) if len(parts) > 1 else None
         stem = img.name.replace(".nii.gz", "")
+        # Strip nnUNet channel suffix if the source file already has _0000
+        if len(stem) > 5 and stem[-5] == "_" and stem[-4:].isdigit():
+            stem = stem[:-5]
         rows.append((stem, img, mask))
     return rows
 

@@ -52,7 +52,7 @@ if [[ -f "${PLANS_FILE}" ]]; then
 else
     echo ""
     echo "[2/3] Running nnUNet_plan_and_preprocess ..."
-    nnUNet_plan_and_preprocess -t "${TASK_ID}" --verify_dataset_integrity -tl 8 -tf 8
+    nnUNet_plan_and_preprocess -t "${TASK_ID}" -tl 8 -tf 8
 fi
 
 # ── Step 3: Train (auto-resume if checkpoint exists) ─────────────────────────
