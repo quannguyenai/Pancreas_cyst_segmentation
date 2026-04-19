@@ -126,14 +126,11 @@ def sliding_window_inference(
         )
     _, _, H2, W2, D2 = volume.shape
 
-    # Run one dummy patch to get num_classes C
+    # Infer num_classes from model output (run once per call, before the loop)
+    model.eval()
     with torch.no_grad():
-        dummy = volume[:, :, :pH, :pW, :pD]
-        was_training = model.training
-        model.eval()
-        C = model(dummy).shape[1]
-        if was_training:
-            model.train()
+        _out = model(volume[:, :, :pH, :pW, :pD])
+        C = (_out[-1] if isinstance(_out, tuple) else _out).shape[1]
 
     accum  = torch.zeros(1, C, H2, W2, D2, device=device)
     weight = torch.zeros(1, 1, H2, W2, D2, device=device)
@@ -212,7 +209,7 @@ class CystPatchDataset(Dataset):
         self.patch_size  = patch_size
         self.mode        = mode
         self.samples_per = num_samples_per_volume
-        self._cache: dict[int, tuple[np.ndarray, np.ndarray]] = {}
+        self._cache: dict[int, tuple[np.ndarray, np.ndarray, np.ndarray]] = {}
 
         with open(txt_path) as f:
             lines = f.readlines()[1:]
@@ -222,20 +219,21 @@ class CystPatchDataset(Dataset):
     def __len__(self) -> int:
         return len(self.pairs) * (self.samples_per if self.mode == "train" else 1)
 
-    def _load_volume(self, vol_idx: int) -> tuple[np.ndarray, np.ndarray]:
+    def _load_volume(self, vol_idx: int) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         if vol_idx not in self._cache:
             img_path, mask_path = self.pairs[vol_idx]
             image = nib.load(img_path.strip()).get_fdata().astype(np.float32)
             label = nib.load(mask_path.strip()).get_fdata().astype(np.float32)
-            self._cache[vol_idx] = (_normalize(image), label)
+            fg    = np.argwhere(label > 0)   # compute once, reuse every crop
+            self._cache[vol_idx] = (_normalize(image), label, fg)
         return self._cache[vol_idx]
 
     def __getitem__(self, idx: int) -> dict:
         vol_idx  = idx // self.samples_per if self.mode == "train" else idx
-        image, label = self._load_volume(vol_idx)
+        image, label, fg = self._load_volume(vol_idx)
 
         if self.mode == "train":
-            image, label = self._random_crop(image, label)
+            image, label = self._random_crop(image, label, fg)
             image, label = self._augment(image, label)
         # else: return full volume (for val sliding-window)
 
@@ -245,7 +243,7 @@ class CystPatchDataset(Dataset):
 
     # ── internal helpers ──────────────────────────────────────────────────────
 
-    def _random_crop(self, img: np.ndarray, lbl: np.ndarray):
+    def _random_crop(self, img: np.ndarray, lbl: np.ndarray, fg: np.ndarray):
         pH, pW, pD = self.patch_size
         H, W, D    = img.shape
 
@@ -256,9 +254,8 @@ class CystPatchDataset(Dataset):
             lbl = np.pad(lbl, pad, mode="constant", constant_values=0)
         H, W, D = img.shape
 
-        if random.random() < 0.5 and lbl.sum() > 0:
-            # Positive crop: centre near a random cyst voxel
-            fg = np.argwhere(lbl > 0)
+        if random.random() < 0.5 and len(fg) > 0:
+            # Positive crop: centre near a random cyst voxel (fg pre-computed at load time)
             ci, cj, ck = fg[random.randint(0, len(fg) - 1)]
             i0 = int(np.clip(ci - pH // 2, 0, H - pH))
             j0 = int(np.clip(cj - pW // 2, 0, W - pW))
@@ -375,7 +372,7 @@ class PanSegNetFinetuner:
         logging.info(f"  → saved {path.name}")
 
     def _load_checkpoint(self, path: str) -> None:
-        ckpt = torch.load(path, map_location="cpu")
+        ckpt = torch.load(path, map_location="cpu", weights_only=False)
         self.model.load_state_dict(ckpt["model"])
         self.optimizer.load_state_dict(ckpt["optimizer"])
         if "scheduler" in ckpt:
@@ -429,7 +426,7 @@ class PanSegNetFinetuner:
             gt     = batch["label"].squeeze(0).cpu().numpy()  # [H,W,D]
 
             pred_logits = sliding_window_inference(
-                self.model, volume, self.patch_size, overlap=0.5, sw_batch_size=2,
+                self.model, volume, self.patch_size, overlap=0.25, sw_batch_size=4,
             )
             pred = torch.argmax(pred_logits, dim=1).squeeze(0).cpu().numpy()
 
@@ -451,10 +448,12 @@ class PanSegNetFinetuner:
             f"(encoder frozen for first {self.freeze_epochs})"
         )
 
+        # Set initial freeze state once before the loop
+        if self.start_epoch < self.freeze_epochs:
+            self.model.set_encoder_frozen(frozen=True)
+
         for epoch in range(self.start_epoch, self.max_epochs):
-            if epoch < self.freeze_epochs:
-                self.model.set_encoder_frozen(frozen=True)
-            elif epoch == self.freeze_epochs:
+            if epoch == self.freeze_epochs:
                 logging.info(f"Epoch {epoch+1}: unfreezing encoder.")
                 self.model.set_encoder_frozen(frozen=False)
                 self.optimizer = optim.AdamW(
