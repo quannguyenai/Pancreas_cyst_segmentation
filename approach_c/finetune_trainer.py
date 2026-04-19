@@ -77,14 +77,25 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--fold", type=int, default=0,
                    help="Fold index for cross-validation (0 = train on train.txt).")
     p.add_argument("--gpu", default="0")
+    p.add_argument("--batch_size", type=int, default=None,
+                   help="Override config batch_size.")
+    p.add_argument("--num_workers", type=int, default=None,
+                   help="DataLoader num_workers (default: 4).")
+    p.add_argument("--sw_batch_size", type=int, default=2,
+                   help="Sliding-window batch size during validation (default: 2).")
+    p.add_argument("--cache_rate", type=float, default=0.0,
+                   help="MONAI CacheDataset cache_rate (default: 0.0 = no caching).")
     return p.parse_args()
 
 
 # ─── MONAI data pipeline ──────────────────────────────────────────────────────
 
-def build_monai_dataloaders(cfg: dict) -> tuple[DataLoader, DataLoader]:
+def build_monai_dataloaders(cfg: dict, args: argparse.Namespace) -> tuple[DataLoader, DataLoader]:
     """Build MONAI CacheDataset loaders from split CSV files."""
-    patch_size = cfg["approach_c"]["patch_size"]
+    patch_size   = cfg["approach_c"]["patch_size"]
+    batch_size   = args.batch_size if args.batch_size is not None else int(cfg["approach_c"]["batch_size"])
+    num_workers  = args.num_workers if args.num_workers is not None else 4
+    cache_rate   = args.cache_rate
 
     def load_csv(txt_path: str) -> list[dict]:
         data = []
@@ -147,16 +158,16 @@ def build_monai_dataloaders(cfg: dict) -> tuple[DataLoader, DataLoader]:
     ])
 
     train_ds = CacheDataset(train_data, transform=train_transforms,
-                            cache_rate=0.1, num_workers=4)
+                            cache_rate=cache_rate, num_workers=num_workers)
     val_ds   = CacheDataset(val_data,   transform=val_transforms,
-                            cache_rate=1.0, num_workers=2)
+                            cache_rate=cache_rate, num_workers=num_workers)
 
     train_loader = MonaiDataLoader(train_ds,
-                                   batch_size=cfg["approach_c"]["batch_size"],
-                                   shuffle=True, num_workers=4, pin_memory=True)
+                                   batch_size=batch_size,
+                                   shuffle=True, num_workers=num_workers, pin_memory=True)
     val_loader   = MonaiDataLoader(val_ds,
                                    batch_size=1,
-                                   shuffle=False, num_workers=2)
+                                   shuffle=False, num_workers=num_workers)
     return train_loader, val_loader
 
 
@@ -238,8 +249,9 @@ class PanSegNetFinetuner:
             self.optimizer, T_max=self.max_epochs
         )
 
+        self.sw_batch_size = args.sw_batch_size
         if _MONAI_AVAILABLE:
-            self.train_loader, self.val_loader = build_monai_dataloaders(cfg)
+            self.train_loader, self.val_loader = build_monai_dataloaders(cfg, args)
         else:
             raise RuntimeError("MONAI is required for approach_c. Install: pip install monai")
 
@@ -301,8 +313,8 @@ class PanSegNetFinetuner:
 
             roi_size = self.patch_size
             preds = sliding_window_inference(
-                images, roi_size=roi_size, sw_batch_size=4,
-                predictor=self.model, overlap=0.5,
+                images, roi_size=roi_size, sw_batch_size=self.sw_batch_size,
+                predictor=self.model, overlap=0.25,
             )
             preds = torch.argmax(torch.softmax(preds, dim=1), dim=1)
             preds = preds.cpu().numpy()
