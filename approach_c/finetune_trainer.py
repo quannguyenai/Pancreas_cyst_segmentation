@@ -1,223 +1,270 @@
-"""finetune_trainer.py — Fine-tune a pretrained PanSegNet encoder for cyst segmentation.
+"""finetune_trainer.py — Fine-tune PanSegNet for pancreatic cyst segmentation.
 
-Architecture: MONAI UNet backbone with pretrained encoder weights loaded from
-PanSegNet. The final segmentation head is replaced for binary (background/cyst)
-output. The encoder is frozen for ``warmup_freeze_epochs``, then all parameters
-are unfrozen and trained end-to-end.
+No MONAI dependency.  Uses the faithful PanSegNet reimplementation in
+approach_c/pansegnet.py and the existing nibabel-based Cyst dataset.
 
-Training uses DiceCELoss, CosineAnnealingLR, and early stopping on validation Dice.
-Sliding-window inference (MONAI) is used for validation and inference.
+Architecture: exact Generic_TransUNet — nnUNet conv encoder/decoder +
+SelfAtten3DBlock transformer bottleneck.  Pretrained PanSegNet weights
+are loaded with key-exact matching; only the positional-encoding buffer
+is re-initialised for our patch size (it is sinusoidal, not learned).
+
+Training schedule
+-----------------
+1. Warmup (warmup_freeze_epochs): encoder frozen, decoder + transformer train.
+2. Full fine-tune: all parameters unfreeze.
 
 Usage
 -----
-# Training:
 python approach_c/finetune_trainer.py --config configs/paths.yaml
-
-# Resume from checkpoint:
 python approach_c/finetune_trainer.py --config configs/paths.yaml \\
-    --resume approach_c/checkpoints/epoch_10_dice_0.7234.pth
-
-Prerequisites
--------------
-* PanSegNet pretrained weights placed at:
-    approach_c/pretrained/PanSegNet.pth
-  (obtain from the original authors)
-* MONAI >= 1.5.2, PyTorch >= 2.0
+    --resume approach_c/checkpoints/checkpoint_latest.pth
 """
 
 from __future__ import annotations
 
 import argparse
 import logging
+import os
+import random
 import sys
 from pathlib import Path
 
+import nibabel as nib
 import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader
+from scipy.ndimage import zoom
+from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, str(Path(__file__).parent))
+
 from configs import load_config
-from comparison.dataloaders.dataset import Normalize, ToTensor, RandomCrop, CenterCrop
 from comparison.utils.metrics import calculate_metric_percase
-
-try:
-    from monai.losses import DiceCELoss
-    from monai.inferers import sliding_window_inference
-    from monai.networks.nets import UNet
-    from monai.transforms import (
-        Compose, LoadImaged, EnsureChannelFirstd, Orientationd,
-        Spacingd, ScaleIntensityRanged, RandCropByPosNegLabeld,
-        RandFlipd, RandRotate90d, ToTensord, SpatialPadd,
-    )
-    from monai.data import CacheDataset, DataLoader as MonaiDataLoader
-    _MONAI_AVAILABLE = True
-except ImportError:
-    _MONAI_AVAILABLE = False
-    print("[WARN] MONAI not available; falling back to custom data pipeline.")
-
-import nibabel as nib
+from pansegnet import PanSegNet, load_pansegnet_weights
 
 
 # ─── CLI ──────────────────────────────────────────────────────────────────────
 
 def parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(
-        description="Fine-tune PanSegNet encoder for pancreatic cyst segmentation.",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-    )
-    p.add_argument("--config", default="configs/paths.yaml")
-    p.add_argument("--resume", default=None,
-                   help="Path to checkpoint to resume from.")
+    p = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    p.add_argument("--config",       default="configs/paths.yaml")
+    p.add_argument("--resume",       default=None)
     p.add_argument("--freeze-epochs", type=int, default=None,
-                   help="Override config warmup_freeze_epochs.")
-    p.add_argument("--fold", type=int, default=0,
-                   help="Fold index for cross-validation (0 = train on train.txt).")
-    p.add_argument("--gpu", default="0")
-    p.add_argument("--batch_size", type=int, default=None,
-                   help="Override config batch_size.")
-    p.add_argument("--num_workers", type=int, default=None,
-                   help="DataLoader num_workers (default: 4).")
-    p.add_argument("--sw_batch_size", type=int, default=2,
-                   help="Sliding-window batch size during validation (default: 2).")
-    p.add_argument("--cache_rate", type=float, default=0.0,
-                   help="MONAI CacheDataset cache_rate (default: 0.0 = no caching).")
+                   help="Override warmup_freeze_epochs from config.")
+    p.add_argument("--gpu",          default="0")
+    p.add_argument("--batch-size",   type=int, default=None)
+    p.add_argument("--num-workers",  type=int, default=4)
     return p.parse_args()
 
 
-# ─── MONAI data pipeline ──────────────────────────────────────────────────────
+# ─── Loss ─────────────────────────────────────────────────────────────────────
 
-def build_monai_dataloaders(cfg: dict, args: argparse.Namespace) -> tuple[DataLoader, DataLoader]:
-    """Build MONAI CacheDataset loaders from split CSV files."""
-    patch_size   = cfg["approach_c"]["patch_size"]
-    batch_size   = args.batch_size if args.batch_size is not None else int(cfg["approach_c"]["batch_size"])
-    num_workers  = args.num_workers if args.num_workers is not None else 4
-    cache_rate   = args.cache_rate
+class DiceCELoss(nn.Module):
+    """Dice + CrossEntropy on raw logits."""
 
-    def load_csv(txt_path: str) -> list[dict]:
-        data = []
-        with open(txt_path) as f:
-            for line in f.readlines()[1:]:
-                line = line.strip()
-                if line:
-                    img, mask = line.split(",")
-                    data.append({"image": img.strip(), "label": mask.strip()})
-        return data
+    def __init__(self, n_classes: int = 2, smooth: float = 1e-5):
+        super().__init__()
+        self.n_classes = n_classes
+        self.smooth    = smooth
+        self.ce        = nn.CrossEntropyLoss()
 
-    train_data = load_csv(cfg["data"]["train_txt"])
-    val_data   = load_csv(cfg["data"]["val_txt"])
+    def _dice(self, probs: torch.Tensor, targets_oh: torch.Tensor) -> torch.Tensor:
+        B, C = probs.shape[:2]
+        p = probs.view(B, C, -1)
+        t = targets_oh.view(B, C, -1).float()
+        inter = (p * t).sum(-1)
+        union = p.sum(-1) + t.sum(-1)
+        dice  = (2 * inter + self.smooth) / (union + self.smooth)
+        return 1.0 - dice.mean()
 
-    train_transforms = Compose([
-        LoadImaged(keys=["image", "label"]),
-        EnsureChannelFirstd(keys=["image", "label"]),
-        Orientationd(keys=["image", "label"], axcodes="RAS"),
-        Spacingd(
-            keys=["image", "label"],
-            pixdim=(1.5, 1.5, 2.0),
-            mode=("bilinear", "nearest"),
-        ),
-        ScaleIntensityRanged(
-            keys=["image"],
-            a_min=-100, a_max=400,
-            b_min=0.0, b_max=1.0,
-            clip=True,
-        ),
-        SpatialPadd(keys=["image", "label"], spatial_size=patch_size, mode="constant"),
-        RandCropByPosNegLabeld(
-            keys=["image", "label"],
-            label_key="label",
-            spatial_size=patch_size,
-            pos=1, neg=1,
-            num_samples=4,
-        ),
-        RandFlipd(keys=["image", "label"], prob=0.5, spatial_axis=0),
-        RandFlipd(keys=["image", "label"], prob=0.5, spatial_axis=1),
-        RandFlipd(keys=["image", "label"], prob=0.5, spatial_axis=2),
-        RandRotate90d(keys=["image", "label"], prob=0.1, max_k=3),
-        ToTensord(keys=["image", "label"]),
-    ])
-
-    val_transforms = Compose([
-        LoadImaged(keys=["image", "label"]),
-        EnsureChannelFirstd(keys=["image", "label"]),
-        Orientationd(keys=["image", "label"], axcodes="RAS"),
-        Spacingd(
-            keys=["image", "label"],
-            pixdim=(1.5, 1.5, 2.0),
-            mode=("bilinear", "nearest"),
-        ),
-        ScaleIntensityRanged(
-            keys=["image"],
-            a_min=-100, a_max=400,
-            b_min=0.0, b_max=1.0,
-            clip=True,
-        ),
-        ToTensord(keys=["image", "label"]),
-    ])
-
-    train_ds = CacheDataset(train_data, transform=train_transforms,
-                            cache_rate=cache_rate, num_workers=num_workers)
-    val_ds   = CacheDataset(val_data,   transform=val_transforms,
-                            cache_rate=cache_rate, num_workers=num_workers)
-
-    train_loader = MonaiDataLoader(train_ds,
-                                   batch_size=batch_size,
-                                   shuffle=True, num_workers=num_workers, pin_memory=True)
-    val_loader   = MonaiDataLoader(val_ds,
-                                   batch_size=1,
-                                   shuffle=False, num_workers=num_workers)
-    return train_loader, val_loader
+    def forward(self, logits: torch.Tensor, targets: torch.Tensor) -> torch.Tensor:
+        """
+        logits  : [B, C, D, H, W]  raw logits
+        targets : [B, D, H, W]     integer class indices
+        """
+        probs    = torch.softmax(logits, dim=1)
+        targets_oh = torch.zeros_like(probs)
+        targets_oh.scatter_(1, targets.unsqueeze(1), 1)
+        return self._dice(probs, targets_oh) + self.ce(logits, targets)
 
 
-# ─── Model ────────────────────────────────────────────────────────────────────
+# ─── Sliding-window inference ─────────────────────────────────────────────────
 
-def build_model(cfg: dict, pretrained_weights: str | None) -> nn.Module:
-    """Build MONAI UNet and optionally load pretrained encoder weights."""
-    model = UNet(
-        spatial_dims=3,
-        in_channels=1,
-        out_channels=2,
-        channels=(32, 64, 128, 256, 320),
-        strides=(2, 2, 2, 2),
-        num_res_units=2,
-        norm="instance",
-        dropout=0.1,
-    )
+@torch.no_grad()
+def sliding_window_inference(
+    model: nn.Module,
+    volume: torch.Tensor,
+    patch_size: list[int],
+    overlap: float = 0.5,
+    sw_batch_size: int = 2,
+) -> torch.Tensor:
+    """Tile a 3-D volume with overlapping patches; aggregate via Gaussian weights.
 
-    if pretrained_weights and Path(pretrained_weights).exists():
-        state = torch.load(pretrained_weights, map_location="cpu")
-        # Handle various checkpoint formats
-        if isinstance(state, dict) and "model" in state:
-            state = state["model"]
-        elif isinstance(state, dict) and "state_dict" in state:
-            state = state["state_dict"]
-        # Load with strict=False: encoder layers match, head layers may differ
-        missing, unexpected = model.load_state_dict(state, strict=False)
-        logging.info(f"Loaded pretrained weights: {Path(pretrained_weights).name}")
-        if missing:
-            logging.info(f"  Missing keys (new head): {len(missing)}")
-        if unexpected:
-            logging.info(f"  Unexpected keys (old head): {len(unexpected)}")
-    elif pretrained_weights:
-        logging.warning(
-            f"Pretrained weights not found at {pretrained_weights}. "
-            "Training from scratch."
+    Args
+    ----
+    model      : callable [B,1,pH,pW,pD] → [B,C,pH,pW,pD]
+    volume     : [1, 1, H, W, D]  on any device
+    patch_size : [pH, pW, pD]
+    overlap    : fractional overlap between adjacent patches (0–1)
+    """
+    device = volume.device
+    _, _, H, W, D = volume.shape
+    pH, pW, pD = patch_size
+
+    stride = [max(1, int(p * (1 - overlap))) for p in patch_size]
+
+    # Pad so every axis is at least one patch and divisible by stride
+    pad_h = max(0, pH - H)
+    pad_w = max(0, pW - W)
+    pad_d = max(0, pD - D)
+    if pad_h or pad_w or pad_d:
+        volume = torch.nn.functional.pad(
+            volume, (0, pad_d, 0, pad_w, 0, pad_h), mode="constant", value=0
         )
+    _, _, H2, W2, D2 = volume.shape
 
-    return model
+    # Run one dummy patch to get num_classes C
+    with torch.no_grad():
+        dummy = volume[:, :, :pH, :pW, :pD]
+        was_training = model.training
+        model.eval()
+        C = model(dummy).shape[1]
+        if was_training:
+            model.train()
+
+    accum  = torch.zeros(1, C, H2, W2, D2, device=device)
+    weight = torch.zeros(1, 1, H2, W2, D2, device=device)
+
+    # Gaussian importance window
+    def _gaussian_1d(size: int) -> torch.Tensor:
+        sigma = size / 6.0
+        idx   = torch.arange(size, dtype=torch.float32)
+        g     = torch.exp(-0.5 * ((idx - size / 2) / sigma) ** 2)
+        return g / g.max()
+
+    gw = (_gaussian_1d(pH)[:, None, None]
+          * _gaussian_1d(pW)[None, :, None]
+          * _gaussian_1d(pD)[None, None, :]).to(device)   # [pH, pW, pD]
+
+    # Collect all patch positions
+    def _indices(total, p, s):
+        starts = list(range(0, total - p + 1, s))
+        if not starts or starts[-1] + p < total:
+            starts.append(total - p)
+        return starts
+
+    positions = [
+        (i, j, k)
+        for i in _indices(H2, pH, stride[0])
+        for j in _indices(W2, pW, stride[1])
+        for k in _indices(D2, pD, stride[2])
+    ]
+
+    # Process in mini-batches
+    model.eval()
+    for batch_start in range(0, len(positions), sw_batch_size):
+        batch_pos   = positions[batch_start: batch_start + sw_batch_size]
+        patches     = torch.stack([
+            volume[0, :, i:i+pH, j:j+pW, k:k+pD] for i, j, k in batch_pos
+        ])                                                  # [B, 1, pH, pW, pD]
+        with torch.no_grad():
+            outs = model(patches)                           # [B, C, pH, pW, pD]
+            if isinstance(outs, tuple):
+                outs = outs[-1]
+        for idx, (i, j, k) in enumerate(batch_pos):
+            accum [0, :, i:i+pH, j:j+pW, k:k+pD] += outs[idx] * gw
+            weight[0, :, i:i+pH, j:j+pW, k:k+pD] += gw
+
+    pred = accum / weight.clamp(min=1e-8)
+    return pred[:, :, :H, :W, :D]   # un-pad
 
 
-def set_encoder_frozen(model: nn.Module, frozen: bool) -> None:
-    """Freeze or unfreeze the encoder (all layers except the final conv block)."""
-    for name, param in model.named_parameters():
-        is_output_block = "model.2" in name  # MONAI UNet: last decoder block
-        param.requires_grad = (not frozen) or is_output_block
-    n_trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    status = "frozen encoder" if frozen else "all layers unfrozen"
-    logging.info(f"  [{status}] trainable params: {n_trainable:,}")
+# ─── Data pipeline ────────────────────────────────────────────────────────────
+
+def _normalize(img: np.ndarray, a_min: float = -100, a_max: float = 400) -> np.ndarray:
+    img = np.clip(img, a_min, a_max)
+    return (img - a_min) / (a_max - a_min)
+
+
+class CystPatchDataset(Dataset):
+    """Load NIfTI CT volumes; return random foreground/background patches.
+
+    During training, 50 % of crops are centred near a cyst voxel (positive
+    mining) and 50 % are random.  Validation returns the full volume.
+    """
+
+    def __init__(
+        self,
+        txt_path: str | Path,
+        patch_size: list[int],
+        mode: str = "train",
+        num_samples_per_volume: int = 4,
+    ):
+        self.patch_size  = patch_size
+        self.mode        = mode
+        self.samples_per = num_samples_per_volume
+
+        with open(txt_path) as f:
+            lines = f.readlines()[1:]
+        self.pairs = [l.strip().split(",") for l in lines if l.strip()]
+        print(f"[CystPatch/{mode}] {len(self.pairs)} volumes")
+
+    def __len__(self) -> int:
+        return len(self.pairs) * (self.samples_per if self.mode == "train" else 1)
+
+    def __getitem__(self, idx: int) -> dict:
+        vol_idx  = idx // self.samples_per if self.mode == "train" else idx
+        img_path, mask_path = self.pairs[vol_idx]
+
+        image = nib.load(img_path.strip()).get_fdata().astype(np.float32)
+        label = nib.load(mask_path.strip()).get_fdata().astype(np.float32)
+        image = _normalize(image)
+
+        if self.mode == "train":
+            image, label = self._random_crop(image, label)
+            image, label = self._augment(image, label)
+        # else: return full volume (for val sliding-window)
+
+        img_t   = torch.from_numpy(image[None].astype(np.float32))  # [1,H,W,D]
+        label_t = torch.from_numpy(label.astype(np.int64))          # [H,W,D]
+        return {"image": img_t, "label": label_t, "path": img_path.strip()}
+
+    # ── internal helpers ──────────────────────────────────────────────────────
+
+    def _random_crop(self, img: np.ndarray, lbl: np.ndarray):
+        pH, pW, pD = self.patch_size
+        H, W, D    = img.shape
+
+        # Pad if needed
+        pad = [(max(0, pH - H), 0), (max(0, pW - W), 0), (max(0, pD - D), 0)]
+        if any(p[0] for p in pad):
+            img = np.pad(img, pad, mode="constant", constant_values=0)
+            lbl = np.pad(lbl, pad, mode="constant", constant_values=0)
+        H, W, D = img.shape
+
+        if random.random() < 0.5 and lbl.sum() > 0:
+            # Positive crop: centre near a random cyst voxel
+            fg = np.argwhere(lbl > 0)
+            ci, cj, ck = fg[random.randint(0, len(fg) - 1)]
+            i0 = int(np.clip(ci - pH // 2, 0, H - pH))
+            j0 = int(np.clip(cj - pW // 2, 0, W - pW))
+            k0 = int(np.clip(ck - pD // 2, 0, D - pD))
+        else:
+            i0 = random.randint(0, H - pH)
+            j0 = random.randint(0, W - pW)
+            k0 = random.randint(0, D - pD)
+
+        return img[i0:i0+pH, j0:j0+pW, k0:k0+pD], lbl[i0:i0+pH, j0:j0+pW, k0:k0+pD]
+
+    def _augment(self, img: np.ndarray, lbl: np.ndarray):
+        for axis in range(3):
+            if random.random() < 0.5:
+                img = np.flip(img, axis=axis).copy()
+                lbl = np.flip(lbl, axis=axis).copy()
+        return img, lbl
 
 
 # ─── Trainer ──────────────────────────────────────────────────────────────────
@@ -227,41 +274,81 @@ class PanSegNetFinetuner:
         self.cfg  = cfg
         self.args = args
 
-        self.max_epochs     = int(cfg["approach_c"]["max_epochs"])
-        self.freeze_epochs  = int(
+        self.max_epochs    = int(cfg["approach_c"]["max_epochs"])
+        self.freeze_epochs = int(
             args.freeze_epochs if args.freeze_epochs is not None
             else cfg["approach_c"]["warmup_freeze_epochs"]
         )
-        self.lr             = float(cfg["approach_c"]["lr"])
-        self.patience       = int(cfg["approach_c"]["early_stop_patience"])
-        self.output_dir     = Path(cfg["approach_c"]["output_dir"])
+        self.lr         = float(cfg["approach_c"]["lr"])
+        self.patience   = int(cfg["approach_c"]["early_stop_patience"])
+        self.patch_size = cfg["approach_c"]["patch_size"]
+        self.output_dir = Path(cfg["approach_c"]["output_dir"])
         self.output_dir.mkdir(parents=True, exist_ok=True)
-        self.patch_size     = cfg["approach_c"]["patch_size"]
+
+        batch_size  = args.batch_size or int(cfg["approach_c"]["batch_size"])
+        num_workers = args.num_workers
+
+        # ── Model ─────────────────────────────────────────────────────────────
+        self.model = PanSegNet(
+            input_channels=1,
+            num_classes=2,
+            patch_size=self.patch_size,
+        ).cuda()
 
         pretrained = cfg["approach_c"]["pretrained_weights"]
-        self.model = build_model(cfg, pretrained).cuda()
+        if pretrained and Path(pretrained).exists():
+            load_pansegnet_weights(self.model, pretrained)
+        else:
+            logging.warning(f"Pretrained weights not found at {pretrained}. Training from scratch.")
 
-        self.loss_fn = DiceCELoss(to_onehot_y=True, softmax=True)
-        self.optimizer = optim.Adam(
+        # ── Data ──────────────────────────────────────────────────────────────
+        train_ds = CystPatchDataset(
+            cfg["data"]["train_txt"], self.patch_size, mode="train",
+            num_samples_per_volume=int(cfg["approach_c"].get("samples_per_volume", 4)),
+        )
+        val_ds = CystPatchDataset(
+            cfg["data"]["val_txt"], self.patch_size, mode="val",
+        )
+        self.train_loader = DataLoader(
+            train_ds, batch_size=batch_size, shuffle=True,
+            num_workers=num_workers, pin_memory=True, drop_last=True,
+        )
+        self.val_loader = DataLoader(
+            val_ds, batch_size=1, shuffle=False, num_workers=num_workers,
+        )
+
+        # ── Optimiser & loss ──────────────────────────────────────────────────
+        self.loss_fn   = DiceCELoss(n_classes=2)
+        self.optimizer = optim.AdamW(
             filter(lambda p: p.requires_grad, self.model.parameters()),
-            lr=self.lr,
+            lr=self.lr, weight_decay=1e-4,
         )
         self.scheduler = optim.lr_scheduler.CosineAnnealingLR(
-            self.optimizer, T_max=self.max_epochs
+            self.optimizer, T_max=self.max_epochs,
         )
 
-        self.sw_batch_size = args.sw_batch_size
-        if _MONAI_AVAILABLE:
-            self.train_loader, self.val_loader = build_monai_dataloaders(cfg, args)
-        else:
-            raise RuntimeError("MONAI is required for approach_c. Install: pip install monai")
-
-        self.best_dice       = 0.0
-        self.no_improve_cnt  = 0
-        self.start_epoch     = 0
+        self.best_dice      = 0.0
+        self.no_improve_cnt = 0
+        self.start_epoch    = 0
 
         if args.resume:
             self._load_checkpoint(args.resume)
+
+    # ── checkpoint I/O ────────────────────────────────────────────────────────
+
+    def _save_checkpoint(self, epoch: int, val_dice: float) -> None:
+        state = {
+            "epoch":          epoch,
+            "model":          self.model.state_dict(),
+            "optimizer":      self.optimizer.state_dict(),
+            "scheduler":      self.scheduler.state_dict(),
+            "best_dice":      self.best_dice,
+            "no_improve_cnt": self.no_improve_cnt,
+        }
+        path = self.output_dir / f"epoch_{epoch:03d}_dice_{val_dice:.4f}.pth"
+        torch.save(state, path)
+        torch.save(state, self.output_dir / "checkpoint_latest.pth")
+        logging.info(f"  → saved {path.name}")
 
     def _load_checkpoint(self, path: str) -> None:
         ckpt = torch.load(path, map_location="cpu")
@@ -269,102 +356,104 @@ class PanSegNetFinetuner:
         self.optimizer.load_state_dict(ckpt["optimizer"])
         if "scheduler" in ckpt:
             self.scheduler.load_state_dict(ckpt["scheduler"])
-        self.start_epoch     = ckpt.get("epoch", 0)
-        self.best_dice       = ckpt.get("best_dice", 0.0)
-        self.no_improve_cnt  = ckpt.get("no_improve_cnt", 0)
+        self.start_epoch    = ckpt.get("epoch", 0)
+        self.best_dice      = ckpt.get("best_dice", 0.0)
+        self.no_improve_cnt = ckpt.get("no_improve_cnt", 0)
         logging.info(f"Resumed from {path} (epoch {self.start_epoch}, best_dice={self.best_dice:.4f})")
 
-    def _save_checkpoint(self, epoch: int, val_dice: float) -> None:
-        path = self.output_dir / f"epoch_{epoch:03d}_dice_{val_dice:.4f}.pth"
-        state = {
-            "epoch":         epoch,
-            "model":         self.model.state_dict(),
-            "optimizer":     self.optimizer.state_dict(),
-            "scheduler":     self.scheduler.state_dict(),
-            "best_dice":     self.best_dice,
-            "no_improve_cnt": self.no_improve_cnt,
-        }
-        torch.save(state, path)
-        # Always keep a latest checkpoint for crash recovery
-        torch.save(state, self.output_dir / "checkpoint_latest.pth")
-        logging.info(f"  → Checkpoint: {path.name}")
+    # ── training / validation ─────────────────────────────────────────────────
 
-    def train_epoch(self, epoch: int) -> float:
+    def _train_epoch(self, epoch: int) -> float:
         self.model.train()
-        total_loss = 0.0
-        for batch in tqdm(self.train_loader, desc=f"Epoch {epoch+1} [train]",
-                          leave=False):
-            images = batch["image"].cuda().float()
-            labels = batch["label"].cuda().long()
-            preds  = self.model(images)
-            loss   = self.loss_fn(preds, labels)
+        total = 0.0
+        for batch in tqdm(self.train_loader, desc=f"Epoch {epoch+1} [train]", leave=False):
+            images = batch["image"].cuda().float()   # [B,1,pH,pW,pD]
+            labels = batch["label"].cuda().long()    # [B,pH,pW,pD]
+
+            logits = self.model(images)
+            if isinstance(logits, tuple):
+                # logits[0] = finest (full patch), logits[1..] progressively coarser
+                # weight 1.0 for finest, halved each step; downsample labels to match each output
+                loss = torch.tensor(0.0, device=images.device)
+                for i, lg in enumerate(logits):
+                    w   = 1.0 / (2 ** i)
+                    lbl = labels
+                    if lg.shape[2:] != labels.shape[1:]:
+                        lbl = torch.nn.functional.interpolate(
+                            labels.float().unsqueeze(1), size=lg.shape[2:],
+                            mode="nearest",
+                        ).squeeze(1).long()
+                    loss = loss + w * self.loss_fn(lg, lbl)
+            else:
+                loss = self.loss_fn(logits, labels)
+
             self.optimizer.zero_grad()
             loss.backward()
+            nn.utils.clip_grad_norm_(self.model.parameters(), 1.0)
             self.optimizer.step()
-            total_loss += loss.item()
-        return total_loss / max(len(self.train_loader), 1)
+            total += loss.item()
+        return total / max(len(self.train_loader), 1)
 
     @torch.no_grad()
-    def validate(self) -> dict:
+    def _validate(self) -> float:
         self.model.eval()
-        dice_scores = []
+        self.model.do_ds = False
+        dice_scores: list[float] = []
+
         for batch in self.val_loader:
-            images = batch["image"].cuda().float()
-            labels = batch["label"].cpu().numpy()
+            volume = batch["image"].cuda().float()   # [1,1,H,W,D]
+            gt     = batch["label"].squeeze(0).cpu().numpy()  # [H,W,D]
 
-            roi_size = self.patch_size
-            preds = sliding_window_inference(
-                images, roi_size=roi_size, sw_batch_size=self.sw_batch_size,
-                predictor=self.model, overlap=0.25,
+            pred_logits = sliding_window_inference(
+                self.model, volume, self.patch_size, overlap=0.5, sw_batch_size=2,
             )
-            preds = torch.argmax(torch.softmax(preds, dim=1), dim=1)
-            preds = preds.cpu().numpy()
+            pred = torch.argmax(pred_logits, dim=1).squeeze(0).cpu().numpy()
 
-            for pred, gt in zip(preds, labels.squeeze(1)):
-                gt_bin = (gt > 0)
-                if gt_bin.sum() > 0:
-                    try:
-                        m = calculate_metric_percase(pred > 0, gt_bin)
-                        dice_scores.append(m[0])
-                    except Exception:
-                        pass
+            if (gt > 0).sum() > 0:
+                try:
+                    m = calculate_metric_percase(pred > 0, gt > 0)
+                    dice_scores.append(float(m[0]))
+                except Exception:
+                    pass
 
-        return {"dice": float(np.mean(dice_scores)) if dice_scores else 0.0}
+        self.model.do_ds = self.model._deep_supervision
+        return float(np.mean(dice_scores)) if dice_scores else 0.0
+
+    # ── main loop ─────────────────────────────────────────────────────────────
 
     def run(self) -> None:
-        logging.info(f"Training for {self.max_epochs} epochs "
-                     f"(encoder frozen for first {self.freeze_epochs})")
+        logging.info(
+            f"Training {self.max_epochs} epochs  "
+            f"(encoder frozen for first {self.freeze_epochs})"
+        )
 
         for epoch in range(self.start_epoch, self.max_epochs):
-            # Encoder freeze schedule
             if epoch < self.freeze_epochs:
-                set_encoder_frozen(self.model, frozen=True)
+                self.model.set_encoder_frozen(frozen=True)
             elif epoch == self.freeze_epochs:
-                logging.info(f"Epoch {epoch+1}: Unfreezing encoder.")
-                set_encoder_frozen(self.model, frozen=False)
-                # Reset optimizer with all params
-                self.optimizer = optim.Adam(self.model.parameters(), lr=self.lr)
+                logging.info(f"Epoch {epoch+1}: unfreezing encoder.")
+                self.model.set_encoder_frozen(frozen=False)
+                self.optimizer = optim.AdamW(
+                    self.model.parameters(), lr=self.lr, weight_decay=1e-4,
+                )
                 self.scheduler = optim.lr_scheduler.CosineAnnealingLR(
-                    self.optimizer, T_max=self.max_epochs - epoch
+                    self.optimizer, T_max=self.max_epochs - epoch,
                 )
 
-            train_loss = self.train_epoch(epoch)
-            val_metrics = self.validate()
-            val_dice = val_metrics["dice"]
-
+            train_loss = self._train_epoch(epoch)
+            val_dice   = self._validate()
             self.scheduler.step()
             lr = self.optimizer.param_groups[0]["lr"]
 
             logging.info(
-                f"Epoch {epoch+1:03d}/{self.max_epochs}: "
-                f"loss={train_loss:.4f}  val_dice={val_dice:.4f}  lr={lr:.6f}"
+                f"Epoch {epoch+1:03d}/{self.max_epochs}  "
+                f"loss={train_loss:.4f}  val_dice={val_dice:.4f}  lr={lr:.2e}"
             )
 
             if val_dice > self.best_dice:
-                self.best_dice = val_dice
+                self.best_dice      = val_dice
                 self.no_improve_cnt = 0
                 self._save_checkpoint(epoch + 1, val_dice)
-                # Maintain a stable "best" symlink
                 best_link = self.output_dir / "best_model.pth"
                 if best_link.is_symlink():
                     best_link.unlink()
@@ -373,25 +462,24 @@ class PanSegNetFinetuner:
                 )
             else:
                 self.no_improve_cnt += 1
-                # Still update latest checkpoint so crash recovery works
-                torch.save({
+                state = {
                     "epoch":          epoch + 1,
                     "model":          self.model.state_dict(),
                     "optimizer":      self.optimizer.state_dict(),
                     "scheduler":      self.scheduler.state_dict(),
                     "best_dice":      self.best_dice,
                     "no_improve_cnt": self.no_improve_cnt,
-                }, self.output_dir / "checkpoint_latest.pth")
+                }
+                torch.save(state, self.output_dir / "checkpoint_latest.pth")
 
             if self.no_improve_cnt >= self.patience:
                 logging.info(
-                    f"Early stopping at epoch {epoch+1} "
-                    f"(no improvement for {self.patience} epochs). "
+                    f"Early stopping (no improvement for {self.patience} epochs). "
                     f"Best Dice: {self.best_dice:.4f}"
                 )
                 break
 
-        logging.info(f"Training complete. Best validation Dice: {self.best_dice:.4f}")
+        logging.info(f"Training complete. Best val Dice: {self.best_dice:.4f}")
 
 
 # ─── Entry point ──────────────────────────────────────────────────────────────
@@ -399,8 +487,6 @@ class PanSegNetFinetuner:
 def main() -> None:
     args = parse_args()
     cfg  = load_config(args.config)
-
-    import os
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
 
     output_dir = Path(cfg["approach_c"]["output_dir"])
