@@ -51,7 +51,7 @@ try:
     from monai.transforms import (
         Compose, LoadImaged, EnsureChannelFirstd, Orientationd,
         Spacingd, ScaleIntensityRanged, RandCropByPosNegLabeld,
-        RandFlipd, RandRotate90d, ToTensord,
+        RandFlipd, RandRotate90d, ToTensord, SpatialPadd,
     )
     from monai.data import CacheDataset, DataLoader as MonaiDataLoader
     _MONAI_AVAILABLE = True
@@ -125,13 +125,13 @@ def build_monai_dataloaders(cfg: dict, args: argparse.Namespace) -> tuple[DataLo
             b_min=0.0, b_max=1.0,
             clip=True,
         ),
+        SpatialPadd(keys=["image", "label"], spatial_size=patch_size, mode="constant"),
         RandCropByPosNegLabeld(
             keys=["image", "label"],
             label_key="label",
             spatial_size=patch_size,
             pos=1, neg=1,
             num_samples=4,
-            allow_smaller=True,
         ),
         RandFlipd(keys=["image", "label"], prob=0.5, spatial_axis=0),
         RandFlipd(keys=["image", "label"], prob=0.5, spatial_axis=1),
