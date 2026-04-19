@@ -37,6 +37,10 @@ def parse_args() -> argparse.Namespace:
         "--output", default=None,
         help="Override output directory for full-space predictions.",
     )
+    p.add_argument(
+        "--crop-stats", default=None,
+        help="Override path to crop_stats.json.",
+    )
     return p.parse_args()
 
 
@@ -68,7 +72,7 @@ def main() -> None:
     args = parse_args()
     cfg  = load_config(args.config)
 
-    stats_path    = Path(cfg["approach_b"]["crop_stats_json"])
+    stats_path    = Path(args.crop_stats or cfg["approach_b"]["crop_stats_json"])
     cropped_preds = Path(args.cropped_preds or cfg["approach_b"]["predictions_cropped"])
     output_dir    = Path(args.output or cfg["approach_b"]["predictions_full"])
     images_dir    = Path(cfg["data"]["images"])
@@ -101,15 +105,18 @@ def main() -> None:
 
         # Use the original image affine for the output
         img_path = images_dir / f"{stem}.nii.gz"
+        ref_header = None
         if img_path.exists():
-            ref_affine = nib.load(str(img_path)).affine
+            ref_img = nib.load(str(img_path))
+            ref_affine = ref_img.affine
+            ref_header = ref_img.header
         else:
             # Reconstruct affine from crop: reverse the crop shift
             ref_affine = pred_nib.affine.copy()
             crop_start = np.array(stats["bbox_start"], dtype=float)
             ref_affine[:3, 3] -= ref_affine[:3, :3] @ crop_start
 
-        out_nib = nib.Nifti1Image(full_pred, affine=ref_affine)
+        out_nib = nib.Nifti1Image(full_pred, affine=ref_affine, header=ref_header)
         nib.save(out_nib, str(output_dir / f"{stem}.nii.gz"))
         ok += 1
 

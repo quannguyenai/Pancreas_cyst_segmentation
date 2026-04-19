@@ -7,9 +7,7 @@
 #   2. Cropping complete:
 #        python approach_b/crop_to_pancreas.py --config configs/paths.yaml
 #   3. Register cropped volumes as nnUNet dataset:
-#        python data/prepare_dataset.py --config configs/paths.yaml \
-#            --build-nnunet --dataset-id 10
-#        (Uses approach_b/cropped/images + approach_b/cropped/masks)
+#        python approach_b/prepare_cropped_dataset.py --config configs/paths.yaml
 #   4. Preprocess:
 #        nnUNetv2_plan_and_preprocess -d 10 --verify_dataset_integrity -np 8
 #
@@ -23,9 +21,38 @@ source "${REPO_ROOT}/scripts/set_nnunet_env.sh"
 
 FOLD="${1:-0}"
 CONFIG="3d_fullres"
-DATASET_ID=10  # Dataset010_CroppedCyst
+if [ -x "${REPO_ROOT}/.venv/bin/python3" ]; then
+    PYTHON_BIN="${REPO_ROOT}/.venv/bin/python3"
+elif command -v python3 >/dev/null 2>&1; then
+    PYTHON_BIN="$(command -v python3)"
+else
+    PYTHON_BIN="$(command -v python)"
+fi
 
-DATASET_NAME="Dataset$(printf '%03d' ${DATASET_ID})_CroppedCyst"
+DATASET_ID="$("${PYTHON_BIN}" - <<PY
+import sys
+sys.path.insert(0, "${REPO_ROOT}")
+from configs import load_config
+cfg = load_config("${REPO_ROOT}/configs/paths.yaml")
+print(cfg["approach_b"]["nnunet_dataset_id"])
+PY
+)"
+DATASET_SUFFIX="$("${PYTHON_BIN}" - <<PY
+import sys
+sys.path.insert(0, "${REPO_ROOT}")
+from configs import load_config
+cfg = load_config("${REPO_ROOT}/configs/paths.yaml")
+print(cfg["approach_b"]["nnunet_dataset_name"])
+PY
+)"
+
+DATASET_NAME="Dataset$(printf '%03d' "${DATASET_ID}")_${DATASET_SUFFIX}"
+
+if [ -x "${REPO_ROOT}/.venv/bin/nnUNetv2_train" ]; then
+    NNUNET_TRAIN="${REPO_ROOT}/.venv/bin/nnUNetv2_train"
+else
+    NNUNET_TRAIN="nnUNetv2_train"
+fi
 
 echo "========================================================"
 echo "Approach B — Stage 2: Cyst segmentation on cropped volumes"
@@ -42,6 +69,6 @@ if [ ! -d "${nnUNet_raw}/${DATASET_NAME}" ]; then
     exit 1
 fi
 
-nnUNetv2_train "${DATASET_ID}" "${CONFIG}" "${FOLD}" --npz
+"${NNUNET_TRAIN}" "${DATASET_ID}" "${CONFIG}" "${FOLD}" --npz
 
 echo "Training complete."

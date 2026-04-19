@@ -1,6 +1,6 @@
 """crop_to_pancreas.py — Crop CT volumes to pancreas ROI + margin.
 
-For each case, reads the PanSegNet pancreas prediction mask, computes a tight
+For each case, reads the pancreas prediction mask, computes a tight
 bounding box, expands it by ``crop_margin_pct`` on each side, then saves
 cropped image and cyst mask with a corrected NIfTI affine.
 
@@ -16,10 +16,10 @@ python approach_b/crop_to_pancreas.py --config configs/paths.yaml --dry-run
 
 Notes
 -----
-* Volumes are reoriented to RAS+ canonical before cropping so that the affine
-  update formula is unambiguous. The saved files are in RAS+ space.
-* The cyst mask for test cases is not available; only images are cropped for
-  test inference. Set --split train/val/test accordingly.
+* Cropping is performed in the original voxel grid of each image, not after a
+  canonical reorientation. This preserves direct paste-back into full space.
+* If the pancreas prediction or cyst mask header does not match the image, it
+  is resampled onto the image grid before cropping.
 """
 
 from __future__ import annotations
@@ -31,7 +31,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
 import nibabel as nib
-import nibabel.orientations as nio
+import nibabel.processing as nibp
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -58,7 +58,8 @@ def expand_bbox(
     """Expand a bounding box by ``margin_pct`` on each side, clamped to shape."""
     expanded = []
     for sl, dim_size in zip(bbox, shape):
-        margin = int(np.ceil(dim_size * margin_pct))
+        extent = max(1, sl.stop - sl.start)
+        margin = int(np.ceil(extent * margin_pct))
         lo = max(0, sl.start - margin)
         hi = min(dim_size, sl.stop + margin)
         expanded.append(slice(lo, hi))
@@ -103,17 +104,14 @@ def process_case(
         print(f"[WARN] {stem}: no pancreas prediction at {pancreas_path}, skipping.")
         return None
 
-    img_nib   = nib.load(img_path)
-    pan_nib   = nib.load(str(pancreas_path))
+    img_nib = nib.load(img_path)
+    pan_nib = nib.load(str(pancreas_path))
 
-    # Reorient both to RAS+ canonical for unambiguous affine math
-    img_ras   = nib.as_closest_canonical(img_nib)
-    pan_ras   = nib.as_closest_canonical(pan_nib)
+    if pan_nib.shape != img_nib.shape or not np.allclose(pan_nib.affine, img_nib.affine, atol=1e-3):
+        pan_nib = nibp.resample_from_to(pan_nib, img_nib, order=0)
 
-    pan_data  = np.asarray(pan_ras.dataobj)
-
-    # Binarise pancreas prediction (may be soft probability map)
-    pan_binary = (pan_data > 0.5).astype(np.uint8)
+    pan_data = np.asarray(pan_nib.dataobj)
+    pan_binary = (pan_data > 0).astype(np.uint8)
 
     if pan_binary.sum() == 0:
         print(f"[WARN] {stem}: empty pancreas prediction, skipping.")
@@ -123,21 +121,26 @@ def process_case(
     bbox_expanded = expand_bbox(bbox_tight, pan_binary.shape, margin_pct)
 
     crop_stats = {
-        "original_shape": list(np.asarray(img_ras.dataobj).shape),
+        "original_shape": list(img_nib.shape),
         "bbox_start": [sl.start for sl in bbox_expanded],
         "bbox_stop":  [sl.stop  for sl in bbox_expanded],
     }
 
     if not dry_run:
         out_images_dir.mkdir(parents=True, exist_ok=True)
-        cropped_img = crop_volume(img_ras, bbox_expanded)
+        cropped_img = crop_volume(img_nib, bbox_expanded)
         nib.save(cropped_img, str(out_images_dir / f"{stem}.nii.gz"))
 
         if mask_path and Path(mask_path).exists():
             out_masks_dir.mkdir(parents=True, exist_ok=True)
             mask_nib = nib.load(mask_path)
-            mask_ras = nib.as_closest_canonical(mask_nib)
-            cropped_mask = crop_volume(mask_ras, bbox_expanded)
+            if mask_nib.shape != img_nib.shape or not np.allclose(mask_nib.affine, img_nib.affine, atol=1e-3):
+                mask_nib = nibp.resample_from_to(mask_nib, img_nib, order=0)
+            cropped_mask = crop_volume(mask_nib, bbox_expanded)
+            cropped_mask = nib.Nifti1Image(
+                np.asarray(cropped_mask.dataobj).astype(np.uint8),
+                affine=cropped_mask.affine,
+            )
             nib.save(cropped_mask, str(out_masks_dir / f"{stem}.nii.gz"))
 
     orig_vol = int(np.prod(crop_stats["original_shape"]))
@@ -167,6 +170,10 @@ def parse_args() -> argparse.Namespace:
                    help="Number of parallel worker processes.")
     p.add_argument("--dry-run", action="store_true",
                    help="Print crop statistics without writing any files.")
+    p.add_argument(
+        "--stats-path", default=None,
+        help="Override output path for crop_stats.json.",
+    )
     return p.parse_args()
 
 
@@ -194,7 +201,7 @@ def main() -> None:
     pan_preds_dir = Path(cfg["approach_b"]["pancreas_preds"])
     out_images    = Path(cfg["approach_b"]["cropped_images"])
     out_masks     = Path(cfg["approach_b"]["cropped_masks"])
-    stats_path    = Path(cfg["approach_b"]["crop_stats_json"])
+    stats_path    = Path(args.stats_path or cfg["approach_b"]["crop_stats_json"])
 
     splits = ["train", "val", "test"] if args.split == "all" else [args.split]
     all_cases: list[tuple[str, str | None]] = []
