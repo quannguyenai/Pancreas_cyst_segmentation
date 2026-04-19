@@ -1,46 +1,78 @@
 #!/usr/bin/env bash
-# approach_c/train.sh — Fine-tune PanSegNet for cyst segmentation.
+# approach_c/train.sh — Fine-tune PanSegNet (pretrained) via nnUNet v1.
 #
-# Prerequisites:
-#   1. Place PanSegNet pretrained weights at:
-#        approach_c/pretrained/PanSegNet.pth
-#   2. Install MONAI: pip install monai>=1.5.2
+# Reuses approach_d's isolated venv + nnUNet v1 env.
+# Shares the same Task001_PancreasCyst dataset as approach_d (no re-preprocessing).
+# Checkpoints saved separately under nnTransUNetTrainerV2_Pretrained__nnUNetPlansv2.1/
 #
-# Usage:
-#   bash approach_c/train.sh [GPU_ID]
-#   bash approach_c/train.sh 1  # use GPU 1
+# Usage (from repo root):
+#   bash approach_c/train.sh
 
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-GPU="${1:-0}"
+cd "$REPO_ROOT"
 
-# ── Preflight check ───────────────────────────────────────────────────────────
-WEIGHTS="${REPO_ROOT}/approach_c/pretrained/PanSegNet.pth"
-if [ ! -f "${WEIGHTS}" ]; then
-    echo "[WARN] PanSegNet weights not found at: ${WEIGHTS}"
-    echo "       Training will proceed from scratch (random initialisation)."
-    echo "       To use pretrained weights:"
-    echo "         1. Obtain PanSegNet.pth from the original authors."
-    echo "         2. Place at: ${WEIGHTS}"
+# ── Activate approach_d venv + nnUNet v1 env vars ─────────────────────────────
+# shellcheck disable=SC1091
+source approach_d/set_env.sh
+
+# ── Pretrained weights config ─────────────────────────────────────────────────
+export PANSEGNET_PRETRAINED_WEIGHTS="${REPO_ROOT}/pansegnet_weights/averaged_T1T2.model"
+export PANSEGNET_WARMUP_EPOCHS=25
+
+if [[ ! -f "${PANSEGNET_PRETRAINED_WEIGHTS}" ]]; then
+    echo "[WARN] Pretrained weights not found at: ${PANSEGNET_PRETRAINED_WEIGHTS}"
+    echo "       Training will proceed from scratch."
 fi
 
-echo "========================================================"
-echo "Approach C — Fine-tune PanSegNet for Cyst Segmentation"
-echo "  Config : ${REPO_ROOT}/configs/paths.yaml"
-echo "  GPU    : ${GPU}"
-echo "========================================================"
+TASK_ID=1
+TASK_NAME="PancreasCyst"
+TRAINER="nnTransUNetTrainerV2_Pretrained"
+CONFIG="3d_fullres"
+FOLD=0
 
-# Auto-resume from latest checkpoint if it exists
-LATEST="${REPO_ROOT}/approach_c/checkpoints/checkpoint_latest.pth"
+# ── Install custom trainer into nnUNet package ────────────────────────────────
+NNUNET_TRAINER_DIR="$(python3 -c "import nnunet, os; print(os.path.join(os.path.dirname(nnunet.__file__), 'training', 'network_training'))")"
+cp approach_c/nnTransUNetTrainerV2_Pretrained.py "${NNUNET_TRAINER_DIR}/"
+echo "Custom trainer installed to ${NNUNET_TRAINER_DIR}/"
+
+# ── Step 1: Build dataset (shared with approach_d — skips if already done) ───
+echo ""
+echo "[1/3] Building nnUNet v1 dataset ..."
+python approach_d/prepare_dataset.py --config configs/paths.yaml
+
+# ── Step 2: Plan and preprocess (skip if already done by approach_d) ─────────
+PREPROC_DIR="${nnUNet_preprocessed}/Task$(printf '%03d' ${TASK_ID})_${TASK_NAME}"
+PLANS_FILE="${PREPROC_DIR}/nnUNetPlans_plans_3D.pkl"
+
+if [[ -f "${PLANS_FILE}" ]]; then
+    echo ""
+    echo "[2/3] Preprocessing already done (shared with approach_d), skipping."
+else
+    echo ""
+    echo "[2/3] Running nnUNet_plan_and_preprocess ..."
+    nnUNet_plan_and_preprocess -t "${TASK_ID}" --verify_dataset_integrity -tl 8 -tf 8
+fi
+
+# ── Step 3: Train (auto-resume if checkpoint exists) ─────────────────────────
+CKPT_DIR="${RESULTS_FOLDER}/nnUNet/${CONFIG}/Task$(printf '%03d' ${TASK_ID})_${TASK_NAME}/${TRAINER}__nnUNetPlansv2.1/fold_${FOLD}"
 RESUME_FLAG=""
-if [[ -f "${LATEST}" ]]; then
-    RESUME_FLAG="--resume ${LATEST}"
-    echo "Checkpoint found — resuming from checkpoint_latest.pth"
+if [[ -f "${CKPT_DIR}/model_latest.model" ]]; then
+    RESUME_FLAG="--continue_training"
+    echo ""
+    echo "[3/3] Checkpoint found — resuming training ..."
+else
+    echo ""
+    echo "[3/3] Starting training from scratch ..."
 fi
 
-python "${REPO_ROOT}/approach_c/finetune_trainer.py" \
-    --config "${REPO_ROOT}/configs/paths.yaml" \
-    --gpu "${GPU}" \
-    ${RESUME_FLAG} \
-    "$@"
+echo "========================================================"
+echo "  Approach C — nnTransUNetTrainerV2_Pretrained"
+echo "  Task     : Task$(printf '%03d' ${TASK_ID})_${TASK_NAME}"
+echo "  Pretrained: ${PANSEGNET_PRETRAINED_WEIGHTS}"
+echo "  Warmup   : ${PANSEGNET_WARMUP_EPOCHS} epochs frozen"
+echo "  Resume   : ${RESUME_FLAG:-no}"
+echo "========================================================"
+
+nnUNet_train "${CONFIG}" "${TRAINER}" "${TASK_ID}" "${FOLD}" ${RESUME_FLAG}

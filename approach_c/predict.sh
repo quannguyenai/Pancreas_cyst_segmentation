@@ -1,41 +1,54 @@
 #!/usr/bin/env bash
-# approach_c/predict.sh — Run inference with the fine-tuned approach_c model.
+# approach_c/predict.sh — Inference with nnTransUNetTrainerV2_Pretrained.
 #
-# Usage:
-#   bash approach_c/predict.sh [CHECKPOINT] [SPLIT] [GPU_ID]
+# Uses nnUNet v1 predict (same env as approach_d).
+#
+# Usage (from repo root):
+#   bash approach_c/predict.sh [FOLD] [CKPT_NAME]
 #
 # Arguments:
-#   CHECKPOINT  Path to .pth checkpoint (default: best_model.pth symlink)
-#   SPLIT       train | val | test (default: test)
-#   GPU_ID      GPU index (default: 0)
+#   FOLD       Fold to use for prediction (default: 0)
+#   CKPT_NAME  Checkpoint filename (default: model_best)
 
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$REPO_ROOT"
 
-CHECKPOINT="${1:-${REPO_ROOT}/approach_c/checkpoints/best_model.pth}"
-SPLIT="${2:-test}"
-GPU="${3:-0}"
-OUTPUT="${REPO_ROOT}/approach_c/predictions/${SPLIT}"
+# ── Activate approach_d venv + nnUNet v1 env vars ─────────────────────────────
+# shellcheck disable=SC1091
+source approach_d/set_env.sh
 
-if [ ! -f "${CHECKPOINT}" ] && [ ! -L "${CHECKPOINT}" ]; then
-    echo "[ERROR] Checkpoint not found: ${CHECKPOINT}"
-    echo "        Train first: bash approach_c/train.sh"
-    exit 1
-fi
+TASK_ID=1
+TASK_NAME="PancreasCyst"
+TRAINER="nnTransUNetTrainerV2_Pretrained"
+CONFIG="3d_fullres"
+FOLD="${1:-0}"
+CKPT="${2:-model_best}"
 
-mkdir -p "${OUTPUT}"
+# ── Install custom trainer into nnUNet package ────────────────────────────────
+NNUNET_TRAINER_DIR="$(python3 -c "import nnunet, os; print(os.path.join(os.path.dirname(nnunet.__file__), 'training', 'network_training'))")"
+cp approach_c/nnTransUNetTrainerV2_Pretrained.py "${NNUNET_TRAINER_DIR}/"
+
+INPUT_DIR="${nnUNet_raw_data_base}/nnUNet_raw_data/Task$(printf '%03d' ${TASK_ID})_${TASK_NAME}/imagesTs"
+OUTPUT_DIR="${REPO_ROOT}/approach_c/predictions"
+
+mkdir -p "${OUTPUT_DIR}"
 
 echo "========================================================"
-echo "Approach C — Inference"
-echo "  Checkpoint : ${CHECKPOINT}"
-echo "  Split      : ${SPLIT}"
-echo "  Output     : ${OUTPUT}"
+echo "  Approach C — nnTransUNetTrainerV2_Pretrained predict"
+echo "  Task   : Task$(printf '%03d' ${TASK_ID})_${TASK_NAME}"
+echo "  Fold   : ${FOLD}"
+echo "  Ckpt   : ${CKPT}"
+echo "  Input  : ${INPUT_DIR}"
+echo "  Output : ${OUTPUT_DIR}"
 echo "========================================================"
 
-python "${REPO_ROOT}/approach_c/inference.py" \
-    --config     "${REPO_ROOT}/configs/paths.yaml" \
-    --checkpoint "${CHECKPOINT}" \
-    --split      "${SPLIT}" \
-    --output     "${OUTPUT}" \
-    --gpu        "${GPU}"
+nnUNet_predict \
+    -tr  "${TRAINER}" \
+    -i   "${INPUT_DIR}" \
+    -o   "${OUTPUT_DIR}" \
+    -t   "${TASK_ID}" \
+    -m   "${CONFIG}" \
+    --folds "${FOLD}" \
+    -chk "${CKPT}"

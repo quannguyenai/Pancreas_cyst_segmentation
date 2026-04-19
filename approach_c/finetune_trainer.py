@@ -426,7 +426,7 @@ class PanSegNetFinetuner:
             gt     = batch["label"].squeeze(0).cpu().numpy()  # [H,W,D]
 
             pred_logits = sliding_window_inference(
-                self.model, volume, self.patch_size, overlap=0.25, sw_batch_size=4,
+                self.model, volume, self.patch_size, overlap=0.5, sw_batch_size=2,
             )
             pred = torch.argmax(pred_logits, dim=1).squeeze(0).cpu().numpy()
 
