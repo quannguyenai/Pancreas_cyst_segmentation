@@ -80,6 +80,12 @@ def build_v1_dataset(
     for d in (images_tr, labels_tr, images_ts, preproc_dir):
         d.mkdir(parents=True, exist_ok=True)
 
+    # Remove stale symlinks / files from previous runs to avoid nnUNet scanning them
+    for d in (images_tr, labels_tr, images_ts):
+        for f in d.iterdir():
+            if f.is_symlink() or f.is_file():
+                f.unlink()
+
     train_rows = _read_stems_and_paths(repo_root / "data/train.txt")
     val_rows   = _read_stems_and_paths(repo_root / "data/val.txt")
     test_rows  = _read_stems_and_paths(repo_root / "data/test.txt")
