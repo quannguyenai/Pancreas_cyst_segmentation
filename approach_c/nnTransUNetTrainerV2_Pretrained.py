@@ -42,8 +42,8 @@ class nnTransUNetTrainerV2_Pretrained(nnTransUNetTrainerV2):
                 "Training from scratch."
             )
 
-    def maybe_update_lr(self):
-        super().maybe_update_lr()
+    def maybe_update_lr(self, epoch=None):
+        super().maybe_update_lr(epoch)
         if self.epoch == WARMUP_FREEZE_EPOCHS:
             self._set_encoder_frozen(False)
             self.print_to_log_file(
