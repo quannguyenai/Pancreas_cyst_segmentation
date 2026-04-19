@@ -131,6 +131,7 @@ def build_monai_dataloaders(cfg: dict, args: argparse.Namespace) -> tuple[DataLo
             spatial_size=patch_size,
             pos=1, neg=1,
             num_samples=4,
+            allow_smaller=True,
         ),
         RandFlipd(keys=["image", "label"], prob=0.5, spatial_axis=0),
         RandFlipd(keys=["image", "label"], prob=0.5, spatial_axis=1),
