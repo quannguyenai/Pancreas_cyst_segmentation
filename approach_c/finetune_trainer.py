@@ -241,7 +241,7 @@ class CystPatchDataset(Dataset):
 
         img_t   = torch.from_numpy(image[None].astype(np.float32))  # [1,H,W,D]
         label_t = torch.from_numpy(label.astype(np.int64))          # [H,W,D]
-        return {"image": img_t, "label": label_t, "path": img_path.strip()}
+        return {"image": img_t, "label": label_t, "path": self.pairs[vol_idx][0].strip()}
 
     # ── internal helpers ──────────────────────────────────────────────────────
 
