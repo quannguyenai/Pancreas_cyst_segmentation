@@ -184,9 +184,15 @@ def sliding_window_inference(
 
 # ─── Data pipeline ────────────────────────────────────────────────────────────
 
-def _normalize(img: np.ndarray, a_min: float = -100, a_max: float = 400) -> np.ndarray:
-    img = np.clip(img, a_min, a_max)
-    return (img - a_min) / (a_max - a_min)
+def _normalize(img: np.ndarray) -> np.ndarray:
+    """Per-volume percentile normalization for MRI (no fixed HU scale)."""
+    p_low  = np.percentile(img, 0.5)
+    p_high = np.percentile(img, 99.5)
+    img = np.clip(img, p_low, p_high)
+    denom = p_high - p_low
+    if denom > 0:
+        img = (img - p_low) / denom
+    return img.astype(np.float32)
 
 
 class CystPatchDataset(Dataset):

@@ -71,7 +71,7 @@ approach_c:
   output_dir:         ${root}/approach_c/checkpoints
   predictions:        ${root}/approach_c/predictions
   max_epochs:         300
-  warmup_freeze_epochs: 10          # freeze encoder for first 10 epochs (fine-tuning head only)
+  warmup_freeze_epochs: 25          # same modality (MRI→MRI): longer warmup preserves pretrained features
   lr:                 3.0e-5        # lower LR for fine-tuning
   batch_size:         2
   patch_size:         [96, 96, 96]
