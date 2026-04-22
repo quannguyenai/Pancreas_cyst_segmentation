@@ -38,7 +38,7 @@ nnUNet_predict \
     -t  "${TASK_ID}" \
     -m  "${CONFIG}" \
     --folds "${FOLD}" \
-    --checkpoint_name "${CKPT}"
+    -chk "${CKPT}"
 
 echo ""
 echo "Predictions saved to: ${OUTPUT_DIR}"
