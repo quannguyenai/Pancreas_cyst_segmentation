@@ -59,7 +59,7 @@ comparison/predictions/
 
 # ─── Jupyter artifacts ────────────────────────────────────────────────────────
 .ipynb_checkpoints/
-*.ipynb
+# *.ipynb  — notebooks are tracked
 
 # ─── Build artifacts ──────────────────────────────────────────────────────────
 *.egg-info/
