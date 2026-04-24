@@ -12,7 +12,7 @@ from configs import load_config
 
 
 DATASET_JSON_TEMPLATE = {
-    "channel_names": {"0": "CT"},
+    "channel_names": {"0": "MRI"},
     "labels": {"background": 0, "cyst": 1},
     "numTraining": 0,
     "file_ending": ".nii.gz",

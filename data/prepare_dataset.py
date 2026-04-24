@@ -152,7 +152,7 @@ def update_split_txts(
 # ─── nnUNet dataset construction ──────────────────────────────────────────────
 
 DATASET_JSON_TEMPLATE = {
-    "channel_names": {"0": "CT"},
+    "channel_names": {"0": "MRI"},
     "labels": {"background": 0, "cyst": 1},
     "numTraining": 0,
     "file_ending": ".nii.gz",
@@ -269,7 +269,7 @@ def fix_cad_headers(images_dir: Path, masks_dir: Path) -> None:
         fixed_nib = nib.Nifti1Image(
             mask_nib.get_fdata().astype(np.uint8),
             affine=img_affine,
-            header=img_nib.header,
+            header=mask_nib.header,
         )
         nib.save(fixed_nib, str(mask_path))
         fixed += 1

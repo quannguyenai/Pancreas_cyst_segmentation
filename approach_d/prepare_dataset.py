@@ -31,11 +31,11 @@ from configs import load_config
 
 DATASET_JSON_V1 = {
     "name": "PancreasCyst",
-    "description": "Pancreatic cyst segmentation, multi-institutional CT",
+    "description": "Pancreatic cyst segmentation, multi-institutional MRI (T1/T2)",
     "reference": "",
     "licence": "",
     "release": "1.0",
-    "modality": {"0": "CT"},
+    "modality": {"0": "MRI"},
     "labels": {"0": "background", "1": "cyst"},
     "numTraining": 0,
     "numTest": 0,

@@ -1,6 +1,6 @@
 """prepare_stack5_dataset.py — Build Dataset011_PancreasCyst25D.
 
-Approach A2.5D: stack-as-channels 2D. For each CT case, emit 5 z-shifted
+Approach A2.5D: stack-as-channels 2D. For each MRI case, emit 5 z-shifted
 copies of the volume as channels _0000..._0004. At training time, nnU-Net
 v2's built-in `2d` config samples one 2D slice at z0 across all channels,
 yielding a 5-channel input [V[z0-2], V[z0-1], V[z0], V[z0+1], V[z0+2]].
@@ -156,18 +156,19 @@ def main() -> None:
         **DATASET_JSON_TEMPLATE,
         "name": args.dataset_name,
         "description": (
-            f"Stack-as-channels 2.5D view of PancreasCyst. Each case's CT volume "
-            f"is written as {args.window} z-shifted copies (shifts={shifts}); "
-            f"channel {half} is the unshifted centre. Train the built-in `2d` "
-            f"configuration — each 2D sample becomes a {args.window}-channel input."
+            f"Stack-as-channels 2.5D view of PancreasCyst (MRI, T1/T2). Each "
+            f"case's volume is written as {args.window} z-shifted copies "
+            f"(shifts={shifts}); channel {half} is the unshifted centre. Train "
+            f"the built-in `2d` configuration — each 2D sample becomes a "
+            f"{args.window}-channel input."
         ),
-        "channel_names": {str(c): "CT" for c in range(args.window)},
+        "channel_names": {str(c): "MRI" for c in range(args.window)},
         "numTraining": len(imagestr_cases),
     }
     (dataset_folder / "dataset.json").write_text(
         json.dumps(ds_json, indent=4) + "\n"
     )
-    print(f"[INFO] Wrote dataset.json ({args.window} CT channels).")
+    print(f"[INFO] Wrote dataset.json ({args.window} MRI channels).")
 
 
 if __name__ == "__main__":
