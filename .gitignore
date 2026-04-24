@@ -35,6 +35,10 @@ nnUnet/nnUNet_raw/Dataset*/imagesTs/
 nnUnet/plan_and_preprocess.log
 nnUnet/train_*.log
 
+# ─── Local-only rollback backups from the CT→MRI normalization fix ────────────
+*.stale_CTnorm_bak
+*.stale_CTnorm_bak/
+
 # ─── Model checkpoints ────────────────────────────────────────────────────────
 **/*.pth
 **/*.pt
