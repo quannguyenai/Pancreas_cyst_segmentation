@@ -2,22 +2,26 @@
 
 Usage
 -----
-# Fix CAD header mismatches and update split CSVs to use repo-relative paths:
+# Default: run all three steps (CAD-header fix, split-CSV refresh, nnUNet build).
+# Each step is idempotent, so this is safe to re-run.
+python data/prepare_dataset.py --config configs/paths.yaml
+
+# Restrict to a subset of steps (useful for debugging):
+python data/prepare_dataset.py --config configs/paths.yaml --build-nnunet
 python data/prepare_dataset.py --config configs/paths.yaml --fix-cad-headers --update-txts
 
-# Rebuild nnUNet Dataset001 symlinks without touching split CSVs:
-python data/prepare_dataset.py --config configs/paths.yaml --build-nnunet
-
-# Full setup (recommended for fresh clone):
-python data/prepare_dataset.py --config configs/paths.yaml \\
-    --fix-cad-headers --update-txts --build-nnunet
-
-Notes
+Steps
 -----
-- The 247/37/74 split is NOT re-randomised; existing case stems are preserved.
-- CAD masks have identity direction matrices (known issue logged during nnUNet
-  preprocessing); --fix-cad-headers copies the affine from the image onto the mask.
-- Requires: nibabel, numpy, pyyaml (all in requirements.txt).
+1. fix_cad_headers — 17 of 83 CAD masks have an identity direction matrix while
+   the image carries the real orientation, leaving them ~280 mm out of physical
+   alignment with the image. This step copies the image affine onto the broken
+   mask and writes the original to *.bak.nii.gz. Idempotent.
+2. update_split_txts — rewrites train/val/test/all_train .txt with current
+   absolute paths, preserving the existing case-to-split assignment.
+3. build_nnunet_raw — creates nnUNet_raw/Dataset{id:03d}_{name}/ with symlinks
+   to imagesTr/labelsTr/imagesTs and writes dataset.json (channel: MRI).
+
+Requires: nibabel, numpy, pyyaml (all in requirements.txt).
 """
 
 from __future__ import annotations
@@ -323,13 +327,20 @@ def main() -> None:
 
     cases = discover_cases(images_dir, masks_dir)
 
-    if args.fix_cad_headers:
+    # Default (no flags): run all three steps. Any explicit flag restricts to
+    # only the requested subset.
+    any_flag = any([args.fix_cad_headers, args.update_txts, args.build_nnunet])
+    do_fix_cad     = args.fix_cad_headers or not any_flag
+    do_update_txts = args.update_txts     or not any_flag
+    do_build       = args.build_nnunet    or not any_flag
+
+    if do_fix_cad:
         fix_cad_headers(images_dir, masks_dir)
 
-    if args.update_txts:
+    if do_update_txts:
         update_split_txts(data_dir, images_dir, masks_dir, cases)
 
-    if args.build_nnunet:
+    if do_build:
         dataset_id = args.dataset_id or int(cfg["nnunet"]["dataset_id"])
         dataset_name = cfg["nnunet"]["dataset_name"]
         nnunet_raw = Path(cfg["nnunet"]["raw"])
@@ -342,9 +353,6 @@ def main() -> None:
             dataset_id=dataset_id,
             dataset_name=dataset_name,
         )
-
-    if not any([args.fix_cad_headers, args.update_txts, args.build_nnunet]):
-        print("[INFO] No action flags specified. Use --help to see options.")
 
 
 if __name__ == "__main__":

@@ -11,10 +11,10 @@
 #   CONFIG  nnUNet configuration name (default: 3d_fullres).
 #
 # Prerequisites:
-#   1. Data prepared: python data/prepare_dataset.py --config configs/paths.yaml \
-#          --update-txts --build-nnunet
-#   2. nnUNet preprocessed: run approach_a/preprocess.sh (or manually:
-#          nnUNetv2_plan_and_preprocess -d 1 --verify_dataset_integrity)
+#   1. Data prepared: python data/prepare_dataset.py --config configs/paths.yaml
+#          (default runs all steps — CAD header fix, split refresh, nnUNet build)
+#   2. nnUNet preprocessed:
+#          nnUNetv2_plan_and_preprocess -d 1 --verify_dataset_integrity
 #   3. nnUNet installed in active Python environment.
 
 set -euo pipefail
