@@ -44,6 +44,29 @@ else
     echo "[INFO] Preprocessing already done for Dataset${DATASET_ID}, skipping."
 fi
 
+# Mirror the canonical train/val split (data/train.txt + data/val.txt) onto
+# Dataset011's splits_final.json so 2.5D evaluates on the same 37-case val set
+# as A 3d_fullres. Without this, nnU-Net's auto-generated 5-fold split kicks in
+# (~227 train / 57 val) and Dice numbers aren't comparable across approaches.
+SPLITS_OUT="${nnUNet_preprocessed}/Dataset$(printf '%03d' ${DATASET_ID})_${DATASET_NAME}/splits_final.json"
+if [ -x "${REPO_ROOT}/.venv/bin/python3" ]; then
+    PYTHON_BIN="${REPO_ROOT}/.venv/bin/python3"
+else
+    PYTHON_BIN="$(command -v python3)"
+fi
+"${PYTHON_BIN}" - "${REPO_ROOT}/data/train.txt" "${REPO_ROOT}/data/val.txt" "${SPLITS_OUT}" <<'PY'
+import json, sys
+from pathlib import Path
+train_txt, val_txt, out_path = sys.argv[1], sys.argv[2], sys.argv[3]
+def stems(p):
+    return [Path(r.split(",")[0]).name.replace(".nii.gz", "")
+            for r in open(p).read().splitlines()[1:] if r.strip()]
+splits = [{"train": stems(train_txt), "val": stems(val_txt)}]
+Path(out_path).write_text(json.dumps(splits, indent=2))
+print(f"[INFO] Wrote canonical split to {out_path}")
+print(f"       train={len(splits[0]['train'])}, val={len(splits[0]['val'])}")
+PY
+
 RESULTS_DIR="${nnUNet_results}/Dataset$(printf '%03d' ${DATASET_ID})_${DATASET_NAME}/nnUNetTrainer__nnUNetPlans__${CONFIG}/fold_${FOLD}"
 LATEST_CKPT="${RESULTS_DIR}/checkpoint_latest.pth"
 
