@@ -55,7 +55,7 @@ approach_b:
   cropped_test_txt:        ${root}/approach_b/splits/test_cropped.txt
   crop_stats_json:         ${root}/approach_b/crop_stats.json
   crop_stats_test_json:    ${root}/approach_b/crop_stats_test.json
-  crop_margin_pct:         0.05          # expand bbox by 5% of bbox size per side
+  crop_margin_pct:         0.15          # expand bbox by 5% of bbox size per side
   nnunet_dataset_id:       10            # Dataset010_CroppedCyst
   nnunet_dataset_name:     CroppedCyst
   predictions_cropped:     ${root}/approach_b/predictions/cropped
@@ -67,7 +67,7 @@ approach_b:
 # ─── Approach C: Fine-tune Pretrained PanSegNet for Cyst ─────────────────────
 # Encoder from PanSegNet, head replaced for binary cyst segmentation
 approach_c:
-  pretrained_weights: ${root}/pansegnet_weights/averaged_T1T2.model  # T1+T2 model soup for mixed-modality data
+  pretrained_weights: ${root}/pansegnet_weights/averaged_T1T2.model  # PanSegNet weights pretrained on T1+T2; our data is T2-only
   output_dir:         ${root}/approach_c/checkpoints
   predictions:        ${root}/approach_c/predictions
   max_epochs:         300

@@ -156,7 +156,7 @@ def main() -> None:
         **DATASET_JSON_TEMPLATE,
         "name": args.dataset_name,
         "description": (
-            f"Stack-as-channels 2.5D view of PancreasCyst (MRI, T1/T2). Each "
+            f"Stack-as-channels 2.5D view of PancreasCyst (T2 MRI). Each "
             f"case's volume is written as {args.window} z-shifted copies "
             f"(shifts={shifts}); channel {half} is the unshifted centre. Train "
             f"the built-in `2d` configuration — each 2D sample becomes a "
