@@ -33,15 +33,28 @@ source .venv/bin/activate
 # ── 3. Install dependencies ───────────────────────────────────────────────────
 echo "[3/3] Installing PyTorch + nnUNet v1 (PaNSegNet) ..."
 
-# Detect CUDA version from nvcc or nvidia-smi
-CUDA_TAG="cu121"
-if command -v nvcc &>/dev/null; then
-    CUDA_VER=$(nvcc --version | grep -oP "release \K[0-9]+\.[0-9]+" | head -1)
-    MAJOR=$(echo "$CUDA_VER" | cut -d. -f1)
-    MINOR=$(echo "$CUDA_VER" | cut -d. -f2)
-    CUDA_TAG="cu${MAJOR}${MINOR}"
+# Detect CUDA version from nvcc or nvidia-smi. PyTorch only publishes wheels
+# for a fixed set of tags; we clamp to the nearest supported one and honor a
+# CUDA_TAG override so the caller can force-pick on unusual hosts.
+SUPPORTED_TAGS=("cu118" "cu121" "cu124" "cu126" "cu128")
+HIGHEST_TAG="${SUPPORTED_TAGS[-1]}"
+CUDA_TAG="${CUDA_TAG:-}"
+if [[ -z "$CUDA_TAG" ]]; then
+    DETECTED="cu121"
+    if command -v nvcc &>/dev/null; then
+        CUDA_VER=$(nvcc --version | grep -oP "release \K[0-9]+\.[0-9]+" | head -1)
+        MAJOR=$(echo "$CUDA_VER" | cut -d. -f1)
+        MINOR=$(echo "$CUDA_VER" | cut -d. -f2)
+        DETECTED="cu${MAJOR}${MINOR}"
+    fi
+    if [[ " ${SUPPORTED_TAGS[*]} " == *" ${DETECTED} "* ]]; then
+        CUDA_TAG="$DETECTED"
+    else
+        echo "  Detected ${DETECTED} has no PyTorch wheel; falling back to ${HIGHEST_TAG} (forward-compatible)."
+        CUDA_TAG="$HIGHEST_TAG"
+    fi
 fi
-echo "  Detected CUDA tag: ${CUDA_TAG}"
+echo "  CUDA tag: ${CUDA_TAG}"
 
 pip install -q torch torchvision \
     --index-url "https://download.pytorch.org/whl/${CUDA_TAG}"
