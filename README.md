@@ -8,7 +8,7 @@ ongoing research project in medical image analysis.
 
 ---
 
-## Quick Start on a Fresh GPU Machine
+## Quick Start on setting up a new machine
 
 ```bash
 # 1. Clone and enter repo
