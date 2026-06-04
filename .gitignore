@@ -9,6 +9,7 @@ approach_d/.venv/
 approach_d/PaNSegNet/
 approach_d/nnunet_v1/
 approach_d/predictions/
+approach_d/visualization.html
 
 # ─── Python bytecode ──────────────────────────────────────────────────────────
 __pycache__/
@@ -39,12 +40,23 @@ nnUnet/train_*.log
 *.stale_CTnorm_bak
 *.stale_CTnorm_bak/
 
+# ─── Pre-trained weights (copy to server via scp/rsync, not git) ─────────────
+pansegnet_weights/
+
 # ─── Model checkpoints ────────────────────────────────────────────────────────
 **/*.pth
 **/*.pt
 **/*.ckpt
 **/*.pkl
 **/*.npz
+**/*.model
+
+# ─── Generated results — figures, PDFs, and analysis outputs ─────────────────
+results/
+
+# ─── Inference prediction outputs (large NIfTI volumes) ──────────────────────
+approach_a/prediction/
+approach_b/predictio/
 
 # ─── Inference outputs and logs ───────────────────────────────────────────────
 *.log

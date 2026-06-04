@@ -62,6 +62,18 @@ if [[ -f "${CKPT_DIR}/model_latest.model" ]]; then
     RESUME_FLAG="--continue_training"
     echo ""
     echo "[3/3] Checkpoint found — resuming training ..."
+
+    # Back up epoch-600 snapshots before the extended run can overwrite them.
+    # Each backup is written only once (skip if it already exists).
+    for stem in model_best model_final_checkpoint; do
+        src="${CKPT_DIR}/${stem}.model"
+        dst="${CKPT_DIR}/${stem}_ep600.model"
+        if [[ -f "${src}" && ! -f "${dst}" ]]; then
+            cp "${src}"     "${dst}"
+            cp "${src}.pkl" "${dst}.pkl"
+            echo "  Backed up ${stem}.model → ${stem}_ep600.model"
+        fi
+    done
 else
     echo ""
     echo "[3/3] Starting training from scratch ..."

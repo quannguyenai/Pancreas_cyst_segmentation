@@ -1,10 +1,9 @@
 # Pancreatic Cyst Segmentation
 
-**Multi-approach benchmark for automated pancreatic cyst segmentation in CT.**
+**Multi-approach benchmark for automated pancreatic cyst segmentation in T2 MRI.**
 
 This repository implements and compares four segmentation strategies on a
-multi-institutional CT dataset (358 cases, 8 sites). The work is part of an
-ongoing research project in medical image analysis.
+multi-institutional T2 MRI dataset (358 cases, 8 sites).
 
 ---
 
@@ -19,19 +18,16 @@ cd Pancreas_cyst_segmentation
 bash scripts/setup_gpu.sh
 
 # 3. Place dataset files
-#    data/images/EMC024.nii.gz  …  (358 CT scans)
-#    data/masks/cyst_emc_024.nii.gz  …  (358 masks)
+#    data/images/EMC024.nii.gz          (358 T2 MRI scans)
+#    data/masks/cyst_emc_024.nii.gz     (358 binary cyst masks)
 
-# 4. Prepare data (update paths, build nnUNet raw, preprocess)
+# 4. Prepare data
 source .venv/bin/activate
 bash scripts/prepare_data.sh
 
-# 5. Train (Approach A — nnUNet, recommended)
+# 5. Train (Approach A 3D — recommended)
 bash approach_a/train_mixed.sh 0
 ```
-
-That is everything. Steps 2 and 4 are one-time; subsequent training sessions
-only need `source .venv/bin/activate && source scripts/set_nnunet_env.sh`.
 
 ---
 
@@ -42,30 +38,27 @@ only need `source .venv/bin/activate && source scripts/set_nnunet_env.sh`.
 3. [Repository Structure](#repository-structure)
 4. [Installation](#installation)
 5. [Data Preparation](#data-preparation)
-6. [Approach A — Direct nnUNet Baseline](#approach-a)
+6. [Approach A — nnUNet (3D and 2.5D)](#approach-a)
 7. [Approach B — Cascaded Pipeline](#approach-b)
-8. [Approach C — Fine-tuned PanSegNet](#approach-c)
-9. [Comparison Baselines](#comparison-baselines)
-10. [Evaluation](#evaluation)
-11. [Results](#results)
-12. [Citation](#citation)
-13. [License](#license)
+8. [Approach D — nnUNet v1 + PanSegNet](#approach-d)
+9. [Evaluation & Visualisation](#evaluation--visualisation)
+10. [Results](#results)
 
 ---
 
 ## Overview
 
-Pancreatic cysts are fluid-filled lesions in the pancreas with variable
-malignant potential. Automated segmentation from CT scans is clinically
-valuable for surveillance and surgical planning. This repository benchmarks
-three complementary deep-learning segmentation strategies:
+Pancreatic cysts are fluid-filled lesions with variable malignant potential.
+Automated segmentation from T2 MRI is clinically valuable for surveillance and
+surgical planning. This repository benchmarks four deep-learning segmentation
+strategies:
 
-| Approach | Method | Key Component |
-|----------|--------|---------------|
-| **A** | Direct nnUNet v2 baseline | Train on full dataset or per-institution splits |
-| **B** | Cascaded: pancreas → crop → cyst | PanSegNet stage-1 pancreas mask guides ROI |
-| **C** | Fine-tune PanSegNet for cyst | Transfer encoder, retrain segmentation head |
-| **Comparison** | 2D U-Net / 3D V-Net baselines | Semi-supervised baselines with BCP |
+| Approach | Method | Key detail |
+|----------|--------|------------|
+| **A 3D** | nnUNet v2 — 3D full-resolution | Best overall Dice (0.674) |
+| **A 2.5D** | nnUNet v2 — 2.5D stack-of-5-slices | 5-channel 2D input, each channel = adjacent axial slice |
+| **B** | Cascaded: PanSegNet pancreas → crop → nnUNet cyst | Pancreas ROI reduces search space |
+| **D** | nnUNet v1 + PanSegNet weights | Separate environment, own `.venv` |
 
 ---
 
@@ -73,23 +66,22 @@ three complementary deep-learning segmentation strategies:
 
 | Statistic | Value |
 |-----------|-------|
-| Total cases | 358 CT volumes |
-| Institutions | 8 (AHN, CAD, EMC, IU, MCA, MCF, NYU, NU) |
+| Total cases | 358 T2 MRI volumes |
+| Institutions | 8 (AHN, CAD, EMC, IU, MCA, MCF, NU, NYU) |
 | Training split | 247 cases (`data/train.txt`) |
 | Validation split | 37 cases (`data/val.txt`) |
 | Test split | 74 cases (`data/test.txt`) |
-| Image format | NIfTI (.nii.gz) |
+| Image format | NIfTI (`.nii.gz`) |
 | Annotation | Binary cyst masks |
+| Mask naming | `cyst_<site>_<id>.nii.gz` (e.g. `cyst_emc_024.nii.gz`) |
 
-> **Data access:** The CT images and segmentation masks are not publicly
-> distributed in this repository due to institutional data agreements.
-> To request access, contact the dataset curators and follow the data
-> sharing protocol described in the associated paper.
+> **Data access:** Images and masks are not publicly distributed due to
+> institutional data agreements. Contact the dataset curators for access.
 >
-> Once access is granted, place files as follows:
+> Once granted, place files as:
 > ```
-> data/images/EMC024.nii.gz   # CT scans
-> data/masks/cyst_emc_024.nii.gz  # cyst masks
+> data/images/EMC024.nii.gz
+> data/masks/cyst_emc_024.nii.gz
 > ```
 
 ---
@@ -97,85 +89,137 @@ three complementary deep-learning segmentation strategies:
 ## Repository Structure
 
 ```
-pancreas-cyst-seg/
-├── .gitignore
+pancrea_cyst/
 ├── README.md
 ├── requirements.txt
-│
 ├── configs/
-│   ├── paths.yaml              # Central path configuration (edit PANCREAS_CYST_ROOT)
-│   └── __init__.py             # load_config() helper used by all scripts
+│   ├── paths.yaml                  # Central path config (edit PANCREAS_CYST_ROOT)
+│   └── __init__.py                 # load_config() helper
 │
 ├── data/
-│   ├── prepare_dataset.py      # Raw NIfTI → nnUNet format; update split CSVs
-│   ├── train.txt               # 247 image-mask pairs
-│   ├── val.txt                 # 37 image-mask pairs
-│   ├── test.txt                # 74 image-mask pairs
-│   └── all_train.txt           # 283 pairs (train + val combined)
+│   ├── prepare_dataset.py          # NIfTI → nnUNet format; fix CAD affines
+│   ├── train.txt / val.txt / test.txt / all_train.txt
+│   ├── images/                     # Raw T2 MRI scans (not in git)
+│   └── masks/                      # Binary GT masks (not in git)
 │
-├── approach_a/                 # Direct nnUNet baseline
-│   ├── train_mixed.sh          # A1: single model on full dataset
-│   ├── train_per_modality.sh   # A2: one model per institution
-│   ├── prepare_site_dataset.py # Helper: build per-institution nnUNet dataset
-│   └── predict.sh
+├── approach_a/                     # nnUNet v2 — 3D and 2.5D
+│   ├── train_mixed.sh              # 3D full-resolution training
+│   ├── train_stack5.sh             # 2.5D stack-of-5 training
+│   ├── predict.sh                  # 3D inference → approach_a/prediction/3d_fullres/
+│   ├── predict_stack5.sh           # 2.5D inference → approach_a/prediction/2d_stack5/
+│   ├── prepare_stack5_dataset.py   # Build 5-channel 2.5D nnUNet dataset
+│   └── prepare_site_dataset.py     # Build per-institution datasets
 │
-├── approach_b/                 # Cascaded: pancreas → crop → cyst
-│   ├── stage1_pancreas_seg.sh  # Run PanSegNet to generate pancreas masks
-│   ├── crop_to_pancreas.py     # Crop volumes to pancreas ROI + 5% margin
-│   ├── paste_back.py           # Invert crop for full-space evaluation
-│   ├── train.sh
-│   └── predict.sh
+├── approach_b/                     # Cascaded: pancreas → crop → cyst
+│   ├── run_pansegnet_inference.py  # Stage 1: pancreas masks via PanSegNet
+│   ├── crop_to_pancreas.py         # Stage 2: crop volumes to pancreas ROI
+│   ├── paste_back.py               # Restore predictions to full-space coords
+│   ├── prepare_cropped_dataset.py  # Build nnUNet dataset from cropped volumes
+│   ├── train.sh / predict.sh
+│   └── predictio/full_space/       # Final full-space test predictions
 │
-├── approach_c/                 # Fine-tune PanSegNet for cyst
-│   ├── finetune_trainer.py     # MONAI-based trainer with encoder warm-up
-│   ├── inference.py            # Sliding-window inference
-│   ├── pretrained/             # Place PanSegNet.pth here
-│   ├── train.sh
-│   └── predict.sh
+├── approach_c/                     # Fine-tune PanSegNet (experimental)
+│   ├── finetune_trainer.py
+│   ├── pansegnet.py
+│   └── pretrained/                 # Place PanSegNet.pth here
 │
-├── comparison/                 # 2D U-Net and 3D V-Net baselines
-│   ├── networks/               # unet.py, VNet.py, unetr.py, net_factory.py
-│   ├── dataloaders/            # dataset.py (Cyst + Cyst2D), transforms
-│   ├── utils/                  # losses.py, metrics.py, test_3d_patch.py
-│   ├── train.py                # Unified training (--mode 2d|3d)
-│   ├── test.py                 # Unified inference + metrics
-│   └── evaluate.py             # Cross-approach comparison table
+├── approach_d/                     # nnUNet v1 + PanSegNet (own .venv)
+│   ├── setup.sh                    # Install nnUNet v1 into approach_d/.venv
+│   ├── set_env.sh                  # Export nnUNet v1 env vars
+│   ├── prepare_dataset.py
+│   ├── train.sh / predict.sh
+│   ├── evaluate.py
+│   └── prediction/                 # Test predictions (authoritative folder)
+│
+├── baseline/                       # Semi-supervised baselines (preserved)
+│   ├── 2D-UNet/
+│   ├── 3D-VNet/
+│   └── environment.yaml            # Conda env for baseline models
+│
+├── comparison/                     # 2D U-Net / 3D V-Net baseline runners
+│   ├── train.py / test.py / evaluate.py
+│   ├── networks/                   # unet.py, VNet.py, unetr.py
+│   └── dataloaders/
+│
+├── pansegnet_weights/              # Pre-trained PanSegNet weights
+│   ├── Task110_PancreasT1MRI/
+│   ├── Task111_PancreasT2MRI/
+│   └── averaged_T1T2.model
+│
+├── nnUnet/
+│   ├── nnUNet_raw/                 # nnUNet-format datasets (Dataset001, Dataset010, 011)
+│   ├── nnUNet_preprocessed/        # Preprocessed patches (generated; large)
+│   └── nnUNet_results/             # Trained checkpoints + validation predictions
+│       ├── Dataset001_PancreasCyst_3DA/   # Approach A 3D model
+│       ├── Dataset011_PancreasCyst25D/    # Approach A 2.5D model
+│       └── Dataset010_CroppedCyst/        # Approach B cropped model
 │
 ├── scripts/
-│   ├── setup_gpu.sh            # One-shot env setup on a fresh GPU machine
-│   ├── prepare_data.sh         # Update paths + build nnUNet raw + preprocess
-│   └── set_nnunet_env.sh       # Export nnUNet_raw/preprocessed/results vars
+│   ├── setup_gpu.sh                # One-shot env setup
+│   ├── prepare_data.sh             # Full data prep pipeline
+│   ├── set_nnunet_env.sh           # Export NNUNET_* env vars
+│   └── eda_pancrea_cyst_dataset.py # Dataset statistics and EDA
 │
-└── baseline/                   # Original semi-supervised baseline code (preserved)
-    ├── 2D-UNet/
-    ├── 3D-VNet/
-    └── environment.yaml        # Conda env for baseline models
+├── eda/                            # Exploratory data analysis outputs
+│   ├── eda_summary.md
+│   ├── case_level_eda.csv
+│   └── *.png                       # Distribution plots
+│
+├── colab/                          # Google Colab training notebooks
+│   ├── train_approach_a.ipynb
+│   └── create_t4_plans.py          # Adapt plans for T4 GPU memory
+│
+└── results/
+    ├── comparison_by_case.csv      # Per-case metrics for all 4 approaches
+    │                               # (74 test cases × Dice/precision/recall/F1/HD95/ASD
+    │                               #  + volumes, site grouping)
+    ├── comparison_table.csv        # Summary table
+    ├── per_case/                   # Per-case CSVs by approach
+    ├── figures/                    # All output figures
+    │   ├── heatmap_dice.png        # Per-case Dice heatmap grouped by site
+    │   ├── overview_sorted.png     # Per-case Dice line plot
+    │   ├── site_summary.png        # Per-site mean Dice + case counts
+    │   ├── overview_summary.png    # Bar chart mean ± std all approaches
+    │   ├── top5_best.png           # Segmentation overlays, top-5 best cases
+    │   ├── top5_worst.png          # Segmentation overlays, top-5 worst cases
+    │   ├── gradcam_ct/             # Grad-CAM figures (CT normalization)
+    │   └── gradcam_mri/            # Grad-CAM figures (MRI normalization)
+    ├── gradcam_report.pdf          # Sectioned Grad-CAM PDF (CT norm)
+    ├── gradcam_report_mri.pdf      # Sectioned Grad-CAM PDF (MRI norm)
+    ├── gradcam.py                  # Grad-CAM script (usage: python gradcam.py [ct|mri])
+    ├── merge_gradcam_pdf.py        # PDF builder (usage: python merge_gradcam_pdf.py [ct|mri])
+    ├── plot_results.py             # Metric heatmaps + overview plots
+    ├── visualize_cases.py          # Segmentation overlay figures
+    ├── visualize_activations.py    # Probability heatmap figures
+    └── visualize_prob_heatmaps.py  # Per-case heatmap grid
 ```
 
 ---
 
 ## Installation
 
-### Track A: nnUNet v2 Approaches (A, B, C)
+### Approaches A, B, C (nnUNet v2)
 
 Requires Python ≥ 3.10.
 
 ```bash
-# 1. Create and activate a virtual environment
 python3 -m venv .venv
 source .venv/bin/activate
-
-# 2. Install PyTorch (adjust for your CUDA version)
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126
-
-# 3. Install all other dependencies
 pip install -r requirements.txt
 ```
 
-### Track B: Comparison Baseline Models (2D U-Net, 3D V-Net)
+### Approach D (nnUNet v1, isolated environment)
 
 ```bash
-# Requires Conda
+cd approach_d
+bash setup.sh          # creates approach_d/.venv with nnUNet v1
+source set_env.sh      # exports NNUNET_* paths
+```
+
+### Baseline (2D U-Net / 3D V-Net)
+
+```bash
 conda env create -f baseline/environment.yaml
 conda activate monai
 ```
@@ -184,133 +228,130 @@ conda activate monai
 
 ## Data Preparation
 
-After obtaining data access and placing images/masks in `data/images/` and
-`data/masks/`:
-
 ```bash
-# 1. Fix CAD mask affine headers and update split CSV paths
+# Fix CAD mask affine headers and update split CSV paths
 python data/prepare_dataset.py --config configs/paths.yaml \
-    --fix-cad-headers \
-    --update-txts
+    --fix-cad-headers --update-txts
 
-# 2. Build nnUNet Dataset001_PancreasCyst
-python data/prepare_dataset.py --config configs/paths.yaml \
-    --build-nnunet
+# Build nnUNet Dataset001 (3D) and Dataset011 (2.5D)
+python data/prepare_dataset.py --config configs/paths.yaml --build-nnunet
+python approach_a/prepare_stack5_dataset.py
 
-# 3. nnUNet plan and preprocess (required for Approach A)
+# Plan and preprocess
 source scripts/set_nnunet_env.sh
-nnUNetv2_plan_and_preprocess -d 1 --verify_dataset_integrity -np 8
+nnUNetv2_plan_and_preprocess -d 1  --verify_dataset_integrity -np 8
+nnUNetv2_plan_and_preprocess -d 11 --verify_dataset_integrity -np 8
 ```
 
 ---
 
 ## Approach A
 
-**Direct nnUNet v2 baseline** on the full mixed multi-institutional dataset.
+**nnUNet v2** trained directly on the full multi-institutional T2 MRI dataset.
 
-### A1: Single Model (All Institutions Mixed)
+### A 3D — 3D Full-Resolution
 
 ```bash
-bash approach_a/train_mixed.sh 0            # Train fold 0
-bash approach_a/predict.sh "0"              # Predict test set
+source scripts/set_nnunet_env.sh
+bash approach_a/train_mixed.sh 0          # fold 0, ~1000 epochs
+bash approach_a/predict.sh "0"            # → approach_a/prediction/3d_fullres/
 ```
 
-### A2: Per-Institution Models
+Checkpoint: `nnUnet/nnUNet_results/Dataset001_PancreasCyst_3DA/…/fold_0/checkpoint_final.pth`
+
+### A 2.5D — Stack-of-5 Slices
+
+Each 3D case is rewritten as a 5-channel 2D dataset (axial slices ±2 neighbours
+as channels), then trained with nnUNet's built-in `2d` configuration.
 
 ```bash
-bash approach_a/train_per_modality.sh 0    # Train one model per site
+python approach_a/prepare_stack5_dataset.py
+nnUNetv2_plan_and_preprocess -d 11 --verify_dataset_integrity
+bash approach_a/train_stack5.sh 0
+bash approach_a/predict_stack5.sh "0"     # → approach_a/prediction/2d_stack5/
 ```
 
 ---
 
 ## Approach B
 
-**Cascaded pipeline:** pretrained PanSegNet infers pancreas → crop to ROI →
-train nnUNet on cropped volumes.
-
-> **Prerequisite:** Obtain PanSegNet pretrained weights and place in
-> `approach_b/pancreas_model/`. See [PanSegNet](https://github.com/mazurowski-lab/PanSegNet).
+**Cascaded pipeline:** PanSegNet generates a pancreas mask → volumes are cropped
+to the pancreas ROI → nnUNet trains on the cropped sub-volumes.
 
 ```bash
-# Stage 1: Pancreas segmentation
+# Stage 1: pancreas segmentation
 bash approach_b/stage1_pancreas_seg.sh
 
-# Stage 2: Crop to pancreas ROI
+# Stage 2: crop to ROI
 python approach_b/crop_to_pancreas.py --config configs/paths.yaml
 
-# Register cropped dataset and preprocess
-python data/prepare_dataset.py --config configs/paths.yaml \
-    --build-nnunet --dataset-id 10
+# Build and preprocess cropped dataset (Dataset010)
+python approach_b/prepare_cropped_dataset.py
 source scripts/set_nnunet_env.sh
 nnUNetv2_plan_and_preprocess -d 10 --verify_dataset_integrity
 
 # Train and predict
 bash approach_b/train.sh 0
-bash approach_b/predict.sh 0
+bash approach_b/predict.sh 0              # → approach_b/predictio/full_space/
 ```
 
 ---
 
-## Approach C
+## Approach D
 
-**Fine-tune PanSegNet** encoder for binary cyst segmentation using MONAI.
-
-> **Prerequisite:** Place `PanSegNet.pth` in `approach_c/pretrained/`.
+**nnUNet v1** with PanSegNet pretrained weights. Uses its own isolated virtual
+environment under `approach_d/.venv`.
 
 ```bash
-bash approach_c/train.sh 0          # GPU 0
-bash approach_c/predict.sh          # Uses best_model.pth checkpoint
+cd approach_d
+source set_env.sh
+bash train.sh
+bash predict.sh                           # → approach_d/prediction/
 ```
 
 ---
 
-## Comparison Baselines
+## Evaluation & Visualisation
 
-3D V-Net and 2D U-Net with optional semi-supervised BCP training.
-
-```bash
-# 3D V-Net
-python comparison/train.py --config configs/paths.yaml --mode 3d --model vnet
-python comparison/test.py  --config configs/paths.yaml --mode 3d --model vnet \
-    --checkpoint comparison/checkpoints/baseline/best_model.pth
-
-# 2D U-Net
-python comparison/train.py --config configs/paths.yaml --mode 2d --model unet_2d
-```
-
----
-
-## Evaluation
-
-Compare all approaches on the test set:
+All scripts run from the project root with `.venv` active.
 
 ```bash
-python comparison/evaluate.py \
-    --config configs/paths.yaml \
-    --gt-dir data/masks \
-    --split test \
-    --pred-dirs \
-        approach_a=approach_a/predictions/3d_fullres \
-        approach_b=approach_b/predictions/full_space \
-        approach_c=approach_c/predictions/test \
-        vnet=comparison/predictions/vnet \
-        unet2d=comparison/predictions/unet2d \
-    --output results/comparison_table.csv
+# Metric heatmaps grouped by site (Dice, HD95, ASD)
+python results/plot_results.py
+
+# Segmentation overlay figures — top-5 best/worst cases
+python results/visualize_cases.py
+
+# Probability heatmap figures
+python results/visualize_activations.py
+
+# Grad-CAM saliency maps (ct = matches training norm, mri = per-case z-score)
+python results/gradcam.py ct              # → results/figures/gradcam_ct/
+python results/gradcam.py mri             # → results/figures/gradcam_mri/
+
+# Build sectioned PDF report
+python results/merge_gradcam_pdf.py ct    # → results/gradcam_report.pdf
+python results/merge_gradcam_pdf.py mri   # → results/gradcam_report_mri.pdf
 ```
+
+The comparison CSV at `results/comparison_by_case.csv` contains per-case
+Dice, precision, recall, F1, HD95, ASD, and physical volumes (mm³) for all
+74 test cases across all four approaches.
 
 ---
 
 ## Results
 
-Results will be populated after all experiments complete.
+Test-set performance (74 cases, 8 institutions):
 
-| Approach | Dice ↑ | HD95 ↓ (mm) | ASD ↓ (mm) |
-|----------|--------|-------------|------------|
-| A1 — nnUNet mixed | — | — | — |
-| A2 — nnUNet per-site | — | — | — |
-| B — Cascaded | — | — | — |
-| C — Fine-tuned PanSegNet | — | — | — |
-| 3D V-Net (comparison) | — | — | — |
-| 2D U-Net (comparison) | — | — | — |
+| Approach | Dice ↑ | HD95 ↓ | ASD ↓ (mm) |
+|----------|--------|--------|------------|
+| **A 3D** — nnUNet v2 3D | **0.674 ± 0.256** | **0.571** | **16.1** |
+| D — nnUNet v1 | 0.643 ± 0.272 | 0.539 | 17.7 |
+| B — Cascaded | 0.614 ± 0.279 | 0.494 | 19.7 |
+| A 2.5D — nnUNet v2 2.5D | 0.594 ± 0.275 | 0.479 | 19.7 |
 
+Per-site mean Dice (A 3D): MCF 0.807 > CAD 0.789 > AHN 0.772 > MCA 0.696 > IU 0.651 > EMC 0.626 > NYU 0.618 > NU 0.591
 
+> Detailed per-case breakdown, site-level analysis, and Grad-CAM saliency
+> visualisations are in `results/figures/` and the PDF reports.

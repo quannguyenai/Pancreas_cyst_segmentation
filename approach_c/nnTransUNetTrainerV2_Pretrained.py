@@ -29,6 +29,15 @@ class nnTransUNetTrainerV2_Pretrained(nnTransUNetTrainerV2):
         super().initialize(training, force_load_plans)
         if not training:
             return
+        # When resuming, the checkpoint is loaded AFTER initialize() by run_training().
+        # Skip pretrained init to avoid re-freezing the encoder mid-training.
+        ckpt_exists = (
+            os.path.isfile(os.path.join(self.output_folder, "model_latest.model")) or
+            os.path.isfile(os.path.join(self.output_folder, "model_final_checkpoint.model"))
+        )
+        if ckpt_exists:
+            self.print_to_log_file("Checkpoint found — skipping pretrained weight loading.")
+            return
         if PRETRAINED_WEIGHTS and os.path.isfile(PRETRAINED_WEIGHTS):
             self._load_pretrained_weights(PRETRAINED_WEIGHTS)
             self._set_encoder_frozen(True)

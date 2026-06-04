@@ -1,0 +1,6088 @@
+{
+  "IU9": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      118,
+      109,
+      11
+    ],
+    "bbox_stop": [
+      169,
+      149,
+      22
+    ]
+  },
+  "NU51": {
+    "original_shape": [
+      256,
+      208,
+      51
+    ],
+    "bbox_start": [
+      77,
+      70,
+      9
+    ],
+    "bbox_stop": [
+      222,
+      147,
+      32
+    ]
+  },
+  "NYU0069": {
+    "original_shape": [
+      320,
+      220,
+      40
+    ],
+    "bbox_start": [
+      111,
+      55,
+      9
+    ],
+    "bbox_stop": [
+      248,
+      146,
+      31
+    ]
+  },
+  "NYU0075": {
+    "original_shape": [
+      320,
+      320,
+      46
+    ],
+    "bbox_start": [
+      119,
+      121,
+      15
+    ],
+    "bbox_stop": [
+      248,
+      204,
+      38
+    ]
+  },
+  "EMC024": {
+    "original_shape": [
+      512,
+      512,
+      39
+    ],
+    "bbox_start": [
+      162,
+      203,
+      9
+    ],
+    "bbox_stop": [
+      383,
+      305,
+      32
+    ]
+  },
+  "MCF10": {
+    "original_shape": [
+      320,
+      320,
+      37
+    ],
+    "bbox_start": [
+      90,
+      94,
+      13
+    ],
+    "bbox_stop": [
+      292,
+      195,
+      37
+    ]
+  },
+  "EMC092": {
+    "original_shape": [
+      512,
+      512,
+      37
+    ],
+    "bbox_start": [
+      168,
+      182,
+      3
+    ],
+    "bbox_stop": [
+      382,
+      324,
+      24
+    ]
+  },
+  "IU19": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      76,
+      106,
+      10
+    ],
+    "bbox_stop": [
+      228,
+      192,
+      27
+    ]
+  },
+  "NU127": {
+    "original_shape": [
+      320,
+      260,
+      40
+    ],
+    "bbox_start": [
+      92,
+      82,
+      7
+    ],
+    "bbox_stop": [
+      259,
+      166,
+      24
+    ]
+  },
+  "MCA22": {
+    "original_shape": [
+      512,
+      512,
+      30
+    ],
+    "bbox_start": [
+      168,
+      205,
+      17
+    ],
+    "bbox_stop": [
+      391,
+      287,
+      30
+    ]
+  },
+  "NU101": {
+    "original_shape": [
+      512,
+      328,
+      50
+    ],
+    "bbox_start": [
+      176,
+      96,
+      4
+    ],
+    "bbox_stop": [
+      414,
+      207,
+      37
+    ]
+  },
+  "NU131": {
+    "original_shape": [
+      320,
+      270,
+      56
+    ],
+    "bbox_start": [
+      97,
+      87,
+      15
+    ],
+    "bbox_stop": [
+      265,
+      180,
+      39
+    ]
+  },
+  "CAD182": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      15,
+      85,
+      6
+    ],
+    "bbox_stop": [
+      212,
+      193,
+      34
+    ]
+  },
+  "CAD155": {
+    "original_shape": [
+      256,
+      256,
+      38
+    ],
+    "bbox_start": [
+      119,
+      119,
+      10
+    ],
+    "bbox_stop": [
+      192,
+      176,
+      31
+    ]
+  },
+  "CAD118": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      50,
+      115,
+      11
+    ],
+    "bbox_stop": [
+      203,
+      172,
+      30
+    ]
+  },
+  "CAD152": {
+    "original_shape": [
+      256,
+      256,
+      41
+    ],
+    "bbox_start": [
+      40,
+      78,
+      13
+    ],
+    "bbox_stop": [
+      176,
+      190,
+      36
+    ]
+  },
+  "CAD252": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      45,
+      124,
+      8
+    ],
+    "bbox_stop": [
+      198,
+      184,
+      28
+    ]
+  },
+  "NYU0039": {
+    "original_shape": [
+      256,
+      208,
+      54
+    ],
+    "bbox_start": [
+      78,
+      40,
+      26
+    ],
+    "bbox_stop": [
+      215,
+      131,
+      49
+    ]
+  },
+  "NU98": {
+    "original_shape": [
+      320,
+      320,
+      51
+    ],
+    "bbox_start": [
+      101,
+      124,
+      12
+    ],
+    "bbox_stop": [
+      262,
+      218,
+      37
+    ]
+  },
+  "CAD153": {
+    "original_shape": [
+      256,
+      256,
+      38
+    ],
+    "bbox_start": [
+      34,
+      79,
+      7
+    ],
+    "bbox_stop": [
+      180,
+      172,
+      33
+    ]
+  },
+  "CAD315": {
+    "original_shape": [
+      256,
+      256,
+      28
+    ],
+    "bbox_start": [
+      17,
+      87,
+      0
+    ],
+    "bbox_stop": [
+      213,
+      208,
+      23
+    ]
+  },
+  "MCA140": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      162,
+      205,
+      14
+    ],
+    "bbox_stop": [
+      439,
+      307,
+      28
+    ]
+  },
+  "NU18": {
+    "original_shape": [
+      320,
+      220,
+      36
+    ],
+    "bbox_start": [
+      123,
+      62,
+      6
+    ],
+    "bbox_stop": [
+      250,
+      139,
+      23
+    ]
+  },
+  "NU117": {
+    "original_shape": [
+      256,
+      256,
+      60
+    ],
+    "bbox_start": [
+      84,
+      105,
+      11
+    ],
+    "bbox_stop": [
+      199,
+      143,
+      40
+    ]
+  },
+  "EMC007": {
+    "original_shape": [
+      512,
+      512,
+      33
+    ],
+    "bbox_start": [
+      159,
+      198,
+      4
+    ],
+    "bbox_stop": [
+      400,
+      333,
+      20
+    ]
+  },
+  "IU23": {
+    "original_shape": [
+      336,
+      336,
+      28
+    ],
+    "bbox_start": [
+      97,
+      121,
+      8
+    ],
+    "bbox_stop": [
+      261,
+      215,
+      20
+    ]
+  },
+  "EMC036": {
+    "original_shape": [
+      512,
+      512,
+      38
+    ],
+    "bbox_start": [
+      186,
+      197,
+      4
+    ],
+    "bbox_stop": [
+      418,
+      324,
+      30
+    ]
+  },
+  "NYU0150": {
+    "original_shape": [
+      256,
+      256,
+      57
+    ],
+    "bbox_start": [
+      64,
+      99,
+      24
+    ],
+    "bbox_stop": [
+      237,
+      162,
+      50
+    ]
+  },
+  "IU72": {
+    "original_shape": [
+      512,
+      416,
+      36
+    ],
+    "bbox_start": [
+      178,
+      106,
+      14
+    ],
+    "bbox_stop": [
+      359,
+      213,
+      28
+    ]
+  },
+  "EMC122": {
+    "original_shape": [
+      320,
+      320,
+      26
+    ],
+    "bbox_start": [
+      91,
+      79,
+      0
+    ],
+    "bbox_stop": [
+      273,
+      187,
+      18
+    ]
+  },
+  "MCF28": {
+    "original_shape": [
+      320,
+      320,
+      34
+    ],
+    "bbox_start": [
+      76,
+      82,
+      5
+    ],
+    "bbox_stop": [
+      298,
+      208,
+      34
+    ]
+  },
+  "EMC021": {
+    "original_shape": [
+      512,
+      512,
+      37
+    ],
+    "bbox_start": [
+      180,
+      189,
+      6
+    ],
+    "bbox_stop": [
+      413,
+      350,
+      26
+    ]
+  },
+  "MCF42": {
+    "original_shape": [
+      320,
+      320,
+      30
+    ],
+    "bbox_start": [
+      89,
+      102,
+      6
+    ],
+    "bbox_stop": [
+      277,
+      197,
+      30
+    ]
+  },
+  "CAD226": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      45,
+      100,
+      1
+    ],
+    "bbox_stop": [
+      201,
+      177,
+      30
+    ]
+  },
+  "CAD138": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      4,
+      91,
+      8
+    ],
+    "bbox_stop": [
+      201,
+      180,
+      40
+    ]
+  },
+  "MCF04": {
+    "original_shape": [
+      320,
+      320,
+      32
+    ],
+    "bbox_start": [
+      105,
+      93,
+      4
+    ],
+    "bbox_stop": [
+      320,
+      202,
+      30
+    ]
+  },
+  "NU77": {
+    "original_shape": [
+      256,
+      208,
+      62
+    ],
+    "bbox_start": [
+      79,
+      67,
+      11
+    ],
+    "bbox_stop": [
+      194,
+      124,
+      32
+    ]
+  },
+  "EMC033": {
+    "original_shape": [
+      512,
+      512,
+      37
+    ],
+    "bbox_start": [
+      194,
+      215,
+      5
+    ],
+    "bbox_stop": [
+      383,
+      324,
+      22
+    ]
+  },
+  "CAD258": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      44,
+      99,
+      10
+    ],
+    "bbox_stop": [
+      168,
+      184,
+      39
+    ]
+  },
+  "CAD189": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      11,
+      64,
+      1
+    ],
+    "bbox_stop": [
+      193,
+      211,
+      25
+    ]
+  },
+  "CAD219": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      32,
+      90,
+      10
+    ],
+    "bbox_stop": [
+      196,
+      180,
+      32
+    ]
+  },
+  "CAD150": {
+    "original_shape": [
+      256,
+      256,
+      36
+    ],
+    "bbox_start": [
+      5,
+      76,
+      9
+    ],
+    "bbox_stop": [
+      190,
+      176,
+      36
+    ]
+  },
+  "NU169": {
+    "original_shape": [
+      320,
+      280,
+      52
+    ],
+    "bbox_start": [
+      96,
+      86,
+      9
+    ],
+    "bbox_stop": [
+      269,
+      178,
+      33
+    ]
+  },
+  "CAD171": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      12,
+      96,
+      9
+    ],
+    "bbox_stop": [
+      198,
+      185,
+      34
+    ]
+  },
+  "NU27": {
+    "original_shape": [
+      256,
+      256,
+      54
+    ],
+    "bbox_start": [
+      77,
+      105,
+      9
+    ],
+    "bbox_stop": [
+      203,
+      177,
+      33
+    ]
+  },
+  "CAD137": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      49,
+      97,
+      4
+    ],
+    "bbox_stop": [
+      227,
+      182,
+      28
+    ]
+  },
+  "CAD120": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      7,
+      56,
+      2
+    ],
+    "bbox_stop": [
+      194,
+      168,
+      30
+    ]
+  },
+  "NU121": {
+    "original_shape": [
+      256,
+      256,
+      60
+    ],
+    "bbox_start": [
+      93,
+      97,
+      17
+    ],
+    "bbox_stop": [
+      177,
+      148,
+      39
+    ]
+  },
+  "NYU0134": {
+    "original_shape": [
+      320,
+      260,
+      62
+    ],
+    "bbox_start": [
+      116,
+      92,
+      20
+    ],
+    "bbox_stop": [
+      240,
+      149,
+      44
+    ]
+  },
+  "NYU0020": {
+    "original_shape": [
+      320,
+      320,
+      42
+    ],
+    "bbox_start": [
+      86,
+      99,
+      13
+    ],
+    "bbox_stop": [
+      306,
+      232,
+      35
+    ]
+  },
+  "NU47": {
+    "original_shape": [
+      512,
+      464,
+      60
+    ],
+    "bbox_start": [
+      154,
+      151,
+      7
+    ],
+    "bbox_stop": [
+      402,
+      304,
+      37
+    ]
+  },
+  "CAD265": {
+    "original_shape": [
+      256,
+      256,
+      28
+    ],
+    "bbox_start": [
+      23,
+      50,
+      6
+    ],
+    "bbox_stop": [
+      178,
+      195,
+      28
+    ]
+  },
+  "CAD107": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      37,
+      108,
+      6
+    ],
+    "bbox_stop": [
+      192,
+      185,
+      28
+    ]
+  },
+  "IU62": {
+    "original_shape": [
+      512,
+      512,
+      35
+    ],
+    "bbox_start": [
+      160,
+      181,
+      6
+    ],
+    "bbox_stop": [
+      389,
+      328,
+      26
+    ]
+  },
+  "NU34": {
+    "original_shape": [
+      320,
+      260,
+      36
+    ],
+    "bbox_start": [
+      98,
+      91,
+      6
+    ],
+    "bbox_stop": [
+      248,
+      154,
+      20
+    ]
+  },
+  "NU30": {
+    "original_shape": [
+      256,
+      208,
+      48
+    ],
+    "bbox_start": [
+      60,
+      66,
+      7
+    ],
+    "bbox_stop": [
+      210,
+      123,
+      29
+    ]
+  },
+  "IU26": {
+    "original_shape": [
+      512,
+      416,
+      45
+    ],
+    "bbox_start": [
+      190,
+      115,
+      12
+    ],
+    "bbox_stop": [
+      430,
+      219,
+      25
+    ]
+  },
+  "NU78": {
+    "original_shape": [
+      320,
+      250,
+      38
+    ],
+    "bbox_start": [
+      105,
+      63,
+      7
+    ],
+    "bbox_stop": [
+      277,
+      164,
+      23
+    ]
+  },
+  "CAD292": {
+    "original_shape": [
+      256,
+      256,
+      38
+    ],
+    "bbox_start": [
+      38,
+      103,
+      7
+    ],
+    "bbox_stop": [
+      182,
+      195,
+      32
+    ]
+  },
+  "NU57": {
+    "original_shape": [
+      320,
+      320,
+      48
+    ],
+    "bbox_start": [
+      94,
+      113,
+      3
+    ],
+    "bbox_stop": [
+      281,
+      187,
+      27
+    ]
+  },
+  "NYU0122": {
+    "original_shape": [
+      320,
+      320,
+      33
+    ],
+    "bbox_start": [
+      129,
+      105,
+      16
+    ],
+    "bbox_stop": [
+      207,
+      155,
+      24
+    ]
+  },
+  "NYU0135": {
+    "original_shape": [
+      320,
+      280,
+      102
+    ],
+    "bbox_start": [
+      109,
+      96,
+      23
+    ],
+    "bbox_stop": [
+      262,
+      169,
+      43
+    ]
+  },
+  "NYU0144": {
+    "original_shape": [
+      320,
+      290,
+      43
+    ],
+    "bbox_start": [
+      89,
+      101,
+      21
+    ],
+    "bbox_stop": [
+      250,
+      179,
+      34
+    ]
+  },
+  "NYU0101": {
+    "original_shape": [
+      320,
+      320,
+      56
+    ],
+    "bbox_start": [
+      113,
+      109,
+      15
+    ],
+    "bbox_stop": [
+      254,
+      182,
+      44
+    ]
+  },
+  "NYU0159": {
+    "original_shape": [
+      256,
+      256,
+      54
+    ],
+    "bbox_start": [
+      86,
+      75,
+      18
+    ],
+    "bbox_stop": [
+      229,
+      168,
+      47
+    ]
+  },
+  "EMC071": {
+    "original_shape": [
+      512,
+      512,
+      30
+    ],
+    "bbox_start": [
+      172,
+      155,
+      0
+    ],
+    "bbox_stop": [
+      414,
+      314,
+      13
+    ]
+  },
+  "NU153": {
+    "original_shape": [
+      320,
+      256,
+      50
+    ],
+    "bbox_start": [
+      106,
+      86,
+      9
+    ],
+    "bbox_stop": [
+      243,
+      141,
+      26
+    ]
+  },
+  "AHN21": {
+    "original_shape": [
+      256,
+      204,
+      44
+    ],
+    "bbox_start": [
+      83,
+      61,
+      19
+    ],
+    "bbox_stop": [
+      198,
+      118,
+      40
+    ]
+  },
+  "NYU0056": {
+    "original_shape": [
+      256,
+      232,
+      38
+    ],
+    "bbox_start": [
+      79,
+      78,
+      14
+    ],
+    "bbox_stop": [
+      182,
+      147,
+      34
+    ]
+  },
+  "NYU0143": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      94,
+      89,
+      12
+    ],
+    "bbox_stop": [
+      211,
+      173,
+      37
+    ]
+  },
+  "NU29": {
+    "original_shape": [
+      384,
+      312,
+      39
+    ],
+    "bbox_start": [
+      127,
+      112,
+      5
+    ],
+    "bbox_stop": [
+      262,
+      207,
+      30
+    ]
+  },
+  "CAD127": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      0,
+      86,
+      9
+    ],
+    "bbox_stop": [
+      201,
+      184,
+      34
+    ]
+  },
+  "CAD283": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      46,
+      119,
+      6
+    ],
+    "bbox_stop": [
+      175,
+      183,
+      31
+    ]
+  },
+  "CAD139": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      0,
+      110,
+      12
+    ],
+    "bbox_stop": [
+      175,
+      191,
+      40
+    ]
+  },
+  "NU37": {
+    "original_shape": [
+      320,
+      320,
+      60
+    ],
+    "bbox_start": [
+      104,
+      128,
+      13
+    ],
+    "bbox_stop": [
+      267,
+      196,
+      38
+    ]
+  },
+  "NYU0172": {
+    "original_shape": [
+      256,
+      224,
+      59
+    ],
+    "bbox_start": [
+      81,
+      72,
+      21
+    ],
+    "bbox_stop": [
+      226,
+      146,
+      52
+    ]
+  },
+  "AHN29": {
+    "original_shape": [
+      256,
+      220,
+      35
+    ],
+    "bbox_start": [
+      90,
+      68,
+      10
+    ],
+    "bbox_stop": [
+      215,
+      136,
+      25
+    ]
+  },
+  "NYU0119": {
+    "original_shape": [
+      256,
+      232,
+      51
+    ],
+    "bbox_start": [
+      63,
+      78,
+      19
+    ],
+    "bbox_stop": [
+      199,
+      154,
+      44
+    ]
+  },
+  "MCF06": {
+    "original_shape": [
+      320,
+      320,
+      32
+    ],
+    "bbox_start": [
+      81,
+      82,
+      5
+    ],
+    "bbox_stop": [
+      277,
+      212,
+      31
+    ]
+  },
+  "CAD284": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      83,
+      148,
+      20
+    ],
+    "bbox_stop": [
+      168,
+      229,
+      34
+    ]
+  },
+  "NYU0164": {
+    "original_shape": [
+      320,
+      260,
+      40
+    ],
+    "bbox_start": [
+      92,
+      81,
+      15
+    ],
+    "bbox_stop": [
+      272,
+      179,
+      36
+    ]
+  },
+  "EMC041": {
+    "original_shape": [
+      512,
+      512,
+      30
+    ],
+    "bbox_start": [
+      172,
+      187,
+      3
+    ],
+    "bbox_stop": [
+      386,
+      314,
+      19
+    ]
+  },
+  "NYU0018": {
+    "original_shape": [
+      256,
+      224,
+      67
+    ],
+    "bbox_start": [
+      74,
+      82,
+      22
+    ],
+    "bbox_stop": [
+      215,
+      157,
+      48
+    ]
+  },
+  "NU72": {
+    "original_shape": [
+      512,
+      460,
+      32
+    ],
+    "bbox_start": [
+      193,
+      146,
+      7
+    ],
+    "bbox_stop": [
+      371,
+      245,
+      19
+    ]
+  },
+  "EMC075": {
+    "original_shape": [
+      512,
+      512,
+      25
+    ],
+    "bbox_start": [
+      199,
+      176,
+      4
+    ],
+    "bbox_stop": [
+      413,
+      347,
+      12
+    ]
+  },
+  "NYU0022": {
+    "original_shape": [
+      320,
+      320,
+      34
+    ],
+    "bbox_start": [
+      94,
+      96,
+      10
+    ],
+    "bbox_stop": [
+      257,
+      170,
+      31
+    ]
+  },
+  "NYU0149": {
+    "original_shape": [
+      320,
+      320,
+      37
+    ],
+    "bbox_start": [
+      104,
+      99,
+      12
+    ],
+    "bbox_stop": [
+      256,
+      181,
+      34
+    ]
+  },
+  "NU147": {
+    "original_shape": [
+      320,
+      320,
+      51
+    ],
+    "bbox_start": [
+      99,
+      120,
+      13
+    ],
+    "bbox_stop": [
+      253,
+      201,
+      36
+    ]
+  },
+  "NU99": {
+    "original_shape": [
+      320,
+      320,
+      48
+    ],
+    "bbox_start": [
+      121,
+      118,
+      10
+    ],
+    "bbox_stop": [
+      273,
+      204,
+      34
+    ]
+  },
+  "NU32": {
+    "original_shape": [
+      320,
+      250,
+      50
+    ],
+    "bbox_start": [
+      111,
+      71,
+      7
+    ],
+    "bbox_stop": [
+      265,
+      178,
+      36
+    ]
+  },
+  "NYU0105": {
+    "original_shape": [
+      320,
+      320,
+      37
+    ],
+    "bbox_start": [
+      92,
+      127,
+      18
+    ],
+    "bbox_stop": [
+      263,
+      219,
+      37
+    ]
+  },
+  "CAD124": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      104,
+      126,
+      8
+    ],
+    "bbox_stop": [
+      180,
+      177,
+      29
+    ]
+  },
+  "NYU0140": {
+    "original_shape": [
+      512,
+      384,
+      41
+    ],
+    "bbox_start": [
+      136,
+      104,
+      14
+    ],
+    "bbox_stop": [
+      422,
+      282,
+      31
+    ]
+  },
+  "NU67": {
+    "original_shape": [
+      256,
+      208,
+      55
+    ],
+    "bbox_start": [
+      78,
+      66,
+      9
+    ],
+    "bbox_stop": [
+      199,
+      149,
+      38
+    ]
+  },
+  "MCA05": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      181,
+      170,
+      9
+    ],
+    "bbox_stop": [
+      437,
+      332,
+      24
+    ]
+  },
+  "CAD145": {
+    "original_shape": [
+      256,
+      256,
+      44
+    ],
+    "bbox_start": [
+      13,
+      107,
+      15
+    ],
+    "bbox_stop": [
+      190,
+      167,
+      44
+    ]
+  },
+  "EMC091": {
+    "original_shape": [
+      512,
+      512,
+      31
+    ],
+    "bbox_start": [
+      178,
+      171,
+      8
+    ],
+    "bbox_stop": [
+      348,
+      270,
+      19
+    ]
+  },
+  "CAD250": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      7,
+      91,
+      13
+    ],
+    "bbox_stop": [
+      157,
+      173,
+      34
+    ]
+  },
+  "MCF14": {
+    "original_shape": [
+      256,
+      192,
+      23
+    ],
+    "bbox_start": [
+      86,
+      55,
+      8
+    ],
+    "bbox_stop": [
+      189,
+      103,
+      21
+    ]
+  },
+  "MCF18": {
+    "original_shape": [
+      320,
+      320,
+      42
+    ],
+    "bbox_start": [
+      85,
+      108,
+      6
+    ],
+    "bbox_stop": [
+      287,
+      202,
+      38
+    ]
+  },
+  "CAD142": {
+    "original_shape": [
+      256,
+      256,
+      44
+    ],
+    "bbox_start": [
+      13,
+      77,
+      0
+    ],
+    "bbox_stop": [
+      215,
+      192,
+      44
+    ]
+  },
+  "NU168": {
+    "original_shape": [
+      320,
+      320,
+      55
+    ],
+    "bbox_start": [
+      93,
+      122,
+      13
+    ],
+    "bbox_stop": [
+      256,
+      212,
+      38
+    ]
+  },
+  "CAD225": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      24,
+      81,
+      2
+    ],
+    "bbox_stop": [
+      185,
+      182,
+      36
+    ]
+  },
+  "NU89": {
+    "original_shape": [
+      512,
+      512,
+      24
+    ],
+    "bbox_start": [
+      182,
+      204,
+      5
+    ],
+    "bbox_stop": [
+      376,
+      325,
+      18
+    ]
+  },
+  "NYU0073": {
+    "original_shape": [
+      256,
+      256,
+      49
+    ],
+    "bbox_start": [
+      72,
+      88,
+      21
+    ],
+    "bbox_stop": [
+      209,
+      170,
+      46
+    ]
+  },
+  "EMC018": {
+    "original_shape": [
+      512,
+      512,
+      31
+    ],
+    "bbox_start": [
+      175,
+      223,
+      1
+    ],
+    "bbox_stop": [
+      347,
+      291,
+      18
+    ]
+  },
+  "NYU0160": {
+    "original_shape": [
+      384,
+      324,
+      53
+    ],
+    "bbox_start": [
+      138,
+      111,
+      22
+    ],
+    "bbox_stop": [
+      291,
+      193,
+      38
+    ]
+  },
+  "NYU0157": {
+    "original_shape": [
+      256,
+      256,
+      46
+    ],
+    "bbox_start": [
+      78,
+      96,
+      16
+    ],
+    "bbox_stop": [
+      205,
+      173,
+      45
+    ]
+  },
+  "NU114": {
+    "original_shape": [
+      320,
+      272,
+      58
+    ],
+    "bbox_start": [
+      80,
+      83,
+      3
+    ],
+    "bbox_stop": [
+      274,
+      187,
+      37
+    ]
+  },
+  "MCF20": {
+    "original_shape": [
+      320,
+      320,
+      36
+    ],
+    "bbox_start": [
+      76,
+      46,
+      7
+    ],
+    "bbox_stop": [
+      301,
+      163,
+      32
+    ]
+  },
+  "NYU0081": {
+    "original_shape": [
+      256,
+      256,
+      50
+    ],
+    "bbox_start": [
+      84,
+      93,
+      20
+    ],
+    "bbox_stop": [
+      195,
+      132,
+      46
+    ]
+  },
+  "NYU0077": {
+    "original_shape": [
+      320,
+      320,
+      50
+    ],
+    "bbox_start": [
+      110,
+      114,
+      22
+    ],
+    "bbox_stop": [
+      264,
+      189,
+      43
+    ]
+  },
+  "NYU0053": {
+    "original_shape": [
+      256,
+      256,
+      53
+    ],
+    "bbox_start": [
+      72,
+      81,
+      14
+    ],
+    "bbox_stop": [
+      200,
+      150,
+      43
+    ]
+  },
+  "AHN79": {
+    "original_shape": [
+      256,
+      224,
+      27
+    ],
+    "bbox_start": [
+      101,
+      77,
+      10
+    ],
+    "bbox_stop": [
+      194,
+      143,
+      25
+    ]
+  },
+  "MCA138": {
+    "original_shape": [
+      512,
+      512,
+      36
+    ],
+    "bbox_start": [
+      173,
+      189,
+      11
+    ],
+    "bbox_stop": [
+      430,
+      292,
+      23
+    ]
+  },
+  "IU40": {
+    "original_shape": [
+      512,
+      416,
+      36
+    ],
+    "bbox_start": [
+      174,
+      133,
+      10
+    ],
+    "bbox_stop": [
+      415,
+      254,
+      27
+    ]
+  },
+  "AHN11": {
+    "original_shape": [
+      320,
+      320,
+      27
+    ],
+    "bbox_start": [
+      104,
+      96,
+      7
+    ],
+    "bbox_stop": [
+      246,
+      171,
+      24
+    ]
+  },
+  "NYU0173": {
+    "original_shape": [
+      256,
+      216,
+      55
+    ],
+    "bbox_start": [
+      71,
+      60,
+      20
+    ],
+    "bbox_stop": [
+      204,
+      117,
+      46
+    ]
+  },
+  "NYU0116": {
+    "original_shape": [
+      256,
+      208,
+      59
+    ],
+    "bbox_start": [
+      90,
+      62,
+      11
+    ],
+    "bbox_stop": [
+      225,
+      146,
+      37
+    ]
+  },
+  "NU69": {
+    "original_shape": [
+      320,
+      240,
+      40
+    ],
+    "bbox_start": [
+      106,
+      79,
+      6
+    ],
+    "bbox_stop": [
+      235,
+      139,
+      21
+    ]
+  },
+  "NU13": {
+    "original_shape": [
+      256,
+      256,
+      60
+    ],
+    "bbox_start": [
+      62,
+      76,
+      9
+    ],
+    "bbox_stop": [
+      230,
+      158,
+      40
+    ]
+  },
+  "IU42": {
+    "original_shape": [
+      512,
+      416,
+      36
+    ],
+    "bbox_start": [
+      175,
+      121,
+      11
+    ],
+    "bbox_stop": [
+      400,
+      254,
+      26
+    ]
+  },
+  "NU16": {
+    "original_shape": [
+      320,
+      260,
+      44
+    ],
+    "bbox_start": [
+      123,
+      107,
+      8
+    ],
+    "bbox_stop": [
+      235,
+      165,
+      34
+    ]
+  },
+  "NYU0032": {
+    "original_shape": [
+      256,
+      256,
+      55
+    ],
+    "bbox_start": [
+      76,
+      80,
+      12
+    ],
+    "bbox_stop": [
+      209,
+      148,
+      44
+    ]
+  },
+  "IU18": {
+    "original_shape": [
+      512,
+      512,
+      49
+    ],
+    "bbox_start": [
+      162,
+      207,
+      14
+    ],
+    "bbox_stop": [
+      376,
+      341,
+      36
+    ]
+  },
+  "NYU0129": {
+    "original_shape": [
+      256,
+      208,
+      50
+    ],
+    "bbox_start": [
+      77,
+      58,
+      23
+    ],
+    "bbox_stop": [
+      202,
+      123,
+      44
+    ]
+  },
+  "NU41": {
+    "original_shape": [
+      256,
+      256,
+      25
+    ],
+    "bbox_start": [
+      85,
+      87,
+      2
+    ],
+    "bbox_stop": [
+      220,
+      154,
+      18
+    ]
+  },
+  "NYU0033": {
+    "original_shape": [
+      320,
+      240,
+      40
+    ],
+    "bbox_start": [
+      95,
+      77,
+      6
+    ],
+    "bbox_stop": [
+      251,
+      133,
+      40
+    ]
+  },
+  "NU160": {
+    "original_shape": [
+      320,
+      320,
+      60
+    ],
+    "bbox_start": [
+      109,
+      120,
+      16
+    ],
+    "bbox_stop": [
+      247,
+      188,
+      38
+    ]
+  },
+  "NYU0098": {
+    "original_shape": [
+      320,
+      244,
+      24
+    ],
+    "bbox_start": [
+      108,
+      77,
+      7
+    ],
+    "bbox_stop": [
+      226,
+      170,
+      23
+    ]
+  },
+  "IU78": {
+    "original_shape": [
+      512,
+      416,
+      45
+    ],
+    "bbox_start": [
+      175,
+      119,
+      15
+    ],
+    "bbox_stop": [
+      380,
+      270,
+      30
+    ]
+  },
+  "CAD313": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      48,
+      83,
+      0
+    ],
+    "bbox_stop": [
+      191,
+      187,
+      32
+    ]
+  },
+  "MCF16": {
+    "original_shape": [
+      320,
+      320,
+      40
+    ],
+    "bbox_start": [
+      78,
+      114,
+      12
+    ],
+    "bbox_stop": [
+      267,
+      203,
+      40
+    ]
+  },
+  "NYU0100": {
+    "original_shape": [
+      256,
+      256,
+      33
+    ],
+    "bbox_start": [
+      92,
+      100,
+      7
+    ],
+    "bbox_stop": [
+      167,
+      142,
+      22
+    ]
+  },
+  "NYU0091": {
+    "original_shape": [
+      256,
+      256,
+      63
+    ],
+    "bbox_start": [
+      79,
+      79,
+      31
+    ],
+    "bbox_stop": [
+      171,
+      151,
+      47
+    ]
+  },
+  "EMC073": {
+    "original_shape": [
+      256,
+      208,
+      26
+    ],
+    "bbox_start": [
+      92,
+      96,
+      7
+    ],
+    "bbox_stop": [
+      170,
+      159,
+      19
+    ]
+  },
+  "CAD146": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      30,
+      85,
+      4
+    ],
+    "bbox_stop": [
+      209,
+      163,
+      29
+    ]
+  },
+  "IU34": {
+    "original_shape": [
+      512,
+      416,
+      45
+    ],
+    "bbox_start": [
+      167,
+      149,
+      13
+    ],
+    "bbox_stop": [
+      443,
+      278,
+      29
+    ]
+  },
+  "AHN09": {
+    "original_shape": [
+      256,
+      192,
+      29
+    ],
+    "bbox_start": [
+      79,
+      59,
+      9
+    ],
+    "bbox_stop": [
+      186,
+      111,
+      22
+    ]
+  },
+  "NU149": {
+    "original_shape": [
+      320,
+      260,
+      52
+    ],
+    "bbox_start": [
+      107,
+      106,
+      14
+    ],
+    "bbox_stop": [
+      266,
+      175,
+      35
+    ]
+  },
+  "CAD119": {
+    "original_shape": [
+      256,
+      256,
+      24
+    ],
+    "bbox_start": [
+      30,
+      85,
+      5
+    ],
+    "bbox_stop": [
+      207,
+      169,
+      24
+    ]
+  },
+  "CAD306": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      26,
+      100,
+      0
+    ],
+    "bbox_stop": [
+      205,
+      182,
+      29
+    ]
+  },
+  "MCA63": {
+    "original_shape": [
+      512,
+      512,
+      34
+    ],
+    "bbox_start": [
+      186,
+      195,
+      11
+    ],
+    "bbox_stop": [
+      397,
+      320,
+      31
+    ]
+  },
+  "CAD135": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      34,
+      87,
+      13
+    ],
+    "bbox_stop": [
+      180,
+      170,
+      30
+    ]
+  },
+  "CAD183": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      41,
+      106,
+      4
+    ],
+    "bbox_stop": [
+      178,
+      180,
+      27
+    ]
+  },
+  "IU63": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      117,
+      91,
+      11
+    ],
+    "bbox_stop": [
+      250,
+      172,
+      33
+    ]
+  },
+  "CAD213": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      21,
+      98,
+      5
+    ],
+    "bbox_stop": [
+      203,
+      174,
+      30
+    ]
+  },
+  "MCA26": {
+    "original_shape": [
+      512,
+      512,
+      30
+    ],
+    "bbox_start": [
+      176,
+      180,
+      15
+    ],
+    "bbox_stop": [
+      358,
+      258,
+      28
+    ]
+  },
+  "NU156": {
+    "original_shape": [
+      320,
+      260,
+      40
+    ],
+    "bbox_start": [
+      112,
+      86,
+      11
+    ],
+    "bbox_stop": [
+      254,
+      160,
+      24
+    ]
+  },
+  "NU104": {
+    "original_shape": [
+      320,
+      248,
+      54
+    ],
+    "bbox_start": [
+      102,
+      69,
+      12
+    ],
+    "bbox_stop": [
+      263,
+      160,
+      35
+    ]
+  },
+  "NU135": {
+    "original_shape": [
+      320,
+      260,
+      33
+    ],
+    "bbox_start": [
+      103,
+      67,
+      5
+    ],
+    "bbox_stop": [
+      275,
+      162,
+      22
+    ]
+  },
+  "NU39": {
+    "original_shape": [
+      320,
+      320,
+      52
+    ],
+    "bbox_start": [
+      108,
+      133,
+      10
+    ],
+    "bbox_stop": [
+      258,
+      174,
+      31
+    ]
+  },
+  "NYU0074": {
+    "original_shape": [
+      320,
+      320,
+      40
+    ],
+    "bbox_start": [
+      94,
+      73,
+      13
+    ],
+    "bbox_stop": [
+      245,
+      154,
+      36
+    ]
+  },
+  "NU144": {
+    "original_shape": [
+      320,
+      310,
+      57
+    ],
+    "bbox_start": [
+      86,
+      115,
+      10
+    ],
+    "bbox_stop": [
+      233,
+      219,
+      36
+    ]
+  },
+  "NU108": {
+    "original_shape": [
+      256,
+      256,
+      65
+    ],
+    "bbox_start": [
+      87,
+      98,
+      12
+    ],
+    "bbox_stop": [
+      182,
+      153,
+      36
+    ]
+  },
+  "NU118": {
+    "original_shape": [
+      320,
+      320,
+      56
+    ],
+    "bbox_start": [
+      101,
+      110,
+      8
+    ],
+    "bbox_stop": [
+      282,
+      192,
+      33
+    ]
+  },
+  "CAD149": {
+    "original_shape": [
+      256,
+      256,
+      36
+    ],
+    "bbox_start": [
+      34,
+      84,
+      3
+    ],
+    "bbox_stop": [
+      197,
+      177,
+      33
+    ]
+  },
+  "NYU0040": {
+    "original_shape": [
+      256,
+      240,
+      50
+    ],
+    "bbox_start": [
+      69,
+      76,
+      18
+    ],
+    "bbox_stop": [
+      224,
+      160,
+      48
+    ]
+  },
+  "IU3": {
+    "original_shape": [
+      512,
+      512,
+      47
+    ],
+    "bbox_start": [
+      165,
+      221,
+      16
+    ],
+    "bbox_stop": [
+      411,
+      373,
+      38
+    ]
+  },
+  "NYU0044": {
+    "original_shape": [
+      256,
+      216,
+      53
+    ],
+    "bbox_start": [
+      66,
+      63,
+      20
+    ],
+    "bbox_stop": [
+      221,
+      145,
+      50
+    ]
+  },
+  "CAD228": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      49,
+      88,
+      5
+    ],
+    "bbox_stop": [
+      213,
+      179,
+      30
+    ]
+  },
+  "MCA14": {
+    "original_shape": [
+      384,
+      324,
+      50
+    ],
+    "bbox_start": [
+      125,
+      91,
+      28
+    ],
+    "bbox_stop": [
+      254,
+      155,
+      45
+    ]
+  },
+  "CAD290": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      50,
+      84,
+      5
+    ],
+    "bbox_stop": [
+      191,
+      177,
+      30
+    ]
+  },
+  "CAD251": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      4,
+      88,
+      0
+    ],
+    "bbox_stop": [
+      171,
+      187,
+      33
+    ]
+  },
+  "NU56": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      151,
+      88,
+      2
+    ],
+    "bbox_stop": [
+      181,
+      111,
+      10
+    ]
+  },
+  "EMC101": {
+    "original_shape": [
+      512,
+      512,
+      30
+    ],
+    "bbox_start": [
+      165,
+      198,
+      1
+    ],
+    "bbox_stop": [
+      359,
+      288,
+      18
+    ]
+  },
+  "AHN12": {
+    "original_shape": [
+      320,
+      320,
+      29
+    ],
+    "bbox_start": [
+      100,
+      100,
+      10
+    ],
+    "bbox_stop": [
+      233,
+      165,
+      25
+    ]
+  },
+  "IU33": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      98,
+      93,
+      6
+    ],
+    "bbox_stop": [
+      285,
+      205,
+      23
+    ]
+  },
+  "NU68": {
+    "original_shape": [
+      320,
+      260,
+      46
+    ],
+    "bbox_start": [
+      106,
+      96,
+      10
+    ],
+    "bbox_stop": [
+      154,
+      134,
+      23
+    ]
+  },
+  "CAD175": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      10,
+      93,
+      0
+    ],
+    "bbox_stop": [
+      209,
+      186,
+      32
+    ]
+  },
+  "NU36": {
+    "original_shape": [
+      320,
+      280,
+      15
+    ],
+    "bbox_start": [
+      154,
+      99,
+      4
+    ],
+    "bbox_stop": [
+      269,
+      197,
+      9
+    ]
+  },
+  "NU55": {
+    "original_shape": [
+      320,
+      280,
+      44
+    ],
+    "bbox_start": [
+      104,
+      106,
+      0
+    ],
+    "bbox_stop": [
+      232,
+      184,
+      30
+    ]
+  },
+  "IU16": {
+    "original_shape": [
+      512,
+      384,
+      35
+    ],
+    "bbox_start": [
+      138,
+      108,
+      2
+    ],
+    "bbox_stop": [
+      404,
+      281,
+      24
+    ]
+  },
+  "CAD209": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      24,
+      59,
+      10
+    ],
+    "bbox_stop": [
+      201,
+      179,
+      30
+    ]
+  },
+  "IU15": {
+    "original_shape": [
+      512,
+      416,
+      45
+    ],
+    "bbox_start": [
+      165,
+      157,
+      11
+    ],
+    "bbox_stop": [
+      386,
+      301,
+      32
+    ]
+  },
+  "EMC083": {
+    "original_shape": [
+      512,
+      512,
+      39
+    ],
+    "bbox_start": [
+      196,
+      194,
+      11
+    ],
+    "bbox_stop": [
+      332,
+      310,
+      27
+    ]
+  },
+  "CAD269": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      61,
+      88,
+      3
+    ],
+    "bbox_stop": [
+      179,
+      163,
+      27
+    ]
+  },
+  "IU32": {
+    "original_shape": [
+      512,
+      416,
+      40
+    ],
+    "bbox_start": [
+      150,
+      89,
+      6
+    ],
+    "bbox_stop": [
+      426,
+      215,
+      22
+    ]
+  },
+  "NU151": {
+    "original_shape": [
+      384,
+      336,
+      54
+    ],
+    "bbox_start": [
+      118,
+      128,
+      10
+    ],
+    "bbox_stop": [
+      314,
+      228,
+      35
+    ]
+  },
+  "MCF03": {
+    "original_shape": [
+      320,
+      320,
+      36
+    ],
+    "bbox_start": [
+      98,
+      111,
+      8
+    ],
+    "bbox_stop": [
+      286,
+      211,
+      30
+    ]
+  },
+  "NU145": {
+    "original_shape": [
+      256,
+      208,
+      55
+    ],
+    "bbox_start": [
+      77,
+      75,
+      14
+    ],
+    "bbox_stop": [
+      205,
+      139,
+      38
+    ]
+  },
+  "NU130": {
+    "original_shape": [
+      256,
+      216,
+      60
+    ],
+    "bbox_start": [
+      67,
+      76,
+      5
+    ],
+    "bbox_stop": [
+      223,
+      166,
+      45
+    ]
+  },
+  "NU161": {
+    "original_shape": [
+      256,
+      212,
+      56
+    ],
+    "bbox_start": [
+      83,
+      63,
+      28
+    ],
+    "bbox_stop": [
+      169,
+      119,
+      40
+    ]
+  },
+  "IU51": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      84,
+      82,
+      3
+    ],
+    "bbox_stop": [
+      247,
+      175,
+      24
+    ]
+  },
+  "EMC034": {
+    "original_shape": [
+      384,
+      252,
+      20
+    ],
+    "bbox_start": [
+      135,
+      71,
+      0
+    ],
+    "bbox_stop": [
+      297,
+      129,
+      9
+    ]
+  },
+  "AHN39": {
+    "original_shape": [
+      256,
+      204,
+      23
+    ],
+    "bbox_start": [
+      75,
+      47,
+      1
+    ],
+    "bbox_stop": [
+      218,
+      145,
+      22
+    ]
+  },
+  "NU113": {
+    "original_shape": [
+      512,
+      512,
+      35
+    ],
+    "bbox_start": [
+      184,
+      194,
+      5
+    ],
+    "bbox_stop": [
+      407,
+      302,
+      20
+    ]
+  },
+  "NU165": {
+    "original_shape": [
+      320,
+      320,
+      55
+    ],
+    "bbox_start": [
+      102,
+      128,
+      7
+    ],
+    "bbox_stop": [
+      263,
+      193,
+      33
+    ]
+  },
+  "CAD234": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      0,
+      93,
+      2
+    ],
+    "bbox_stop": [
+      196,
+      209,
+      30
+    ]
+  },
+  "CAD297": {
+    "original_shape": [
+      256,
+      256,
+      36
+    ],
+    "bbox_start": [
+      12,
+      70,
+      3
+    ],
+    "bbox_stop": [
+      182,
+      194,
+      27
+    ]
+  },
+  "EMC049": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      102,
+      82,
+      0
+    ],
+    "bbox_stop": [
+      186,
+      145,
+      16
+    ]
+  },
+  "NU43": {
+    "original_shape": [
+      320,
+      260,
+      34
+    ],
+    "bbox_start": [
+      122,
+      70,
+      7
+    ],
+    "bbox_stop": [
+      198,
+      127,
+      22
+    ]
+  },
+  "CAD224": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      32,
+      67,
+      2
+    ],
+    "bbox_stop": [
+      183,
+      165,
+      32
+    ]
+  },
+  "CAD167": {
+    "original_shape": [
+      256,
+      256,
+      24
+    ],
+    "bbox_start": [
+      52,
+      103,
+      0
+    ],
+    "bbox_stop": [
+      169,
+      175,
+      22
+    ]
+  },
+  "MCA30": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      156,
+      192,
+      11
+    ],
+    "bbox_stop": [
+      442,
+      322,
+      32
+    ]
+  },
+  "CAD170": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      55,
+      117,
+      4
+    ],
+    "bbox_stop": [
+      179,
+      176,
+      29
+    ]
+  },
+  "EMC009": {
+    "original_shape": [
+      512,
+      512,
+      34
+    ],
+    "bbox_start": [
+      132,
+      177,
+      0
+    ],
+    "bbox_stop": [
+      404,
+      296,
+      20
+    ]
+  },
+  "NU60": {
+    "original_shape": [
+      320,
+      290,
+      50
+    ],
+    "bbox_start": [
+      102,
+      107,
+      6
+    ],
+    "bbox_stop": [
+      288,
+      207,
+      35
+    ]
+  },
+  "AHN75": {
+    "original_shape": [
+      256,
+      208,
+      33
+    ],
+    "bbox_start": [
+      68,
+      68,
+      15
+    ],
+    "bbox_stop": [
+      205,
+      154,
+      33
+    ]
+  },
+  "NU76": {
+    "original_shape": [
+      320,
+      250,
+      32
+    ],
+    "bbox_start": [
+      137,
+      68,
+      8
+    ],
+    "bbox_stop": [
+      175,
+      109,
+      20
+    ]
+  },
+  "NU134": {
+    "original_shape": [
+      320,
+      270,
+      38
+    ],
+    "bbox_start": [
+      115,
+      95,
+      16
+    ],
+    "bbox_stop": [
+      257,
+      179,
+      32
+    ]
+  },
+  "MCF26": {
+    "original_shape": [
+      320,
+      320,
+      32
+    ],
+    "bbox_start": [
+      79,
+      110,
+      1
+    ],
+    "bbox_stop": [
+      298,
+      211,
+      32
+    ]
+  },
+  "IU12": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      100,
+      84,
+      8
+    ],
+    "bbox_stop": [
+      262,
+      182,
+      23
+    ]
+  },
+  "IU31": {
+    "original_shape": [
+      320,
+      260,
+      37
+    ],
+    "bbox_start": [
+      98,
+      82,
+      7
+    ],
+    "bbox_stop": [
+      218,
+      146,
+      28
+    ]
+  },
+  "CAD310": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      55,
+      106,
+      17
+    ],
+    "bbox_stop": [
+      192,
+      178,
+      28
+    ]
+  },
+  "NYU0127": {
+    "original_shape": [
+      256,
+      256,
+      49
+    ],
+    "bbox_start": [
+      74,
+      85,
+      23
+    ],
+    "bbox_stop": [
+      210,
+      157,
+      49
+    ]
+  },
+  "CAD232": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      23,
+      102,
+      2
+    ],
+    "bbox_stop": [
+      184,
+      171,
+      24
+    ]
+  },
+  "CAD160": {
+    "original_shape": [
+      256,
+      256,
+      36
+    ],
+    "bbox_start": [
+      28,
+      87,
+      0
+    ],
+    "bbox_stop": [
+      196,
+      179,
+      29
+    ]
+  },
+  "AHN64": {
+    "original_shape": [
+      320,
+      320,
+      27
+    ],
+    "bbox_start": [
+      107,
+      120,
+      9
+    ],
+    "bbox_stop": [
+      227,
+      175,
+      22
+    ]
+  },
+  "IU52": {
+    "original_shape": [
+      512,
+      512,
+      40
+    ],
+    "bbox_start": [
+      190,
+      180,
+      11
+    ],
+    "bbox_stop": [
+      370,
+      318,
+      32
+    ]
+  },
+  "MCF38": {
+    "original_shape": [
+      320,
+      320,
+      33
+    ],
+    "bbox_start": [
+      116,
+      71,
+      3
+    ],
+    "bbox_stop": [
+      313,
+      174,
+      29
+    ]
+  },
+  "MCA15": {
+    "original_shape": [
+      512,
+      512,
+      56
+    ],
+    "bbox_start": [
+      108,
+      160,
+      29
+    ],
+    "bbox_stop": [
+      346,
+      253,
+      45
+    ]
+  },
+  "NYU0065": {
+    "original_shape": [
+      256,
+      256,
+      56
+    ],
+    "bbox_start": [
+      83,
+      77,
+      17
+    ],
+    "bbox_stop": [
+      210,
+      187,
+      48
+    ]
+  },
+  "NYU0166": {
+    "original_shape": [
+      320,
+      290,
+      36
+    ],
+    "bbox_start": [
+      113,
+      87,
+      15
+    ],
+    "bbox_stop": [
+      263,
+      142,
+      36
+    ]
+  },
+  "CAD227": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      22,
+      88,
+      7
+    ],
+    "bbox_stop": [
+      220,
+      169,
+      27
+    ]
+  },
+  "NYU0010": {
+    "original_shape": [
+      320,
+      320,
+      46
+    ],
+    "bbox_start": [
+      95,
+      113,
+      13
+    ],
+    "bbox_stop": [
+      250,
+      196,
+      33
+    ]
+  },
+  "NYU0054": {
+    "original_shape": [
+      320,
+      320,
+      41
+    ],
+    "bbox_start": [
+      106,
+      105,
+      11
+    ],
+    "bbox_stop": [
+      273,
+      161,
+      37
+    ]
+  },
+  "EMC047": {
+    "original_shape": [
+      512,
+      512,
+      39
+    ],
+    "bbox_start": [
+      182,
+      198,
+      7
+    ],
+    "bbox_stop": [
+      379,
+      300,
+      23
+    ]
+  },
+  "NYU0151": {
+    "original_shape": [
+      320,
+      320,
+      45
+    ],
+    "bbox_start": [
+      92,
+      79,
+      12
+    ],
+    "bbox_stop": [
+      280,
+      181,
+      37
+    ]
+  },
+  "CAD162": {
+    "original_shape": [
+      256,
+      256,
+      26
+    ],
+    "bbox_start": [
+      47,
+      91,
+      3
+    ],
+    "bbox_stop": [
+      188,
+      169,
+      26
+    ]
+  },
+  "CAD178": {
+    "original_shape": [
+      256,
+      256,
+      33
+    ],
+    "bbox_start": [
+      50,
+      132,
+      6
+    ],
+    "bbox_stop": [
+      187,
+      196,
+      28
+    ]
+  },
+  "MCF41": {
+    "original_shape": [
+      320,
+      320,
+      36
+    ],
+    "bbox_start": [
+      105,
+      97,
+      6
+    ],
+    "bbox_stop": [
+      276,
+      225,
+      36
+    ]
+  },
+  "NYU0094": {
+    "original_shape": [
+      256,
+      224,
+      56
+    ],
+    "bbox_start": [
+      82,
+      82,
+      25
+    ],
+    "bbox_stop": [
+      198,
+      157,
+      55
+    ]
+  },
+  "CAD255": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      59,
+      107,
+      9
+    ],
+    "bbox_stop": [
+      203,
+      165,
+      30
+    ]
+  },
+  "NU15": {
+    "original_shape": [
+      320,
+      280,
+      52
+    ],
+    "bbox_start": [
+      101,
+      82,
+      8
+    ],
+    "bbox_stop": [
+      269,
+      148,
+      31
+    ]
+  },
+  "EMC010": {
+    "original_shape": [
+      512,
+      512,
+      33
+    ],
+    "bbox_start": [
+      161,
+      217,
+      4
+    ],
+    "bbox_stop": [
+      433,
+      341,
+      18
+    ]
+  },
+  "NYU0137": {
+    "original_shape": [
+      256,
+      208,
+      62
+    ],
+    "bbox_start": [
+      71,
+      65,
+      19
+    ],
+    "bbox_stop": [
+      221,
+      121,
+      50
+    ]
+  },
+  "EMC040": {
+    "original_shape": [
+      256,
+      256,
+      24
+    ],
+    "bbox_start": [
+      75,
+      82,
+      0
+    ],
+    "bbox_stop": [
+      205,
+      150,
+      14
+    ]
+  },
+  "IU36": {
+    "original_shape": [
+      512,
+      416,
+      45
+    ],
+    "bbox_start": [
+      142,
+      94,
+      10
+    ],
+    "bbox_stop": [
+      460,
+      254,
+      30
+    ]
+  },
+  "NYU0035": {
+    "original_shape": [
+      320,
+      240,
+      45
+    ],
+    "bbox_start": [
+      103,
+      65,
+      16
+    ],
+    "bbox_stop": [
+      253,
+      149,
+      39
+    ]
+  },
+  "NU73": {
+    "original_shape": [
+      256,
+      208,
+      60
+    ],
+    "bbox_start": [
+      99,
+      67,
+      10
+    ],
+    "bbox_stop": [
+      184,
+      153,
+      49
+    ]
+  },
+  "EMC045": {
+    "original_shape": [
+      512,
+      384,
+      30
+    ],
+    "bbox_start": [
+      137,
+      109,
+      3
+    ],
+    "bbox_stop": [
+      430,
+      244,
+      16
+    ]
+  },
+  "CAD247": {
+    "original_shape": [
+      256,
+      256,
+      44
+    ],
+    "bbox_start": [
+      10,
+      70,
+      15
+    ],
+    "bbox_stop": [
+      172,
+      165,
+      38
+    ]
+  },
+  "NYU0029": {
+    "original_shape": [
+      512,
+      512,
+      60
+    ],
+    "bbox_start": [
+      151,
+      170,
+      9
+    ],
+    "bbox_stop": [
+      402,
+      326,
+      52
+    ]
+  },
+  "NU155": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      75,
+      66,
+      0
+    ],
+    "bbox_stop": [
+      208,
+      135,
+      28
+    ]
+  },
+  "NU190": {
+    "original_shape": [
+      384,
+      288,
+      56
+    ],
+    "bbox_start": [
+      117,
+      96,
+      10
+    ],
+    "bbox_stop": [
+      339,
+      212,
+      33
+    ]
+  },
+  "NU64": {
+    "original_shape": [
+      256,
+      192,
+      50
+    ],
+    "bbox_start": [
+      79,
+      53,
+      6
+    ],
+    "bbox_stop": [
+      181,
+      127,
+      31
+    ]
+  },
+  "CAD294": {
+    "original_shape": [
+      256,
+      256,
+      36
+    ],
+    "bbox_start": [
+      82,
+      126,
+      19
+    ],
+    "bbox_stop": [
+      186,
+      175,
+      36
+    ]
+  },
+  "NYU0049": {
+    "original_shape": [
+      320,
+      320,
+      37
+    ],
+    "bbox_start": [
+      92,
+      129,
+      9
+    ],
+    "bbox_stop": [
+      274,
+      220,
+      34
+    ]
+  },
+  "IU39": {
+    "original_shape": [
+      320,
+      250,
+      30
+    ],
+    "bbox_start": [
+      107,
+      80,
+      3
+    ],
+    "bbox_stop": [
+      234,
+      166,
+      18
+    ]
+  },
+  "CAD288": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      56,
+      113,
+      4
+    ],
+    "bbox_stop": [
+      176,
+      177,
+      28
+    ]
+  },
+  "EMC012": {
+    "original_shape": [
+      512,
+      512,
+      42
+    ],
+    "bbox_start": [
+      162,
+      176,
+      6
+    ],
+    "bbox_stop": [
+      370,
+      309,
+      27
+    ]
+  },
+  "EMC068": {
+    "original_shape": [
+      256,
+      256,
+      25
+    ],
+    "bbox_start": [
+      105,
+      80,
+      0
+    ],
+    "bbox_stop": [
+      205,
+      170,
+      21
+    ]
+  },
+  "CAD174": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      13,
+      110,
+      7
+    ],
+    "bbox_stop": [
+      203,
+      177,
+      36
+    ]
+  },
+  "NU06": {
+    "original_shape": [
+      320,
+      290,
+      48
+    ],
+    "bbox_start": [
+      89,
+      100,
+      5
+    ],
+    "bbox_stop": [
+      261,
+      172,
+      30
+    ]
+  },
+  "IU2": {
+    "original_shape": [
+      512,
+      416,
+      36
+    ],
+    "bbox_start": [
+      183,
+      149,
+      12
+    ],
+    "bbox_stop": [
+      382,
+      279,
+      27
+    ]
+  },
+  "NYU0095": {
+    "original_shape": [
+      320,
+      290,
+      41
+    ],
+    "bbox_start": [
+      98,
+      75,
+      13
+    ],
+    "bbox_stop": [
+      249,
+      170,
+      34
+    ]
+  },
+  "MCA124": {
+    "original_shape": [
+      512,
+      512,
+      33
+    ],
+    "bbox_start": [
+      163,
+      177,
+      14
+    ],
+    "bbox_stop": [
+      404,
+      284,
+      25
+    ]
+  },
+  "NYU0112": {
+    "original_shape": [
+      256,
+      256,
+      60
+    ],
+    "bbox_start": [
+      88,
+      87,
+      19
+    ],
+    "bbox_stop": [
+      212,
+      159,
+      52
+    ]
+  },
+  "EMC030": {
+    "original_shape": [
+      512,
+      512,
+      35
+    ],
+    "bbox_start": [
+      149,
+      186,
+      4
+    ],
+    "bbox_stop": [
+      422,
+      271,
+      20
+    ]
+  },
+  "CAD230": {
+    "original_shape": [
+      256,
+      256,
+      29
+    ],
+    "bbox_start": [
+      55,
+      71,
+      2
+    ],
+    "bbox_stop": [
+      190,
+      165,
+      28
+    ]
+  },
+  "CAD238": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      35,
+      104,
+      6
+    ],
+    "bbox_stop": [
+      198,
+      179,
+      31
+    ]
+  },
+  "NU102": {
+    "original_shape": [
+      512,
+      352,
+      35
+    ],
+    "bbox_start": [
+      176,
+      117,
+      7
+    ],
+    "bbox_stop": [
+      265,
+      186,
+      19
+    ]
+  },
+  "CAD233": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      45,
+      78,
+      2
+    ],
+    "bbox_stop": [
+      189,
+      195,
+      30
+    ]
+  },
+  "NU59": {
+    "original_shape": [
+      320,
+      310,
+      58
+    ],
+    "bbox_start": [
+      108,
+      103,
+      10
+    ],
+    "bbox_stop": [
+      259,
+      178,
+      40
+    ]
+  },
+  "NYU0142": {
+    "original_shape": [
+      320,
+      320,
+      37
+    ],
+    "bbox_start": [
+      107,
+      110,
+      16
+    ],
+    "bbox_stop": [
+      270,
+      225,
+      28
+    ]
+  },
+  "NU189": {
+    "original_shape": [
+      320,
+      280,
+      50
+    ],
+    "bbox_start": [
+      100,
+      90,
+      11
+    ],
+    "bbox_stop": [
+      244,
+      168,
+      32
+    ]
+  },
+  "IU37": {
+    "original_shape": [
+      512,
+      416,
+      45
+    ],
+    "bbox_start": [
+      193,
+      128,
+      14
+    ],
+    "bbox_stop": [
+      406,
+      245,
+      30
+    ]
+  },
+  "NYU0168": {
+    "original_shape": [
+      256,
+      256,
+      66
+    ],
+    "bbox_start": [
+      72,
+      83,
+      23
+    ],
+    "bbox_stop": [
+      214,
+      156,
+      55
+    ]
+  },
+  "IU21": {
+    "original_shape": [
+      512,
+      416,
+      36
+    ],
+    "bbox_start": [
+      159,
+      120,
+      7
+    ],
+    "bbox_stop": [
+      277,
+      221,
+      23
+    ]
+  },
+  "EMC076": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      146,
+      157,
+      0
+    ],
+    "bbox_stop": [
+      421,
+      282,
+      16
+    ]
+  },
+  "IU45": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      116,
+      99,
+      8
+    ],
+    "bbox_stop": [
+      236,
+      176,
+      24
+    ]
+  },
+  "CAD295": {
+    "original_shape": [
+      256,
+      256,
+      44
+    ],
+    "bbox_start": [
+      21,
+      110,
+      13
+    ],
+    "bbox_stop": [
+      156,
+      194,
+      37
+    ]
+  },
+  "NU138": {
+    "original_shape": [
+      320,
+      260,
+      55
+    ],
+    "bbox_start": [
+      112,
+      96,
+      15
+    ],
+    "bbox_stop": [
+      193,
+      137,
+      36
+    ]
+  },
+  "IU1": {
+    "original_shape": [
+      352,
+      352,
+      33
+    ],
+    "bbox_start": [
+      106,
+      122,
+      5
+    ],
+    "bbox_stop": [
+      291,
+      226,
+      21
+    ]
+  },
+  "AHN77": {
+    "original_shape": [
+      320,
+      320,
+      27
+    ],
+    "bbox_start": [
+      85,
+      84,
+      8
+    ],
+    "bbox_stop": [
+      265,
+      192,
+      27
+    ]
+  },
+  "NU110": {
+    "original_shape": [
+      256,
+      256,
+      45
+    ],
+    "bbox_start": [
+      73,
+      95,
+      3
+    ],
+    "bbox_stop": [
+      214,
+      155,
+      27
+    ]
+  },
+  "MCF30": {
+    "original_shape": [
+      320,
+      320,
+      32
+    ],
+    "bbox_start": [
+      83,
+      84,
+      3
+    ],
+    "bbox_stop": [
+      290,
+      170,
+      27
+    ]
+  },
+  "NYU0131": {
+    "original_shape": [
+      256,
+      192,
+      39
+    ],
+    "bbox_start": [
+      86,
+      46,
+      6
+    ],
+    "bbox_stop": [
+      198,
+      104,
+      30
+    ]
+  },
+  "EMC121": {
+    "original_shape": [
+      512,
+      512,
+      37
+    ],
+    "bbox_start": [
+      180,
+      189,
+      6
+    ],
+    "bbox_stop": [
+      413,
+      350,
+      26
+    ]
+  },
+  "NU142": {
+    "original_shape": [
+      320,
+      250,
+      40
+    ],
+    "bbox_start": [
+      92,
+      80,
+      8
+    ],
+    "bbox_stop": [
+      255,
+      139,
+      23
+    ]
+  },
+  "AHN16": {
+    "original_shape": [
+      320,
+      320,
+      27
+    ],
+    "bbox_start": [
+      85,
+      123,
+      8
+    ],
+    "bbox_stop": [
+      249,
+      206,
+      24
+    ]
+  },
+  "MCA45": {
+    "original_shape": [
+      512,
+      512,
+      39
+    ],
+    "bbox_start": [
+      134,
+      183,
+      9
+    ],
+    "bbox_stop": [
+      380,
+      317,
+      30
+    ]
+  },
+  "CAD286": {
+    "original_shape": [
+      256,
+      256,
+      35
+    ],
+    "bbox_start": [
+      32,
+      104,
+      5
+    ],
+    "bbox_stop": [
+      185,
+      189,
+      35
+    ]
+  },
+  "NYU0096": {
+    "original_shape": [
+      320,
+      260,
+      43
+    ],
+    "bbox_start": [
+      78,
+      68,
+      16
+    ],
+    "bbox_stop": [
+      293,
+      175,
+      37
+    ]
+  },
+  "CAD242": {
+    "original_shape": [
+      256,
+      256,
+      48
+    ],
+    "bbox_start": [
+      6,
+      75,
+      7
+    ],
+    "bbox_stop": [
+      200,
+      220,
+      48
+    ]
+  },
+  "CAD205": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      47,
+      80,
+      4
+    ],
+    "bbox_stop": [
+      207,
+      184,
+      30
+    ]
+  },
+  "NU26": {
+    "original_shape": [
+      320,
+      260,
+      45
+    ],
+    "bbox_start": [
+      112,
+      97,
+      13
+    ],
+    "bbox_stop": [
+      248,
+      161,
+      30
+    ]
+  },
+  "EMC065": {
+    "original_shape": [
+      512,
+      512,
+      42
+    ],
+    "bbox_start": [
+      143,
+      186,
+      7
+    ],
+    "bbox_stop": [
+      391,
+      304,
+      28
+    ]
+  },
+  "NU66": {
+    "original_shape": [
+      512,
+      416,
+      48
+    ],
+    "bbox_start": [
+      168,
+      125,
+      8
+    ],
+    "bbox_stop": [
+      405,
+      269,
+      31
+    ]
+  },
+  "MCA126": {
+    "original_shape": [
+      512,
+      512,
+      40
+    ],
+    "bbox_start": [
+      194,
+      185,
+      20
+    ],
+    "bbox_stop": [
+      331,
+      263,
+      28
+    ]
+  },
+  "CAD102": {
+    "original_shape": [
+      256,
+      256,
+      35
+    ],
+    "bbox_start": [
+      48,
+      108,
+      2
+    ],
+    "bbox_stop": [
+      181,
+      176,
+      34
+    ]
+  },
+  "MCF25": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      157,
+      178,
+      9
+    ],
+    "bbox_stop": [
+      446,
+      312,
+      32
+    ]
+  },
+  "AHN54": {
+    "original_shape": [
+      320,
+      320,
+      27
+    ],
+    "bbox_start": [
+      100,
+      102,
+      14
+    ],
+    "bbox_stop": [
+      242,
+      193,
+      27
+    ]
+  },
+  "NYU0130": {
+    "original_shape": [
+      320,
+      320,
+      50
+    ],
+    "bbox_start": [
+      118,
+      110,
+      16
+    ],
+    "bbox_stop": [
+      270,
+      170,
+      39
+    ]
+  },
+  "NU63": {
+    "original_shape": [
+      320,
+      250,
+      44
+    ],
+    "bbox_start": [
+      100,
+      80,
+      10
+    ],
+    "bbox_stop": [
+      254,
+      174,
+      32
+    ]
+  },
+  "NYU0123": {
+    "original_shape": [
+      320,
+      244,
+      30
+    ],
+    "bbox_start": [
+      84,
+      69,
+      9
+    ],
+    "bbox_stop": [
+      238,
+      147,
+      23
+    ]
+  },
+  "IU35": {
+    "original_shape": [
+      336,
+      336,
+      28
+    ],
+    "bbox_start": [
+      96,
+      113,
+      9
+    ],
+    "bbox_stop": [
+      267,
+      207,
+      22
+    ]
+  },
+  "NU88": {
+    "original_shape": [
+      320,
+      320,
+      54
+    ],
+    "bbox_start": [
+      106,
+      112,
+      9
+    ],
+    "bbox_stop": [
+      266,
+      201,
+      34
+    ]
+  },
+  "CAD316": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      41,
+      85,
+      4
+    ],
+    "bbox_stop": [
+      204,
+      203,
+      34
+    ]
+  },
+  "EMC011": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      156,
+      191,
+      1
+    ],
+    "bbox_stop": [
+      349,
+      267,
+      15
+    ]
+  },
+  "EMC157": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      160,
+      200,
+      4
+    ],
+    "bbox_stop": [
+      381,
+      302,
+      19
+    ]
+  },
+  "NYU0165": {
+    "original_shape": [
+      320,
+      320,
+      41
+    ],
+    "bbox_start": [
+      90,
+      94,
+      9
+    ],
+    "bbox_stop": [
+      285,
+      201,
+      30
+    ]
+  },
+  "IU59": {
+    "original_shape": [
+      512,
+      384,
+      35
+    ],
+    "bbox_start": [
+      141,
+      143,
+      7
+    ],
+    "bbox_stop": [
+      416,
+      273,
+      24
+    ]
+  },
+  "CAD291": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      62,
+      124,
+      6
+    ],
+    "bbox_stop": [
+      181,
+      182,
+      30
+    ]
+  },
+  "NU120": {
+    "original_shape": [
+      320,
+      320,
+      52
+    ],
+    "bbox_start": [
+      111,
+      127,
+      3
+    ],
+    "bbox_stop": [
+      235,
+      220,
+      32
+    ]
+  },
+  "AHN05": {
+    "original_shape": [
+      256,
+      224,
+      40
+    ],
+    "bbox_start": [
+      86,
+      59,
+      16
+    ],
+    "bbox_stop": [
+      224,
+      134,
+      33
+    ]
+  },
+  "NYU0136": {
+    "original_shape": [
+      256,
+      256,
+      55
+    ],
+    "bbox_start": [
+      70,
+      85,
+      21
+    ],
+    "bbox_stop": [
+      229,
+      158,
+      42
+    ]
+  },
+  "NYU0152": {
+    "original_shape": [
+      256,
+      256,
+      54
+    ],
+    "bbox_start": [
+      79,
+      85,
+      26
+    ],
+    "bbox_stop": [
+      217,
+      176,
+      48
+    ]
+  },
+  "EMC087": {
+    "original_shape": [
+      384,
+      384,
+      35
+    ],
+    "bbox_start": [
+      113,
+      156,
+      9
+    ],
+    "bbox_stop": [
+      250,
+      225,
+      22
+    ]
+  },
+  "IU43": {
+    "original_shape": [
+      512,
+      416,
+      36
+    ],
+    "bbox_start": [
+      166,
+      78,
+      4
+    ],
+    "bbox_stop": [
+      440,
+      256,
+      24
+    ]
+  },
+  "CAD159": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      46,
+      79,
+      10
+    ],
+    "bbox_stop": [
+      179,
+      162,
+      34
+    ]
+  },
+  "NU157": {
+    "original_shape": [
+      512,
+      416,
+      50
+    ],
+    "bbox_start": [
+      160,
+      151,
+      7
+    ],
+    "bbox_stop": [
+      416,
+      295,
+      29
+    ]
+  },
+  "NU115": {
+    "original_shape": [
+      384,
+      312,
+      44
+    ],
+    "bbox_start": [
+      118,
+      120,
+      4
+    ],
+    "bbox_stop": [
+      286,
+      168,
+      25
+    ]
+  },
+  "MCA24": {
+    "original_shape": [
+      512,
+      512,
+      30
+    ],
+    "bbox_start": [
+      156,
+      178,
+      9
+    ],
+    "bbox_stop": [
+      398,
+      293,
+      26
+    ]
+  },
+  "NYU0058": {
+    "original_shape": [
+      320,
+      320,
+      50
+    ],
+    "bbox_start": [
+      118,
+      128,
+      16
+    ],
+    "bbox_stop": [
+      260,
+      235,
+      45
+    ]
+  },
+  "CAD239": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      23,
+      106,
+      2
+    ],
+    "bbox_stop": [
+      186,
+      181,
+      32
+    ]
+  },
+  "CAD113": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      61,
+      118,
+      9
+    ],
+    "bbox_stop": [
+      207,
+      201,
+      30
+    ]
+  },
+  "NYU0104": {
+    "original_shape": [
+      320,
+      320,
+      45
+    ],
+    "bbox_start": [
+      90,
+      112,
+      15
+    ],
+    "bbox_stop": [
+      285,
+      187,
+      38
+    ]
+  },
+  "CAD289": {
+    "original_shape": [
+      256,
+      256,
+      58
+    ],
+    "bbox_start": [
+      42,
+      102,
+      18
+    ],
+    "bbox_stop": [
+      176,
+      171,
+      43
+    ]
+  },
+  "CAD128": {
+    "original_shape": [
+      256,
+      256,
+      35
+    ],
+    "bbox_start": [
+      38,
+      100,
+      12
+    ],
+    "bbox_stop": [
+      210,
+      184,
+      32
+    ]
+  },
+  "CAD235": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      15,
+      96,
+      3
+    ],
+    "bbox_stop": [
+      202,
+      163,
+      26
+    ]
+  },
+  "MCA75": {
+    "original_shape": [
+      512,
+      512,
+      48
+    ],
+    "bbox_start": [
+      182,
+      173,
+      19
+    ],
+    "bbox_stop": [
+      380,
+      273,
+      40
+    ]
+  },
+  "NU79": {
+    "original_shape": [
+      320,
+      280,
+      54
+    ],
+    "bbox_start": [
+      106,
+      98,
+      11
+    ],
+    "bbox_stop": [
+      262,
+      214,
+      40
+    ]
+  },
+  "EMC097": {
+    "original_shape": [
+      528,
+      528,
+      25
+    ],
+    "bbox_start": [
+      227,
+      170,
+      7
+    ],
+    "bbox_stop": [
+      426,
+      278,
+      14
+    ]
+  },
+  "NYU0118": {
+    "original_shape": [
+      512,
+      480,
+      47
+    ],
+    "bbox_start": [
+      183,
+      166,
+      9
+    ],
+    "bbox_stop": [
+      415,
+      277,
+      33
+    ]
+  },
+  "EMC014": {
+    "original_shape": [
+      256,
+      192,
+      27
+    ],
+    "bbox_start": [
+      70,
+      60,
+      7
+    ],
+    "bbox_stop": [
+      214,
+      133,
+      19
+    ]
+  },
+  "CAD249": {
+    "original_shape": [
+      256,
+      256,
+      38
+    ],
+    "bbox_start": [
+      35,
+      97,
+      0
+    ],
+    "bbox_stop": [
+      189,
+      179,
+      29
+    ]
+  },
+  "MCF24": {
+    "original_shape": [
+      320,
+      320,
+      32
+    ],
+    "bbox_start": [
+      56,
+      104,
+      3
+    ],
+    "bbox_stop": [
+      295,
+      230,
+      29
+    ]
+  },
+  "MCF12": {
+    "original_shape": [
+      320,
+      320,
+      34
+    ],
+    "bbox_start": [
+      114,
+      94,
+      4
+    ],
+    "bbox_stop": [
+      312,
+      214,
+      34
+    ]
+  },
+  "IU13": {
+    "original_shape": [
+      512,
+      512,
+      45
+    ],
+    "bbox_start": [
+      182,
+      164,
+      7
+    ],
+    "bbox_stop": [
+      388,
+      291,
+      28
+    ]
+  },
+  "IU66": {
+    "original_shape": [
+      512,
+      512,
+      38
+    ],
+    "bbox_start": [
+      170,
+      194,
+      9
+    ],
+    "bbox_stop": [
+      356,
+      296,
+      24
+    ]
+  },
+  "NYU0045": {
+    "original_shape": [
+      320,
+      320,
+      33
+    ],
+    "bbox_start": [
+      93,
+      108,
+      9
+    ],
+    "bbox_stop": [
+      270,
+      194,
+      31
+    ]
+  },
+  "CAD151": {
+    "original_shape": [
+      256,
+      256,
+      44
+    ],
+    "bbox_start": [
+      22,
+      83,
+      15
+    ],
+    "bbox_stop": [
+      193,
+      167,
+      41
+    ]
+  },
+  "AHN48": {
+    "original_shape": [
+      512,
+      512,
+      36
+    ],
+    "bbox_start": [
+      159,
+      194,
+      8
+    ],
+    "bbox_stop": [
+      410,
+      336,
+      33
+    ]
+  },
+  "CAD246": {
+    "original_shape": [
+      256,
+      256,
+      37
+    ],
+    "bbox_start": [
+      6,
+      69,
+      8
+    ],
+    "bbox_stop": [
+      183,
+      190,
+      37
+    ]
+  },
+  "NYU0133": {
+    "original_shape": [
+      512,
+      512,
+      60
+    ],
+    "bbox_start": [
+      190,
+      164,
+      11
+    ],
+    "bbox_stop": [
+      420,
+      336,
+      45
+    ]
+  },
+  "NU164": {
+    "original_shape": [
+      512,
+      512,
+      61
+    ],
+    "bbox_start": [
+      173,
+      178,
+      22
+    ],
+    "bbox_stop": [
+      463,
+      299,
+      39
+    ]
+  },
+  "EMC077": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      186,
+      188,
+      6
+    ],
+    "bbox_stop": [
+      350,
+      306,
+      19
+    ]
+  },
+  "EMC043": {
+    "original_shape": [
+      512,
+      352,
+      24
+    ],
+    "bbox_start": [
+      166,
+      123,
+      2
+    ],
+    "bbox_stop": [
+      334,
+      213,
+      16
+    ]
+  },
+  "NU184": {
+    "original_shape": [
+      320,
+      296,
+      54
+    ],
+    "bbox_start": [
+      100,
+      98,
+      10
+    ],
+    "bbox_stop": [
+      279,
+      184,
+      39
+    ]
+  },
+  "NU71": {
+    "original_shape": [
+      256,
+      208,
+      55
+    ],
+    "bbox_start": [
+      79,
+      87,
+      8
+    ],
+    "bbox_stop": [
+      205,
+      144,
+      38
+    ]
+  },
+  "NYU0025": {
+    "original_shape": [
+      320,
+      320,
+      46
+    ],
+    "bbox_start": [
+      93,
+      79,
+      15
+    ],
+    "bbox_stop": [
+      266,
+      171,
+      40
+    ]
+  },
+  "NYU0076": {
+    "original_shape": [
+      320,
+      270,
+      40
+    ],
+    "bbox_start": [
+      103,
+      63,
+      11
+    ],
+    "bbox_stop": [
+      273,
+      167,
+      28
+    ]
+  },
+  "IU76": {
+    "original_shape": [
+      512,
+      416,
+      36
+    ],
+    "bbox_start": [
+      228,
+      144,
+      12
+    ],
+    "bbox_stop": [
+      378,
+      221,
+      26
+    ]
+  },
+  "CAD110": {
+    "original_shape": [
+      256,
+      256,
+      33
+    ],
+    "bbox_start": [
+      72,
+      124,
+      8
+    ],
+    "bbox_stop": [
+      187,
+      166,
+      32
+    ]
+  },
+  "NU141": {
+    "original_shape": [
+      512,
+      512,
+      56
+    ],
+    "bbox_start": [
+      154,
+      156,
+      32
+    ],
+    "bbox_stop": [
+      412,
+      307,
+      47
+    ]
+  },
+  "NYU0064": {
+    "original_shape": [
+      320,
+      244,
+      26
+    ],
+    "bbox_start": [
+      116,
+      57,
+      9
+    ],
+    "bbox_stop": [
+      260,
+      122,
+      25
+    ]
+  },
+  "NU28": {
+    "original_shape": [
+      320,
+      260,
+      45
+    ],
+    "bbox_start": [
+      99,
+      88,
+      9
+    ],
+    "bbox_stop": [
+      254,
+      178,
+      26
+    ]
+  },
+  "MCA10": {
+    "original_shape": [
+      512,
+      512,
+      28
+    ],
+    "bbox_start": [
+      161,
+      191,
+      6
+    ],
+    "bbox_stop": [
+      350,
+      311,
+      21
+    ]
+  },
+  "NU188": {
+    "original_shape": [
+      320,
+      220,
+      45
+    ],
+    "bbox_start": [
+      114,
+      77,
+      14
+    ],
+    "bbox_stop": [
+      252,
+      170,
+      37
+    ]
+  },
+  "NYU0082": {
+    "original_shape": [
+      320,
+      320,
+      40
+    ],
+    "bbox_start": [
+      106,
+      89,
+      13
+    ],
+    "bbox_stop": [
+      257,
+      183,
+      30
+    ]
+  },
+  "MCF05": {
+    "original_shape": [
+      320,
+      320,
+      38
+    ],
+    "bbox_start": [
+      77,
+      88,
+      12
+    ],
+    "bbox_stop": [
+      320,
+      182,
+      37
+    ]
+  },
+  "IU61": {
+    "original_shape": [
+      512,
+      416,
+      40
+    ],
+    "bbox_start": [
+      152,
+      126,
+      8
+    ],
+    "bbox_stop": [
+      423,
+      252,
+      28
+    ]
+  },
+  "CAD222": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      0,
+      89,
+      5
+    ],
+    "bbox_stop": [
+      192,
+      188,
+      32
+    ]
+  },
+  "NU03": {
+    "original_shape": [
+      320,
+      320,
+      48
+    ],
+    "bbox_start": [
+      106,
+      110,
+      2
+    ],
+    "bbox_stop": [
+      248,
+      191,
+      33
+    ]
+  },
+  "NU116": {
+    "original_shape": [
+      256,
+      256,
+      48
+    ],
+    "bbox_start": [
+      80,
+      81,
+      9
+    ],
+    "bbox_stop": [
+      207,
+      154,
+      30
+    ]
+  },
+  "CAD218": {
+    "original_shape": [
+      256,
+      256,
+      36
+    ],
+    "bbox_start": [
+      26,
+      106,
+      7
+    ],
+    "bbox_stop": [
+      197,
+      198,
+      36
+    ]
+  },
+  "CAD262": {
+    "original_shape": [
+      256,
+      256,
+      36
+    ],
+    "bbox_start": [
+      0,
+      72,
+      9
+    ],
+    "bbox_stop": [
+      181,
+      176,
+      36
+    ]
+  },
+  "NU150": {
+    "original_shape": [
+      320,
+      260,
+      36
+    ],
+    "bbox_start": [
+      122,
+      78,
+      11
+    ],
+    "bbox_stop": [
+      239,
+      147,
+      24
+    ]
+  },
+  "MCF27": {
+    "original_shape": [
+      320,
+      320,
+      40
+    ],
+    "bbox_start": [
+      59,
+      74,
+      7
+    ],
+    "bbox_stop": [
+      315,
+      242,
+      40
+    ]
+  },
+  "NU152": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      163,
+      173,
+      0
+    ],
+    "bbox_stop": [
+      397,
+      297,
+      14
+    ]
+  },
+  "CAD141": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      22,
+      75,
+      3
+    ],
+    "bbox_stop": [
+      194,
+      169,
+      25
+    ]
+  },
+  "NYU0097": {
+    "original_shape": [
+      256,
+      256,
+      45
+    ],
+    "bbox_start": [
+      73,
+      100,
+      27
+    ],
+    "bbox_stop": [
+      215,
+      150,
+      45
+    ]
+  },
+  "CAD241": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      57,
+      109,
+      15
+    ],
+    "bbox_stop": [
+      199,
+      177,
+      32
+    ]
+  },
+  "NU166": {
+    "original_shape": [
+      320,
+      270,
+      51
+    ],
+    "bbox_start": [
+      84,
+      50,
+      4
+    ],
+    "bbox_stop": [
+      273,
+      183,
+      30
+    ]
+  },
+  "NYU0023": {
+    "original_shape": [
+      320,
+      220,
+      40
+    ],
+    "bbox_start": [
+      107,
+      56,
+      17
+    ],
+    "bbox_stop": [
+      261,
+      157,
+      37
+    ]
+  },
+  "NU154": {
+    "original_shape": [
+      512,
+      512,
+      50
+    ],
+    "bbox_start": [
+      144,
+      180,
+      10
+    ],
+    "bbox_stop": [
+      419,
+      348,
+      41
+    ]
+  }
+}
