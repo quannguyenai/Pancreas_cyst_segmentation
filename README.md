@@ -7,7 +7,7 @@ multi-institutional T2 MRI dataset (358 cases, 8 sites).
 
 ---
 
-## Quick Start on a Fresh GPU Machine
+## Quick Start on setting up a new machine
 
 ```bash
 # 1. Clone and enter repo
