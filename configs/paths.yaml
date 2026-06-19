@@ -1,0 +1,99 @@
+# ─── Pancreatic Cyst Segmentation — Central Path Configuration ────────────────
+#
+# All scripts read paths from this file via configs/__init__.py::load_config().
+# Override the repository root by setting PANCREAS_CYST_ROOT in your shell:
+#   export PANCREAS_CYST_ROOT=/absolute/path/to/pancreas-cyst-seg
+#
+# The ${root} token is resolved at runtime to PANCREAS_CYST_ROOT if set,
+# otherwise to the repository root (parent of configs/).
+
+root: ${PANCREAS_CYST_ROOT}
+
+# ─── Raw data ─────────────────────────────────────────────────────────────────
+data:
+  images:        ${root}/data/images        # 358 NIfTI CT scans (.nii.gz)
+  masks:         ${root}/data/masks         # 358 NIfTI segmentation masks (.nii.gz)
+  train_txt:     ${root}/data/train.txt     # 247 image-mask pairs
+  val_txt:       ${root}/data/val.txt       # 37  image-mask pairs
+  test_txt:      ${root}/data/test.txt      # 74  image-mask pairs
+  all_train_txt: ${root}/data/all_train.txt # 283 image-mask pairs (train + val)
+
+# ─── nnU-Net environment variables ───────────────────────────────────────────
+# These map directly to the three env vars nnUNetv2 requires:
+#   nnUNet_raw, nnUNet_preprocessed, nnUNet_results
+nnunet:
+  raw:           ${root}/nnUnet/nnUNet_raw
+  preprocessed:  ${root}/nnUnet/nnUNet_preprocessed
+  results:       ${root}/nnUnet/nnUNet_results
+  dataset_id:    1
+  dataset_name:  PancreasCyst
+
+# ─── Approach A: Direct nnUNet Baseline ──────────────────────────────────────
+# A1: single model trained on the full mixed dataset (all institutions)
+# A2: separate models per institution (AHN, CAD, EMC, IU, MCA, MCF, NYU, NU)
+approach_a:
+  predictions:       ${root}/approach_a/predictions
+  config_3d_fullres: 3d_fullres
+  institutions:      [AHN, CAD, EMC, IU, MCA, MCF, NYU, NU]
+  base_dataset_id:   2   # A2 uses Dataset002_AHN … Dataset009_NU
+
+# ─── Approach B: Cascaded Pancreas → Crop → Cyst ────────────────────────────
+# Stage 1: pretrained PaNSegNet infers pancreas masks
+# Stage 2: crop volumes to pancreas ROI + margin, train nnUNet on cropped data
+approach_b:
+  pancreas_model_dir:      ${root}/pansegnet_weights
+  pancreas_model_task_id:  111
+  pancreas_model_config:   3d_fullres
+  pancreas_model_trainer:  nnTransUNetTrainerV2
+  pancreas_model_plans:    nnUNetPlansv2.1
+  pancreas_model_folds:    [0]
+  pancreas_preds:          ${root}/approach_b/pancreas_preds
+  # ROI-redesign crops live under roi256/ so the frozen tight-margin Dataset010
+  # crops at cropped/images & cropped/masks stay intact (Dataset010 reproducible).
+  cropped_images:          ${root}/approach_b/cropped/roi256/images
+  cropped_masks:           ${root}/approach_b/cropped/roi256/masks
+  cropped_prior:           ${root}/approach_b/cropped/roi256/pancreas_prior  # distance-map channel (priorchan variant)
+  cropped_train_txt:       ${root}/approach_b/splits/train_cropped.txt
+  cropped_val_txt:         ${root}/approach_b/splits/val_cropped.txt
+  cropped_test_txt:        ${root}/approach_b/splits/test_cropped.txt
+  crop_stats_json:         ${root}/approach_b/crop_stats.json
+  crop_stats_test_json:    ${root}/approach_b/crop_stats_test.json
+  crop_margin_pct:         0.15          # tight-margin mode: expand bbox by 15% of bbox size per side
+  crop_mode:               fixed-box     # tight-margin | fixed-box (centroid-centered fixed box)
+  crop_box_mm:             [256, 160, 160]  # fixed-box extent per voxel axis (mm). vs original tight+15%: cyst containment 94.7%->99.6%, small-cyst catastrophic clips 6->0, min voxel-recall 0.00->1.00, near-uniform size. axis0 = long pancreas axis
+  nnunet_dataset_id:       10            # Dataset010_CroppedCyst (original tight-margin baseline)
+  nnunet_dataset_name:     CroppedCyst
+  # ROI-redesign A/B variants (share crop geometry; differ in channels):
+  fixedbox_dataset_id:     13            # Dataset013_FixedBoxCyst   (1-ch, fixed-box hard crop); ID 11 already taken by PancreasCyst25D
+  fixedbox_dataset_name:   FixedBoxCyst
+  priorchan_dataset_id:    12            # Dataset012_PriorChanCyst  (2-ch: MRI + pancreas distance map)
+  priorchan_dataset_name:  PriorChanCyst
+  predictions_cropped:     ${root}/approach_b/predictions/cropped
+  predictions_full:        ${root}/approach_b/predictions/full_space
+  unet_experiment:         approach_b_unet3d
+  unet_predictions_cropped: ${root}/approach_b/predictions_unet/cropped
+  unet_predictions_full:   ${root}/approach_b/predictions_unet/full_space
+
+# ─── Approach C: Fine-tune Pretrained PanSegNet for Cyst ─────────────────────
+# Encoder from PanSegNet, head replaced for binary cyst segmentation
+approach_c:
+  pretrained_weights: ${root}/pansegnet_weights/averaged_T1T2.model  # PanSegNet weights pretrained on T1+T2; our data is T2-only
+  output_dir:         ${root}/approach_c/checkpoints
+  predictions:        ${root}/approach_c/predictions
+  max_epochs:         300
+  warmup_freeze_epochs: 25          # same modality (MRI→MRI): longer warmup preserves pretrained features
+  lr:                 3.0e-5        # lower LR for fine-tuning
+  batch_size:         2
+  patch_size:         [96, 96, 96]
+  early_stop_patience: 40
+  samples_per_volume: 4
+
+# ─── Comparison: Baseline Model Benchmarks ────────────────────────────────────
+# Consolidates baseline/2D-UNet and baseline/3D-VNet into comparison/
+comparison:
+  checkpoint_dir: ${root}/comparison/checkpoints
+  predictions:    ${root}/comparison/predictions
+  patch_size_3d:  [96, 96, 96]
+  patch_size_2d:  [256, 256]
+  stride_3d:      [64, 64, 64]
+  stride_2d:      [128, 128]

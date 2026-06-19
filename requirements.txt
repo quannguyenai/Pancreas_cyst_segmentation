@@ -1,0 +1,47 @@
+# Pancreatic Cyst Segmentation — Python Dependencies
+#
+# Two installation tracks:
+#
+#   Track A — nnU-Net v2 approaches (A, B, C):
+#     pip install -r requirements.txt
+#     Requires Python >= 3.10
+#
+#   Track B — Comparison baseline models (2D U-Net, 3D V-Net):
+#     conda env create -f baseline/environment.yaml
+#     conda activate monai
+#
+# Note: PyTorch with CUDA must be installed separately to match your driver:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126
+
+# ─── Core scientific stack ────────────────────────────────────────────────────
+numpy>=2.0.2
+scipy>=1.13.1
+scikit-image>=0.24.0
+scikit-learn>=1.6.1
+pandas>=2.3.3
+
+# ─── Medical imaging I/O ─────────────────────────────────────────────────────
+nibabel>=5.3.3
+SimpleITK>=2.5.3
+medpy>=0.5.2
+
+# ─── Deep learning (install PyTorch separately, see note above) ───────────────
+monai>=1.5.2
+torchvision>=0.23.0
+
+# ─── nnU-Net v2 ───────────────────────────────────────────────────────────────
+nnunetv2>=2.6.4
+
+# ─── Utilities ────────────────────────────────────────────────────────────────
+tqdm>=4.67.3
+pyyaml>=6.0.3
+matplotlib>=3.9.4
+seaborn>=0.13.2
+
+# ─── Computer vision ─────────────────────────────────────────────────────────
+opencv-python>=4.13.0
+
+# ─── Optional: Jupyter notebook support ──────────────────────────────────────
+# ipython
+# jupyter
+# ipywidgets

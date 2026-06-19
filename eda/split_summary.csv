@@ -1,0 +1,5 @@
+split,rows,unique_cases,mismatched_image_mask_ids,missing_image_files,missing_mask_files
+train,247,247,0,0,0
+val,37,37,0,0,0
+test,74,74,0,0,0
+all_train,284,284,0,0,0

@@ -1,0 +1,99 @@
+# ─── Virtual environments ─────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ─── Approach D (PaNSegNet / nnTransUNetTrainerV2) — fully isolated ───────────
+approach_d/.venv/
+approach_d/PaNSegNet/
+approach_d/nnunet_v1/
+approach_d/predictions/
+approach_d/visualization.html
+
+# ─── Python bytecode ──────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# ─── Medical imaging data (obtain via data access; not distributed) ───────────
+data/images/
+data/masks/
+data/masks_fixed/
+
+# ─── NIfTI files everywhere (catch-all for any accidentally added scans) ──────
+*.nii
+*.nii.gz
+
+# ─── nnU-Net runtime directories (nnUnet/ is the actual folder name) ──────────
+nnUnet/nnUNet_preprocessed/
+nnUnet/nnUNet_results/
+nnUnet/nnUNet_raw/Dataset*/imagesTr/
+nnUnet/nnUNet_raw/Dataset*/labelsTr/
+nnUnet/nnUNet_raw/Dataset*/imagesTs/
+nnUnet/plan_and_preprocess.log
+nnUnet/train_*.log
+
+# ─── Local-only rollback backups from the CT→MRI normalization fix ────────────
+*.stale_CTnorm_bak
+*.stale_CTnorm_bak/
+
+# ─── Pre-trained weights (copy to server via scp/rsync, not git) ─────────────
+pansegnet_weights/
+
+# ─── Model checkpoints ────────────────────────────────────────────────────────
+**/*.pth
+**/*.pt
+**/*.ckpt
+**/*.pkl
+**/*.npz
+**/*.model
+
+# ─── Generated results — figures, PDFs, and analysis outputs ─────────────────
+results/
+
+# ─── Inference prediction outputs (large NIfTI volumes) ──────────────────────
+approach_a/prediction/
+approach_b/predictio/
+
+# ─── Inference outputs and logs ───────────────────────────────────────────────
+*.log
+logs/
+predictions/
+outputs/
+runs/
+approach_a/predictions/
+approach_b/pancreas_preds/
+approach_b/cropped/
+approach_b/predictions/
+approach_c/predictions/
+approach_c/checkpoints/
+comparison/checkpoints/
+comparison/predictions/
+
+# ─── Jupyter artifacts ────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+# *.ipynb  — notebooks are tracked
+
+# ─── Build artifacts ──────────────────────────────────────────────────────────
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ─── OS artifacts ─────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── IDE ──────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ─── Large in-tree binaries (figures/notebooks) — keep repo lean ──────────────
+approach_b/approach_b_visualizations/
+scripts/visualize.ipynb

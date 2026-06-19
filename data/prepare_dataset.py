@@ -1,0 +1,359 @@
+"""prepare_dataset.py — Convert raw NIfTI data to nnUNet format and update split CSVs.
+
+Usage
+-----
+# Default: run all three steps (CAD-header fix, split-CSV refresh, nnUNet build).
+# Each step is idempotent, so this is safe to re-run.
+python data/prepare_dataset.py --config configs/paths.yaml
+
+# Restrict to a subset of steps (useful for debugging):
+python data/prepare_dataset.py --config configs/paths.yaml --build-nnunet
+python data/prepare_dataset.py --config configs/paths.yaml --fix-cad-headers --update-txts
+
+Steps
+-----
+1. fix_cad_headers — 17 of 83 CAD masks have an identity direction matrix while
+   the image carries the real orientation, leaving them ~280 mm out of physical
+   alignment with the image. This step copies the image affine onto the broken
+   mask and writes the original to *.bak.nii.gz. Idempotent.
+2. update_split_txts — rewrites train/val/test/all_train .txt with current
+   absolute paths, preserving the existing case-to-split assignment.
+3. build_nnunet_raw — creates nnUNet_raw/Dataset{id:03d}_{name}/ with symlinks
+   to imagesTr/labelsTr/imagesTs and writes dataset.json (channel: MRI).
+
+Requires: nibabel, numpy, pyyaml (all in requirements.txt).
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import shutil
+import sys
+from pathlib import Path
+
+import nibabel as nib
+import numpy as np
+
+# Allow running as a script without installing the package
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from configs import load_config
+
+
+# ─── Naming convention helpers ────────────────────────────────────────────────
+
+# Image stems look like:  EMC024, IU9, NU51, AHN05, CAD102, MCF3, NYU12, MCA5
+# Mask  stems look like:  cyst_emc_024, cyst_iu_9, cyst_nu_51, ...
+# The pattern: lowercase institution prefix + zero-padded or bare number.
+_INST_PATTERN = re.compile(r"^([A-Za-z]+?)(\d+)$")
+
+
+def image_stem_to_mask_stem(stem: str) -> str:
+    """Convert an image stem to its expected mask stem.
+
+    Examples
+    --------
+    >>> image_stem_to_mask_stem("EMC024")
+    'cyst_emc_024'
+    >>> image_stem_to_mask_stem("IU9")
+    'cyst_iu_9'
+    >>> image_stem_to_mask_stem("CAD102")
+    'cyst_cad_102'
+    """
+    m = _INST_PATTERN.match(stem)
+    if not m:
+        raise ValueError(f"Cannot parse image stem: {stem!r}")
+    prefix, number = m.group(1).lower(), m.group(2)
+    return f"cyst_{prefix}_{number}"
+
+
+def discover_cases(images_dir: Path, masks_dir: Path) -> dict[str, tuple[Path, Path]]:
+    """Scan images_dir for *.nii.gz files and match each to its mask.
+
+    Returns
+    -------
+    dict mapping case_id (image stem) → (image_path, mask_path)
+    """
+    cases: dict[str, tuple[Path, Path]] = {}
+    missing: list[str] = []
+
+    for img_path in sorted(images_dir.glob("*.nii.gz")):
+        stem = img_path.name.replace(".nii.gz", "")
+        mask_stem = image_stem_to_mask_stem(stem)
+        mask_path = masks_dir / f"{mask_stem}.nii.gz"
+        if mask_path.exists():
+            cases[stem] = (img_path, mask_path)
+        else:
+            missing.append(f"  {stem} → expected {mask_path}")
+
+    if missing:
+        print(f"[WARN] {len(missing)} images have no matching mask:")
+        for m in missing[:10]:
+            print(m)
+        if len(missing) > 10:
+            print(f"  ... and {len(missing) - 10} more")
+
+    print(f"[INFO] Discovered {len(cases)} complete image-mask pairs.")
+    return cases
+
+
+# ─── Split CSV helpers ────────────────────────────────────────────────────────
+
+def update_split_txts(
+    data_dir: Path,
+    images_dir: Path,
+    masks_dir: Path,
+    cases: dict[str, tuple[Path, Path]],
+) -> None:
+    """Rewrite train/val/test/all_train .txt files with updated paths.
+
+    Reads the existing split files to preserve the original case assignment,
+    then replaces each absolute path with the new images_dir/masks_dir location.
+    Does NOT re-randomise the split.
+    """
+    split_files = {
+        "train.txt": data_dir / "train.txt",
+        "val.txt":   data_dir / "val.txt",
+        "test.txt":  data_dir / "test.txt",
+        "all_train.txt": data_dir / "all_train.txt",
+    }
+
+    # Build a lookup: image stem → (new_img_path, new_mask_path)
+    new_paths: dict[str, tuple[Path, Path]] = {}
+    for stem, (img_p, mask_p) in cases.items():
+        new_paths[stem] = (img_p, mask_p)
+
+    for fname, txt_path in split_files.items():
+        if not txt_path.exists():
+            print(f"[SKIP] {fname} not found, skipping.")
+            continue
+
+        lines = txt_path.read_text().splitlines()
+        header = lines[0]  # "image_path,mask_path"
+        rows = [line.strip() for line in lines[1:] if line.strip()]
+
+        updated: list[str] = [header]
+        not_found: list[str] = []
+
+        for row in rows:
+            # Extract the case stem from the image path (last path component)
+            old_img_path = row.split(",")[0]
+            old_stem = Path(old_img_path).name.replace(".nii.gz", "")
+            if old_stem in new_paths:
+                new_img, new_mask = new_paths[old_stem]
+                updated.append(f"{new_img},{new_mask}")
+            else:
+                not_found.append(old_stem)
+                updated.append(row)  # keep old row unchanged
+
+        txt_path.write_text("\n".join(updated) + "\n")
+        n_updated = len(updated) - 1 - len(not_found)
+        print(f"[INFO] {fname}: updated {n_updated}/{len(rows)} rows"
+              + (f", {len(not_found)} not found in images_dir" if not_found else ""))
+
+
+# ─── nnUNet dataset construction ──────────────────────────────────────────────
+
+DATASET_JSON_TEMPLATE = {
+    "channel_names": {"0": "MRI"},
+    "labels": {"background": 0, "cyst": 1},
+    "numTraining": 0,
+    "file_ending": ".nii.gz",
+    "overwrite_image_reader_writer": "SimpleITKIO",
+}
+
+
+def build_nnunet_raw(
+    cases: dict[str, tuple[Path, Path]],
+    train_txt: Path,
+    test_txt: Path,
+    nnunet_raw_dir: Path,
+    dataset_id: int,
+    dataset_name: str,
+    val_txt: Path | None = None,
+) -> None:
+    """Create nnUNet Dataset folder structure with symlinks.
+
+    Structure created:
+        nnUNet_raw/Dataset{id:03d}_{name}/
+            imagesTr/CASE_0000.nii.gz  (symlink — train + val cases)
+            labelsTr/CASE.nii.gz        (symlink — train + val cases)
+            imagesTs/CASE_0000.nii.gz   (symlink — test images only)
+            dataset.json
+
+    Both train and val cases go into imagesTr so nnUNet can access them.
+    The splits_final.json determines which val cases are held out per fold.
+    """
+    dataset_folder = nnunet_raw_dir / f"Dataset{dataset_id:03d}_{dataset_name}"
+    images_tr = dataset_folder / "imagesTr"
+    labels_tr  = dataset_folder / "labelsTr"
+    images_ts  = dataset_folder / "imagesTs"
+
+    for d in (images_tr, labels_tr, images_ts):
+        d.mkdir(parents=True, exist_ok=True)
+
+    def _read_stems(txt: Path) -> set[str]:
+        if not txt.exists():
+            return set()
+        stems = set()
+        for line in txt.read_text().splitlines()[1:]:
+            line = line.strip()
+            if line:
+                stems.add(Path(line.split(",")[0]).name.replace(".nii.gz", ""))
+        return stems
+
+    # Train + val both go into imagesTr (nnUNet requires all labelled cases there)
+    train_stems = _read_stems(train_txt)
+    val_stems   = _read_stems(val_txt) if val_txt else set()
+    imagestr_stems = train_stems | val_stems
+
+    test_stems = _read_stems(test_txt)
+
+    n_train = 0
+    for stem, (img_path, mask_path) in cases.items():
+        if stem in imagestr_stems:
+            dst_img  = images_tr / f"{stem}_0000.nii.gz"
+            dst_mask = labels_tr  / f"{stem}.nii.gz"
+            for dst, src in [(dst_img, img_path), (dst_mask, mask_path)]:
+                if dst.exists() or dst.is_symlink():
+                    dst.unlink()
+                dst.symlink_to(src.resolve())
+            n_train += 1
+        elif stem in test_stems:
+            dst_img = images_ts / f"{stem}_0000.nii.gz"
+            if dst_img.exists() or dst_img.is_symlink():
+                dst_img.unlink()
+            dst_img.symlink_to(img_path.resolve())
+
+    # Write dataset.json
+    dataset_json = {**DATASET_JSON_TEMPLATE}
+    dataset_json["numTraining"] = n_train
+    dataset_json["name"] = dataset_name
+    (dataset_folder / "dataset.json").write_text(
+        json.dumps(dataset_json, indent=4) + "\n"
+    )
+
+    print(f"[INFO] Built {dataset_folder.name}: {n_train} training cases, "
+          f"{len(test_stems)} test cases.")
+
+
+# ─── CAD header fix ───────────────────────────────────────────────────────────
+
+def fix_cad_headers(images_dir: Path, masks_dir: Path) -> None:
+    """Copy image affine onto CAD masks that have identity direction matrices.
+
+    During nnUNet preprocessing, warnings were raised for CAD cases due to
+    mismatched origins/directions between images and masks. This function
+    overwrites the mask affine with the image affine (in-place, with backup).
+    """
+    cad_images = sorted(images_dir.glob("CAD*.nii.gz"))
+    fixed = 0
+    for img_path in cad_images:
+        stem = img_path.name.replace(".nii.gz", "")
+        mask_stem = image_stem_to_mask_stem(stem)
+        mask_path = masks_dir / f"{mask_stem}.nii.gz"
+        if not mask_path.exists():
+            continue
+
+        img_nib  = nib.load(str(img_path))
+        mask_nib = nib.load(str(mask_path))
+
+        img_affine  = img_nib.affine
+        mask_affine = mask_nib.affine
+
+        if np.allclose(img_affine, mask_affine, atol=1e-3):
+            continue  # already aligned
+
+        # Backup original mask
+        backup = mask_path.with_suffix(".bak.nii.gz")
+        if not backup.exists():
+            shutil.copy2(mask_path, backup)
+
+        fixed_nib = nib.Nifti1Image(
+            mask_nib.get_fdata().astype(np.uint8),
+            affine=img_affine,
+            header=mask_nib.header,
+        )
+        nib.save(fixed_nib, str(mask_path))
+        fixed += 1
+
+    print(f"[INFO] Fixed affine for {fixed}/{len(cad_images)} CAD masks "
+          "(originals backed up as .bak.nii.gz).")
+
+
+# ─── CLI ──────────────────────────────────────────────────────────────────────
+
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(
+        description="Prepare the Pancreas Cyst dataset for training.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    )
+    p.add_argument(
+        "--config", default="configs/paths.yaml",
+        help="Path to configs/paths.yaml",
+    )
+    p.add_argument(
+        "--fix-cad-headers", action="store_true",
+        help="Copy image affine onto CAD masks with mismatched headers.",
+    )
+    p.add_argument(
+        "--update-txts", action="store_true",
+        help="Rewrite train/val/test/all_train .txt files with current paths.",
+    )
+    p.add_argument(
+        "--build-nnunet", action="store_true",
+        help="Create nnUNet_raw/Dataset001_PancreasCyst symlink tree.",
+    )
+    p.add_argument(
+        "--dataset-id", type=int, default=None,
+        help="Override nnunet.dataset_id from config (for building extra datasets).",
+    )
+    return p.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+    cfg = load_config(args.config)
+
+    images_dir = Path(cfg["data"]["images"])
+    masks_dir  = Path(cfg["data"]["masks"])
+    data_dir   = Path(cfg["root"]) / "data"
+
+    if not images_dir.exists():
+        print(f"[ERROR] images_dir not found: {images_dir}")
+        print("        Follow the data access instructions in README.md first.")
+        sys.exit(1)
+
+    cases = discover_cases(images_dir, masks_dir)
+
+    # Default (no flags): run all three steps. Any explicit flag restricts to
+    # only the requested subset.
+    any_flag = any([args.fix_cad_headers, args.update_txts, args.build_nnunet])
+    do_fix_cad     = args.fix_cad_headers or not any_flag
+    do_update_txts = args.update_txts     or not any_flag
+    do_build       = args.build_nnunet    or not any_flag
+
+    if do_fix_cad:
+        fix_cad_headers(images_dir, masks_dir)
+
+    if do_update_txts:
+        update_split_txts(data_dir, images_dir, masks_dir, cases)
+
+    if do_build:
+        dataset_id = args.dataset_id or int(cfg["nnunet"]["dataset_id"])
+        dataset_name = cfg["nnunet"]["dataset_name"]
+        nnunet_raw = Path(cfg["nnunet"]["raw"])
+        build_nnunet_raw(
+            cases,
+            train_txt=data_dir / "train.txt",
+            val_txt=data_dir / "val.txt",
+            test_txt=data_dir / "test.txt",
+            nnunet_raw_dir=nnunet_raw,
+            dataset_id=dataset_id,
+            dataset_name=dataset_name,
+        )
+
+
+if __name__ == "__main__":
+    main()

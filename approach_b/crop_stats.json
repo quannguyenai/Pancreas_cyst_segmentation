@@ -1,0 +1,6446 @@
+{
+  "NYU0075": {
+    "original_shape": [
+      320,
+      320,
+      46
+    ],
+    "bbox_start": [
+      83,
+      93,
+      11
+    ],
+    "bbox_stop": [
+      265,
+      207,
+      38
+    ],
+    "cyst_fits": true
+  },
+  "NU51": {
+    "original_shape": [
+      256,
+      208,
+      51
+    ],
+    "bbox_start": [
+      48,
+      41,
+      5
+    ],
+    "bbox_stop": [
+      230,
+      155,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "IU9": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      15,
+      50,
+      4
+    ],
+    "bbox_stop": [
+      271,
+      210,
+      26
+    ],
+    "cyst_fits": true
+  },
+  "NYU0069": {
+    "original_shape": [
+      320,
+      220,
+      40
+    ],
+    "bbox_start": [
+      65,
+      20,
+      6
+    ],
+    "bbox_stop": [
+      299,
+      166,
+      33
+    ],
+    "cyst_fits": true
+  },
+  "IU19": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      23,
+      69,
+      7
+    ],
+    "bbox_stop": [
+      251,
+      211,
+      29
+    ],
+    "cyst_fits": true
+  },
+  "MCF10": {
+    "original_shape": [
+      320,
+      320,
+      37
+    ],
+    "bbox_start": [
+      38,
+      50,
+      1
+    ],
+    "bbox_stop": [
+      320,
+      227,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "NU127": {
+    "original_shape": [
+      320,
+      260,
+      40
+    ],
+    "bbox_start": [
+      64,
+      52,
+      2
+    ],
+    "bbox_stop": [
+      269,
+      180,
+      29
+    ],
+    "cyst_fits": true
+  },
+  "CAD182": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      6,
+      77,
+      0
+    ],
+    "bbox_stop": [
+      240,
+      223,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "EMC092": {
+    "original_shape": [
+      512,
+      512,
+      37
+    ],
+    "bbox_start": [
+      102,
+      141,
+      1
+    ],
+    "bbox_stop": [
+      414,
+      336,
+      25
+    ],
+    "cyst_fits": true
+  },
+  "EMC024": {
+    "original_shape": [
+      512,
+      512,
+      39
+    ],
+    "bbox_start": [
+      114,
+      152,
+      10
+    ],
+    "bbox_stop": [
+      412,
+      338,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "MCA22": {
+    "original_shape": [
+      512,
+      512,
+      30
+    ],
+    "bbox_start": [
+      95,
+      146,
+      7
+    ],
+    "bbox_stop": [
+      407,
+      341,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NU101": {
+    "original_shape": [
+      512,
+      328,
+      50
+    ],
+    "bbox_start": [
+      111,
+      40,
+      4
+    ],
+    "bbox_stop": [
+      439,
+      245,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "NU131": {
+    "original_shape": [
+      320,
+      270,
+      56
+    ],
+    "bbox_start": [
+      64,
+      54,
+      12
+    ],
+    "bbox_stop": [
+      280,
+      189,
+      44
+    ],
+    "cyst_fits": true
+  },
+  "CAD155": {
+    "original_shape": [
+      256,
+      256,
+      38
+    ],
+    "bbox_start": [
+      30,
+      76,
+      2
+    ],
+    "bbox_stop": [
+      256,
+      217,
+      38
+    ],
+    "cyst_fits": true
+  },
+  "CAD118": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      22,
+      68,
+      0
+    ],
+    "bbox_stop": [
+      256,
+      214,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NU98": {
+    "original_shape": [
+      320,
+      320,
+      51
+    ],
+    "bbox_start": [
+      64,
+      93,
+      9
+    ],
+    "bbox_stop": [
+      280,
+      228,
+      41
+    ],
+    "cyst_fits": true
+  },
+  "CAD152": {
+    "original_shape": [
+      256,
+      256,
+      41
+    ],
+    "bbox_start": [
+      0,
+      42,
+      5
+    ],
+    "bbox_stop": [
+      234,
+      237,
+      41
+    ],
+    "cyst_fits": true
+  },
+  "CAD252": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      16,
+      84,
+      0
+    ],
+    "bbox_stop": [
+      242,
+      225,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "NYU0039": {
+    "original_shape": [
+      256,
+      208,
+      54
+    ],
+    "bbox_start": [
+      58,
+      25,
+      17
+    ],
+    "bbox_stop": [
+      222,
+      127,
+      53
+    ],
+    "cyst_fits": true
+  },
+  "NU18": {
+    "original_shape": [
+      320,
+      220,
+      36
+    ],
+    "bbox_start": [
+      89,
+      37,
+      5
+    ],
+    "bbox_stop": [
+      271,
+      151,
+      27
+    ],
+    "cyst_fits": true
+  },
+  "CAD153": {
+    "original_shape": [
+      256,
+      256,
+      38
+    ],
+    "bbox_start": [
+      2,
+      62,
+      1
+    ],
+    "bbox_stop": [
+      220,
+      199,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "NU117": {
+    "original_shape": [
+      256,
+      256,
+      60
+    ],
+    "bbox_start": [
+      45,
+      68,
+      5
+    ],
+    "bbox_stop": [
+      222,
+      179,
+      45
+    ],
+    "cyst_fits": true
+  },
+  "CAD315": {
+    "original_shape": [
+      256,
+      256,
+      28
+    ],
+    "bbox_start": [
+      0,
+      71,
+      0
+    ],
+    "bbox_stop": [
+      256,
+      242,
+      28
+    ],
+    "cyst_fits": true
+  },
+  "IU23": {
+    "original_shape": [
+      336,
+      336,
+      28
+    ],
+    "bbox_start": [
+      58,
+      85,
+      4
+    ],
+    "bbox_stop": [
+      281,
+      225,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "MCA140": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      115,
+      145,
+      8
+    ],
+    "bbox_stop": [
+      443,
+      350,
+      31
+    ],
+    "cyst_fits": true
+  },
+  "EMC122": {
+    "original_shape": [
+      320,
+      320,
+      26
+    ],
+    "bbox_start": [
+      62,
+      63,
+      0
+    ],
+    "bbox_stop": [
+      278,
+      198,
+      22
+    ],
+    "cyst_fits": true
+  },
+  "NYU0150": {
+    "original_shape": [
+      256,
+      256,
+      57
+    ],
+    "bbox_start": [
+      53,
+      73,
+      20
+    ],
+    "bbox_stop": [
+      240,
+      190,
+      56
+    ],
+    "cyst_fits": true
+  },
+  "EMC007": {
+    "original_shape": [
+      512,
+      512,
+      33
+    ],
+    "bbox_start": [
+      96,
+      147,
+      0
+    ],
+    "bbox_stop": [
+      432,
+      357,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "EMC036": {
+    "original_shape": [
+      512,
+      512,
+      38
+    ],
+    "bbox_start": [
+      128,
+      145,
+      2
+    ],
+    "bbox_stop": [
+      456,
+      350,
+      29
+    ],
+    "cyst_fits": true
+  },
+  "EMC021": {
+    "original_shape": [
+      512,
+      512,
+      37
+    ],
+    "bbox_start": [
+      123,
+      153,
+      4
+    ],
+    "bbox_stop": [
+      421,
+      339,
+      28
+    ],
+    "cyst_fits": true
+  },
+  "MCF42": {
+    "original_shape": [
+      320,
+      320,
+      30
+    ],
+    "bbox_start": [
+      39,
+      58,
+      0
+    ],
+    "bbox_stop": [
+      312,
+      229,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "MCF28": {
+    "original_shape": [
+      320,
+      320,
+      34
+    ],
+    "bbox_start": [
+      29,
+      43,
+      0
+    ],
+    "bbox_stop": [
+      311,
+      220,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "NU77": {
+    "original_shape": [
+      256,
+      208,
+      62
+    ],
+    "bbox_start": [
+      50,
+      44,
+      6
+    ],
+    "bbox_stop": [
+      196,
+      135,
+      38
+    ],
+    "cyst_fits": true
+  },
+  "CAD226": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      19,
+      67,
+      0
+    ],
+    "bbox_stop": [
+      253,
+      213,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "IU72": {
+    "original_shape": [
+      512,
+      416,
+      36
+    ],
+    "bbox_start": [
+      71,
+      36,
+      9
+    ],
+    "bbox_stop": [
+      435,
+      264,
+      33
+    ],
+    "cyst_fits": true
+  },
+  "CAD138": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      0,
+      69,
+      4
+    ],
+    "bbox_stop": [
+      234,
+      215,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "MCF04": {
+    "original_shape": [
+      320,
+      320,
+      32
+    ],
+    "bbox_start": [
+      38,
+      45,
+      0
+    ],
+    "bbox_stop": [
+      320,
+      222,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "EMC033": {
+    "original_shape": [
+      512,
+      512,
+      37
+    ],
+    "bbox_start": [
+      140,
+      169,
+      2
+    ],
+    "bbox_stop": [
+      419,
+      343,
+      26
+    ],
+    "cyst_fits": true
+  },
+  "CAD258": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      8,
+      82,
+      4
+    ],
+    "bbox_stop": [
+      226,
+      219,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "CAD189": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      0,
+      64,
+      0
+    ],
+    "bbox_stop": [
+      234,
+      241,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "CAD219": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      12,
+      69,
+      0
+    ],
+    "bbox_stop": [
+      238,
+      210,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "CAD150": {
+    "original_shape": [
+      256,
+      256,
+      36
+    ],
+    "bbox_start": [
+      0,
+      66,
+      0
+    ],
+    "bbox_stop": [
+      226,
+      207,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "NU169": {
+    "original_shape": [
+      320,
+      280,
+      52
+    ],
+    "bbox_start": [
+      68,
+      51,
+      6
+    ],
+    "bbox_stop": [
+      302,
+      197,
+      38
+    ],
+    "cyst_fits": true
+  },
+  "CAD171": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      8,
+      81,
+      0
+    ],
+    "bbox_stop": [
+      226,
+      218,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "NU27": {
+    "original_shape": [
+      256,
+      256,
+      54
+    ],
+    "bbox_start": [
+      42,
+      74,
+      6
+    ],
+    "bbox_stop": [
+      224,
+      188,
+      38
+    ],
+    "cyst_fits": true
+  },
+  "CAD120": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      0,
+      50,
+      0
+    ],
+    "bbox_stop": [
+      234,
+      196,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NU121": {
+    "original_shape": [
+      256,
+      256,
+      60
+    ],
+    "bbox_start": [
+      43,
+      65,
+      12
+    ],
+    "bbox_stop": [
+      215,
+      173,
+      44
+    ],
+    "cyst_fits": true
+  },
+  "NYU0134": {
+    "original_shape": [
+      320,
+      260,
+      62
+    ],
+    "bbox_start": [
+      51,
+      47,
+      12
+    ],
+    "bbox_stop": [
+      269,
+      184,
+      48
+    ],
+    "cyst_fits": true
+  },
+  "CAD137": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      0,
+      59,
+      0
+    ],
+    "bbox_stop": [
+      256,
+      230,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NYU0020": {
+    "original_shape": [
+      320,
+      320,
+      42
+    ],
+    "bbox_start": [
+      47,
+      66,
+      10
+    ],
+    "bbox_stop": [
+      320,
+      237,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "NU34": {
+    "original_shape": [
+      320,
+      260,
+      36
+    ],
+    "bbox_start": [
+      62,
+      55,
+      2
+    ],
+    "bbox_stop": [
+      267,
+      183,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "CAD107": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      14,
+      84,
+      0
+    ],
+    "bbox_stop": [
+      232,
+      221,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "CAD265": {
+    "original_shape": [
+      256,
+      256,
+      28
+    ],
+    "bbox_start": [
+      0,
+      70,
+      0
+    ],
+    "bbox_stop": [
+      234,
+      216,
+      28
+    ],
+    "cyst_fits": false
+  },
+  "NU78": {
+    "original_shape": [
+      320,
+      250,
+      38
+    ],
+    "bbox_start": [
+      78,
+      39,
+      5
+    ],
+    "bbox_stop": [
+      294,
+      174,
+      27
+    ],
+    "cyst_fits": true
+  },
+  "NU47": {
+    "original_shape": [
+      512,
+      464,
+      60
+    ],
+    "bbox_start": [
+      96,
+      109,
+      8
+    ],
+    "bbox_stop": [
+      424,
+      314,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "IU62": {
+    "original_shape": [
+      512,
+      512,
+      35
+    ],
+    "bbox_start": [
+      106,
+      142,
+      6
+    ],
+    "bbox_stop": [
+      438,
+      349,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "IU26": {
+    "original_shape": [
+      512,
+      416,
+      45
+    ],
+    "bbox_start": [
+      114,
+      51,
+      8
+    ],
+    "bbox_stop": [
+      478,
+      279,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NU30": {
+    "original_shape": [
+      256,
+      208,
+      48
+    ],
+    "bbox_start": [
+      25,
+      32,
+      2
+    ],
+    "bbox_stop": [
+      224,
+      156,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "CAD292": {
+    "original_shape": [
+      256,
+      256,
+      38
+    ],
+    "bbox_start": [
+      6,
+      86,
+      1
+    ],
+    "bbox_stop": [
+      232,
+      227,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "NYU0135": {
+    "original_shape": [
+      320,
+      280,
+      102
+    ],
+    "bbox_start": [
+      68,
+      63,
+      18
+    ],
+    "bbox_stop": [
+      273,
+      191,
+      45
+    ],
+    "cyst_fits": true
+  },
+  "NU57": {
+    "original_shape": [
+      320,
+      320,
+      48
+    ],
+    "bbox_start": [
+      56,
+      75,
+      0
+    ],
+    "bbox_stop": [
+      297,
+      226,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "NYU0122": {
+    "original_shape": [
+      320,
+      320,
+      33
+    ],
+    "bbox_start": [
+      35,
+      48,
+      6
+    ],
+    "bbox_stop": [
+      287,
+      206,
+      33
+    ],
+    "cyst_fits": true
+  },
+  "AHN21": {
+    "original_shape": [
+      256,
+      204,
+      44
+    ],
+    "bbox_start": [
+      37,
+      34,
+      17
+    ],
+    "bbox_stop": [
+      209,
+      142,
+      44
+    ],
+    "cyst_fits": true
+  },
+  "NU153": {
+    "original_shape": [
+      320,
+      256,
+      50
+    ],
+    "bbox_start": [
+      52,
+      46,
+      3
+    ],
+    "bbox_stop": [
+      268,
+      181,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NYU0144": {
+    "original_shape": [
+      320,
+      290,
+      43
+    ],
+    "bbox_start": [
+      42,
+      62,
+      13
+    ],
+    "bbox_stop": [
+      276,
+      208,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "NYU0101": {
+    "original_shape": [
+      320,
+      320,
+      56
+    ],
+    "bbox_start": [
+      57,
+      67,
+      9
+    ],
+    "bbox_stop": [
+      291,
+      213,
+      45
+    ],
+    "cyst_fits": true
+  },
+  "NYU0159": {
+    "original_shape": [
+      256,
+      256,
+      54
+    ],
+    "bbox_start": [
+      56,
+      50,
+      14
+    ],
+    "bbox_stop": [
+      243,
+      167,
+      50
+    ],
+    "cyst_fits": true
+  },
+  "NYU0143": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      63,
+      71,
+      10
+    ],
+    "bbox_stop": [
+      217,
+      167,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "NYU0056": {
+    "original_shape": [
+      256,
+      232,
+      38
+    ],
+    "bbox_start": [
+      34,
+      49,
+      5
+    ],
+    "bbox_stop": [
+      221,
+      166,
+      38
+    ],
+    "cyst_fits": true
+  },
+  "NU29": {
+    "original_shape": [
+      384,
+      312,
+      39
+    ],
+    "bbox_start": [
+      71,
+      70,
+      3
+    ],
+    "bbox_stop": [
+      330,
+      232,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "EMC071": {
+    "original_shape": [
+      512,
+      512,
+      30
+    ],
+    "bbox_start": [
+      92,
+      110,
+      0
+    ],
+    "bbox_stop": [
+      446,
+      331,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "NYU0172": {
+    "original_shape": [
+      256,
+      224,
+      59
+    ],
+    "bbox_start": [
+      77,
+      56,
+      16
+    ],
+    "bbox_stop": [
+      241,
+      158,
+      52
+    ],
+    "cyst_fits": true
+  },
+  "AHN29": {
+    "original_shape": [
+      256,
+      220,
+      35
+    ],
+    "bbox_start": [
+      48,
+      38,
+      7
+    ],
+    "bbox_stop": [
+      230,
+      152,
+      26
+    ],
+    "cyst_fits": true
+  },
+  "CAD139": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      0,
+      83,
+      4
+    ],
+    "bbox_stop": [
+      218,
+      220,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "CAD283": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      14,
+      82,
+      0
+    ],
+    "bbox_stop": [
+      232,
+      223,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "NU37": {
+    "original_shape": [
+      320,
+      320,
+      60
+    ],
+    "bbox_start": [
+      55,
+      89,
+      9
+    ],
+    "bbox_stop": [
+      271,
+      224,
+      41
+    ],
+    "cyst_fits": true
+  },
+  "CAD127": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      0,
+      62,
+      0
+    ],
+    "bbox_stop": [
+      252,
+      220,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "NYU0119": {
+    "original_shape": [
+      256,
+      232,
+      51
+    ],
+    "bbox_start": [
+      28,
+      48,
+      11
+    ],
+    "bbox_stop": [
+      230,
+      174,
+      47
+    ],
+    "cyst_fits": true
+  },
+  "MCF06": {
+    "original_shape": [
+      320,
+      320,
+      32
+    ],
+    "bbox_start": [
+      25,
+      40,
+      0
+    ],
+    "bbox_stop": [
+      307,
+      217,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "NYU0018": {
+    "original_shape": [
+      256,
+      224,
+      67
+    ],
+    "bbox_start": [
+      47,
+      59,
+      17
+    ],
+    "bbox_stop": [
+      211,
+      161,
+      53
+    ],
+    "cyst_fits": true
+  },
+  "NYU0164": {
+    "original_shape": [
+      320,
+      260,
+      40
+    ],
+    "bbox_start": [
+      52,
+      42,
+      11
+    ],
+    "bbox_stop": [
+      304,
+      200,
+      38
+    ],
+    "cyst_fits": true
+  },
+  "NYU0022": {
+    "original_shape": [
+      320,
+      320,
+      34
+    ],
+    "bbox_start": [
+      65,
+      64,
+      2
+    ],
+    "bbox_stop": [
+      281,
+      199,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "CAD284": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      8,
+      61,
+      0
+    ],
+    "bbox_stop": [
+      242,
+      256,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "EMC041": {
+    "original_shape": [
+      512,
+      512,
+      30
+    ],
+    "bbox_start": [
+      136,
+      152,
+      0
+    ],
+    "bbox_stop": [
+      409,
+      323,
+      25
+    ],
+    "cyst_fits": true
+  },
+  "NYU0149": {
+    "original_shape": [
+      320,
+      320,
+      37
+    ],
+    "bbox_start": [
+      56,
+      65,
+      9
+    ],
+    "bbox_stop": [
+      290,
+      211,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "NU72": {
+    "original_shape": [
+      512,
+      460,
+      32
+    ],
+    "bbox_start": [
+      113,
+      88,
+      2
+    ],
+    "bbox_stop": [
+      440,
+      292,
+      25
+    ],
+    "cyst_fits": true
+  },
+  "NU147": {
+    "original_shape": [
+      320,
+      320,
+      51
+    ],
+    "bbox_start": [
+      65,
+      84,
+      8
+    ],
+    "bbox_stop": [
+      281,
+      219,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "NU99": {
+    "original_shape": [
+      320,
+      320,
+      48
+    ],
+    "bbox_start": [
+      85,
+      87,
+      8
+    ],
+    "bbox_stop": [
+      301,
+      222,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "EMC075": {
+    "original_shape": [
+      512,
+      512,
+      25
+    ],
+    "bbox_start": [
+      126,
+      127,
+      0
+    ],
+    "bbox_stop": [
+      490,
+      355,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "NU32": {
+    "original_shape": [
+      320,
+      250,
+      50
+    ],
+    "bbox_start": [
+      64,
+      31,
+      6
+    ],
+    "bbox_stop": [
+      312,
+      186,
+      38
+    ],
+    "cyst_fits": true
+  },
+  "NYU0105": {
+    "original_shape": [
+      320,
+      320,
+      37
+    ],
+    "bbox_start": [
+      54,
+      88,
+      10
+    ],
+    "bbox_stop": [
+      288,
+      234,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "NU67": {
+    "original_shape": [
+      256,
+      208,
+      55
+    ],
+    "bbox_start": [
+      42,
+      42,
+      8
+    ],
+    "bbox_stop": [
+      224,
+      156,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "CAD124": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      30,
+      81,
+      0
+    ],
+    "bbox_stop": [
+      256,
+      222,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "NYU0140": {
+    "original_shape": [
+      512,
+      384,
+      41
+    ],
+    "bbox_start": [
+      80,
+      55,
+      9
+    ],
+    "bbox_stop": [
+      454,
+      289,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "CAD145": {
+    "original_shape": [
+      256,
+      256,
+      44
+    ],
+    "bbox_start": [
+      4,
+      64,
+      8
+    ],
+    "bbox_stop": [
+      238,
+      210,
+      44
+    ],
+    "cyst_fits": true
+  },
+  "MCF14": {
+    "original_shape": [
+      256,
+      192,
+      23
+    ],
+    "bbox_start": [
+      48,
+      27,
+      2
+    ],
+    "bbox_stop": [
+      212,
+      129,
+      23
+    ],
+    "cyst_fits": true
+  },
+  "MCA05": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      124,
+      124,
+      3
+    ],
+    "bbox_stop": [
+      469,
+      340,
+      26
+    ],
+    "cyst_fits": true
+  },
+  "CAD250": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      0,
+      73,
+      0
+    ],
+    "bbox_stop": [
+      218,
+      210,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "MCF18": {
+    "original_shape": [
+      320,
+      320,
+      42
+    ],
+    "bbox_start": [
+      28,
+      61,
+      4
+    ],
+    "bbox_stop": [
+      310,
+      238,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "EMC091": {
+    "original_shape": [
+      512,
+      512,
+      31
+    ],
+    "bbox_start": [
+      97,
+      104,
+      1
+    ],
+    "bbox_stop": [
+      425,
+      309,
+      25
+    ],
+    "cyst_fits": true
+  },
+  "CAD225": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      0,
+      64,
+      0
+    ],
+    "bbox_stop": [
+      234,
+      210,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "CAD142": {
+    "original_shape": [
+      256,
+      256,
+      44
+    ],
+    "bbox_start": [
+      0,
+      56,
+      0
+    ],
+    "bbox_stop": [
+      256,
+      227,
+      44
+    ],
+    "cyst_fits": true
+  },
+  "NU168": {
+    "original_shape": [
+      320,
+      320,
+      55
+    ],
+    "bbox_start": [
+      60,
+      93,
+      10
+    ],
+    "bbox_stop": [
+      276,
+      228,
+      42
+    ],
+    "cyst_fits": true
+  },
+  "NYU0073": {
+    "original_shape": [
+      256,
+      256,
+      49
+    ],
+    "bbox_start": [
+      43,
+      61,
+      13
+    ],
+    "bbox_stop": [
+      230,
+      178,
+      49
+    ],
+    "cyst_fits": true
+  },
+  "NYU0160": {
+    "original_shape": [
+      384,
+      324,
+      53
+    ],
+    "bbox_start": [
+      97,
+      76,
+      16
+    ],
+    "bbox_stop": [
+      315,
+      213,
+      43
+    ],
+    "cyst_fits": true
+  },
+  "NU89": {
+    "original_shape": [
+      512,
+      512,
+      24
+    ],
+    "bbox_start": [
+      95,
+      139,
+      2
+    ],
+    "bbox_stop": [
+      459,
+      367,
+      20
+    ],
+    "cyst_fits": true
+  },
+  "EMC018": {
+    "original_shape": [
+      512,
+      512,
+      31
+    ],
+    "bbox_start": [
+      99,
+      160,
+      0
+    ],
+    "bbox_stop": [
+      384,
+      338,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "NU114": {
+    "original_shape": [
+      320,
+      272,
+      58
+    ],
+    "bbox_start": [
+      59,
+      61,
+      5
+    ],
+    "bbox_stop": [
+      264,
+      189,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "NYU0157": {
+    "original_shape": [
+      256,
+      256,
+      46
+    ],
+    "bbox_start": [
+      36,
+      65,
+      10
+    ],
+    "bbox_stop": [
+      238,
+      191,
+      46
+    ],
+    "cyst_fits": true
+  },
+  "AHN79": {
+    "original_shape": [
+      256,
+      224,
+      27
+    ],
+    "bbox_start": [
+      64,
+      49,
+      6
+    ],
+    "bbox_stop": [
+      236,
+      157,
+      27
+    ],
+    "cyst_fits": true
+  },
+  "MCF20": {
+    "original_shape": [
+      320,
+      320,
+      36
+    ],
+    "bbox_start": [
+      20,
+      17,
+      0
+    ],
+    "bbox_stop": [
+      302,
+      194,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "NYU0081": {
+    "original_shape": [
+      256,
+      256,
+      50
+    ],
+    "bbox_start": [
+      43,
+      52,
+      14
+    ],
+    "bbox_stop": [
+      230,
+      169,
+      50
+    ],
+    "cyst_fits": true
+  },
+  "NYU0077": {
+    "original_shape": [
+      320,
+      320,
+      50
+    ],
+    "bbox_start": [
+      84,
+      87,
+      18
+    ],
+    "bbox_stop": [
+      275,
+      206,
+      45
+    ],
+    "cyst_fits": true
+  },
+  "NYU0053": {
+    "original_shape": [
+      256,
+      256,
+      53
+    ],
+    "bbox_start": [
+      33,
+      48,
+      9
+    ],
+    "bbox_stop": [
+      220,
+      165,
+      45
+    ],
+    "cyst_fits": true
+  },
+  "AHN11": {
+    "original_shape": [
+      320,
+      320,
+      27
+    ],
+    "bbox_start": [
+      53,
+      55,
+      3
+    ],
+    "bbox_stop": [
+      281,
+      197,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "NYU0173": {
+    "original_shape": [
+      256,
+      216,
+      55
+    ],
+    "bbox_start": [
+      42,
+      35,
+      10
+    ],
+    "bbox_stop": [
+      206,
+      137,
+      50
+    ],
+    "cyst_fits": true
+  },
+  "MCA138": {
+    "original_shape": [
+      512,
+      512,
+      36
+    ],
+    "bbox_start": [
+      114,
+      127,
+      4
+    ],
+    "bbox_stop": [
+      478,
+      355,
+      27
+    ],
+    "cyst_fits": true
+  },
+  "NYU0116": {
+    "original_shape": [
+      256,
+      208,
+      59
+    ],
+    "bbox_start": [
+      59,
+      41,
+      4
+    ],
+    "bbox_stop": [
+      231,
+      149,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "IU40": {
+    "original_shape": [
+      512,
+      416,
+      36
+    ],
+    "bbox_start": [
+      109,
+      73,
+      7
+    ],
+    "bbox_stop": [
+      473,
+      301,
+      31
+    ],
+    "cyst_fits": true
+  },
+  "NU69": {
+    "original_shape": [
+      320,
+      240,
+      40
+    ],
+    "bbox_start": [
+      56,
+      37,
+      0
+    ],
+    "bbox_stop": [
+      277,
+      175,
+      27
+    ],
+    "cyst_fits": true
+  },
+  "NU13": {
+    "original_shape": [
+      256,
+      256,
+      60
+    ],
+    "bbox_start": [
+      48,
+      57,
+      8
+    ],
+    "bbox_stop": [
+      216,
+      162,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "NU16": {
+    "original_shape": [
+      320,
+      260,
+      44
+    ],
+    "bbox_start": [
+      74,
+      65,
+      8
+    ],
+    "bbox_stop": [
+      279,
+      193,
+      35
+    ],
+    "cyst_fits": true
+  },
+  "NYU0032": {
+    "original_shape": [
+      256,
+      256,
+      55
+    ],
+    "bbox_start": [
+      44,
+      53,
+      10
+    ],
+    "bbox_stop": [
+      219,
+      162,
+      46
+    ],
+    "cyst_fits": true
+  },
+  "NU160": {
+    "original_shape": [
+      320,
+      320,
+      60
+    ],
+    "bbox_start": [
+      54,
+      82,
+      12
+    ],
+    "bbox_stop": [
+      270,
+      217,
+      44
+    ],
+    "cyst_fits": true
+  },
+  "NU41": {
+    "original_shape": [
+      256,
+      256,
+      25
+    ],
+    "bbox_start": [
+      31,
+      51,
+      0
+    ],
+    "bbox_stop": [
+      249,
+      188,
+      21
+    ],
+    "cyst_fits": true
+  },
+  "NYU0129": {
+    "original_shape": [
+      256,
+      208,
+      50
+    ],
+    "bbox_start": [
+      38,
+      29,
+      14
+    ],
+    "bbox_stop": [
+      225,
+      146,
+      50
+    ],
+    "cyst_fits": true
+  },
+  "NYU0098": {
+    "original_shape": [
+      320,
+      244,
+      24
+    ],
+    "bbox_start": [
+      59,
+      46,
+      3
+    ],
+    "bbox_stop": [
+      264,
+      174,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "IU42": {
+    "original_shape": [
+      512,
+      416,
+      36
+    ],
+    "bbox_start": [
+      91,
+      53,
+      7
+    ],
+    "bbox_stop": [
+      455,
+      281,
+      31
+    ],
+    "cyst_fits": true
+  },
+  "IU18": {
+    "original_shape": [
+      512,
+      512,
+      49
+    ],
+    "bbox_start": [
+      81,
+      154,
+      11
+    ],
+    "bbox_stop": [
+      435,
+      375,
+      38
+    ],
+    "cyst_fits": true
+  },
+  "NYU0100": {
+    "original_shape": [
+      256,
+      256,
+      33
+    ],
+    "bbox_start": [
+      47,
+      72,
+      3
+    ],
+    "bbox_stop": [
+      203,
+      170,
+      23
+    ],
+    "cyst_fits": true
+  },
+  "NYU0033": {
+    "original_shape": [
+      320,
+      240,
+      40
+    ],
+    "bbox_start": [
+      42,
+      29,
+      0
+    ],
+    "bbox_stop": [
+      276,
+      175,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "NYU0091": {
+    "original_shape": [
+      256,
+      256,
+      63
+    ],
+    "bbox_start": [
+      37,
+      61,
+      21
+    ],
+    "bbox_stop": [
+      201,
+      163,
+      57
+    ],
+    "cyst_fits": true
+  },
+  "EMC073": {
+    "original_shape": [
+      256,
+      208,
+      26
+    ],
+    "bbox_start": [
+      36,
+      65,
+      2
+    ],
+    "bbox_stop": [
+      208,
+      173,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "CAD313": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      7,
+      68,
+      0
+    ],
+    "bbox_stop": [
+      241,
+      214,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "IU78": {
+    "original_shape": [
+      512,
+      416,
+      45
+    ],
+    "bbox_start": [
+      74,
+      64,
+      12
+    ],
+    "bbox_stop": [
+      438,
+      292,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "AHN09": {
+    "original_shape": [
+      256,
+      192,
+      29
+    ],
+    "bbox_start": [
+      39,
+      30,
+      2
+    ],
+    "bbox_stop": [
+      207,
+      135,
+      26
+    ],
+    "cyst_fits": true
+  },
+  "CAD146": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      18,
+      57,
+      0
+    ],
+    "bbox_stop": [
+      252,
+      203,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "MCF16": {
+    "original_shape": [
+      320,
+      320,
+      40
+    ],
+    "bbox_start": [
+      19,
+      63,
+      4
+    ],
+    "bbox_stop": [
+      301,
+      240,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "NU149": {
+    "original_shape": [
+      320,
+      260,
+      52
+    ],
+    "bbox_start": [
+      74,
+      69,
+      11
+    ],
+    "bbox_stop": [
+      279,
+      197,
+      38
+    ],
+    "cyst_fits": true
+  },
+  "CAD135": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      30,
+      75,
+      10
+    ],
+    "bbox_stop": [
+      212,
+      189,
+      31
+    ],
+    "cyst_fits": true
+  },
+  "IU34": {
+    "original_shape": [
+      512,
+      416,
+      45
+    ],
+    "bbox_start": [
+      118,
+      96,
+      11
+    ],
+    "bbox_stop": [
+      482,
+      324,
+      33
+    ],
+    "cyst_fits": true
+  },
+  "CAD119": {
+    "original_shape": [
+      256,
+      256,
+      24
+    ],
+    "bbox_start": [
+      5,
+      58,
+      0
+    ],
+    "bbox_stop": [
+      239,
+      204,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "MCA63": {
+    "original_shape": [
+      512,
+      512,
+      34
+    ],
+    "bbox_start": [
+      122,
+      140,
+      9
+    ],
+    "bbox_stop": [
+      434,
+      335,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "CAD306": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      11,
+      74,
+      0
+    ],
+    "bbox_stop": [
+      245,
+      220,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "IU63": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      70,
+      58,
+      11
+    ],
+    "bbox_stop": [
+      286,
+      193,
+      33
+    ],
+    "cyst_fits": true
+  },
+  "CAD183": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      0,
+      67,
+      0
+    ],
+    "bbox_stop": [
+      234,
+      213,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "CAD213": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      18,
+      69,
+      0
+    ],
+    "bbox_stop": [
+      252,
+      215,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NU135": {
+    "original_shape": [
+      320,
+      260,
+      33
+    ],
+    "bbox_start": [
+      65,
+      32,
+      3
+    ],
+    "bbox_stop": [
+      299,
+      178,
+      25
+    ],
+    "cyst_fits": true
+  },
+  "NU156": {
+    "original_shape": [
+      320,
+      260,
+      40
+    ],
+    "bbox_start": [
+      51,
+      41,
+      4
+    ],
+    "bbox_stop": [
+      292,
+      192,
+      31
+    ],
+    "cyst_fits": true
+  },
+  "NU104": {
+    "original_shape": [
+      320,
+      248,
+      54
+    ],
+    "bbox_start": [
+      62,
+      39,
+      9
+    ],
+    "bbox_stop": [
+      283,
+      177,
+      41
+    ],
+    "cyst_fits": true
+  },
+  "MCA26": {
+    "original_shape": [
+      512,
+      512,
+      30
+    ],
+    "bbox_start": [
+      93,
+      112,
+      7
+    ],
+    "bbox_stop": [
+      421,
+      317,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NU39": {
+    "original_shape": [
+      320,
+      320,
+      52
+    ],
+    "bbox_start": [
+      72,
+      91,
+      5
+    ],
+    "bbox_stop": [
+      277,
+      219,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "NU144": {
+    "original_shape": [
+      320,
+      310,
+      57
+    ],
+    "bbox_start": [
+      42,
+      86,
+      7
+    ],
+    "bbox_stop": [
+      270,
+      228,
+      39
+    ],
+    "cyst_fits": true
+  },
+  "NYU0074": {
+    "original_shape": [
+      320,
+      320,
+      40
+    ],
+    "bbox_start": [
+      42,
+      38,
+      9
+    ],
+    "bbox_stop": [
+      276,
+      184,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "NU108": {
+    "original_shape": [
+      256,
+      256,
+      65
+    ],
+    "bbox_start": [
+      34,
+      59,
+      6
+    ],
+    "bbox_stop": [
+      228,
+      180,
+      46
+    ],
+    "cyst_fits": true
+  },
+  "NU118": {
+    "original_shape": [
+      320,
+      320,
+      56
+    ],
+    "bbox_start": [
+      76,
+      84,
+      7
+    ],
+    "bbox_stop": [
+      292,
+      219,
+      39
+    ],
+    "cyst_fits": true
+  },
+  "CAD149": {
+    "original_shape": [
+      256,
+      256,
+      36
+    ],
+    "bbox_start": [
+      11,
+      68,
+      0
+    ],
+    "bbox_stop": [
+      229,
+      205,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "NYU0040": {
+    "original_shape": [
+      256,
+      240,
+      50
+    ],
+    "bbox_start": [
+      46,
+      54,
+      10
+    ],
+    "bbox_stop": [
+      233,
+      171,
+      50
+    ],
+    "cyst_fits": true
+  },
+  "CAD228": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      22,
+      62,
+      0
+    ],
+    "bbox_stop": [
+      256,
+      208,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NYU0044": {
+    "original_shape": [
+      256,
+      216,
+      53
+    ],
+    "bbox_start": [
+      31,
+      30,
+      13
+    ],
+    "bbox_stop": [
+      242,
+      162,
+      53
+    ],
+    "cyst_fits": true
+  },
+  "IU3": {
+    "original_shape": [
+      512,
+      512,
+      47
+    ],
+    "bbox_start": [
+      100,
+      174,
+      13
+    ],
+    "bbox_stop": [
+      428,
+      379,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "CAD290": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      19,
+      67,
+      0
+    ],
+    "bbox_stop": [
+      237,
+      204,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NU56": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      63,
+      34,
+      0
+    ],
+    "bbox_stop": [
+      268,
+      162,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "CAD251": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      0,
+      78,
+      0
+    ],
+    "bbox_stop": [
+      218,
+      215,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "AHN12": {
+    "original_shape": [
+      320,
+      320,
+      29
+    ],
+    "bbox_start": [
+      40,
+      64,
+      6
+    ],
+    "bbox_stop": [
+      268,
+      206,
+      27
+    ],
+    "cyst_fits": true
+  },
+  "MCA14": {
+    "original_shape": [
+      384,
+      324,
+      50
+    ],
+    "bbox_start": [
+      48,
+      43,
+      18
+    ],
+    "bbox_stop": [
+      307,
+      205,
+      50
+    ],
+    "cyst_fits": true
+  },
+  "IU33": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      74,
+      67,
+      5
+    ],
+    "bbox_stop": [
+      302,
+      209,
+      27
+    ],
+    "cyst_fits": true
+  },
+  "EMC101": {
+    "original_shape": [
+      512,
+      512,
+      30
+    ],
+    "bbox_start": [
+      88,
+      147,
+      0
+    ],
+    "bbox_stop": [
+      400,
+      342,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "NU36": {
+    "original_shape": [
+      320,
+      280,
+      15
+    ],
+    "bbox_start": [
+      99,
+      74,
+      1
+    ],
+    "bbox_stop": [
+      320,
+      212,
+      11
+    ],
+    "cyst_fits": true
+  },
+  "NU68": {
+    "original_shape": [
+      320,
+      260,
+      46
+    ],
+    "bbox_start": [
+      26,
+      52,
+      4
+    ],
+    "bbox_stop": [
+      231,
+      180,
+      31
+    ],
+    "cyst_fits": true
+  },
+  "CAD175": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      0,
+      56,
+      0
+    ],
+    "bbox_stop": [
+      256,
+      227,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "NU55": {
+    "original_shape": [
+      320,
+      280,
+      44
+    ],
+    "bbox_start": [
+      49,
+      70,
+      0
+    ],
+    "bbox_stop": [
+      270,
+      208,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "CAD209": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      0,
+      35,
+      0
+    ],
+    "bbox_stop": [
+      234,
+      215,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "IU16": {
+    "original_shape": [
+      512,
+      384,
+      35
+    ],
+    "bbox_start": [
+      70,
+      59,
+      2
+    ],
+    "bbox_stop": [
+      444,
+      293,
+      26
+    ],
+    "cyst_fits": true
+  },
+  "IU15": {
+    "original_shape": [
+      512,
+      416,
+      45
+    ],
+    "bbox_start": [
+      111,
+      111,
+      11
+    ],
+    "bbox_stop": [
+      423,
+      306,
+      35
+    ],
+    "cyst_fits": true
+  },
+  "CAD269": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      9,
+      59,
+      0
+    ],
+    "bbox_stop": [
+      243,
+      205,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NU151": {
+    "original_shape": [
+      384,
+      336,
+      54
+    ],
+    "bbox_start": [
+      75,
+      87,
+      8
+    ],
+    "bbox_stop": [
+      334,
+      249,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "EMC083": {
+    "original_shape": [
+      512,
+      512,
+      39
+    ],
+    "bbox_start": [
+      104,
+      133,
+      7
+    ],
+    "bbox_stop": [
+      432,
+      338,
+      31
+    ],
+    "cyst_fits": true
+  },
+  "NU145": {
+    "original_shape": [
+      256,
+      208,
+      55
+    ],
+    "bbox_start": [
+      48,
+      50,
+      11
+    ],
+    "bbox_stop": [
+      212,
+      152,
+      43
+    ],
+    "cyst_fits": true
+  },
+  "NU130": {
+    "original_shape": [
+      256,
+      216,
+      60
+    ],
+    "bbox_start": [
+      36,
+      45,
+      6
+    ],
+    "bbox_stop": [
+      241,
+      173,
+      46
+    ],
+    "cyst_fits": true
+  },
+  "IU32": {
+    "original_shape": [
+      512,
+      416,
+      40
+    ],
+    "bbox_start": [
+      93,
+      48,
+      2
+    ],
+    "bbox_stop": [
+      438,
+      264,
+      26
+    ],
+    "cyst_fits": true
+  },
+  "MCF03": {
+    "original_shape": [
+      320,
+      320,
+      36
+    ],
+    "bbox_start": [
+      38,
+      64,
+      0
+    ],
+    "bbox_stop": [
+      320,
+      241,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "NU161": {
+    "original_shape": [
+      256,
+      212,
+      56
+    ],
+    "bbox_start": [
+      30,
+      36,
+      20
+    ],
+    "bbox_stop": [
+      202,
+      144,
+      47
+    ],
+    "cyst_fits": true
+  },
+  "AHN39": {
+    "original_shape": [
+      256,
+      204,
+      23
+    ],
+    "bbox_start": [
+      50,
+      32,
+      0
+    ],
+    "bbox_stop": [
+      232,
+      146,
+      23
+    ],
+    "cyst_fits": true
+  },
+  "EMC034": {
+    "original_shape": [
+      384,
+      252,
+      20
+    ],
+    "bbox_start": [
+      89,
+      21,
+      0
+    ],
+    "bbox_stop": [
+      335,
+      175,
+      15
+    ],
+    "cyst_fits": true
+  },
+  "IU51": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      50,
+      50,
+      3
+    ],
+    "bbox_stop": [
+      278,
+      192,
+      25
+    ],
+    "cyst_fits": true
+  },
+  "EMC049": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      52,
+      53,
+      0
+    ],
+    "bbox_stop": [
+      224,
+      161,
+      22
+    ],
+    "cyst_fits": true
+  },
+  "NU113": {
+    "original_shape": [
+      512,
+      512,
+      35
+    ],
+    "bbox_start": [
+      126,
+      146,
+      2
+    ],
+    "bbox_stop": [
+      431,
+      337,
+      25
+    ],
+    "cyst_fits": true
+  },
+  "NU165": {
+    "original_shape": [
+      320,
+      320,
+      55
+    ],
+    "bbox_start": [
+      60,
+      89,
+      5
+    ],
+    "bbox_stop": [
+      265,
+      217,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "NU43": {
+    "original_shape": [
+      320,
+      260,
+      34
+    ],
+    "bbox_start": [
+      41,
+      30,
+      3
+    ],
+    "bbox_stop": [
+      269,
+      172,
+      25
+    ],
+    "cyst_fits": true
+  },
+  "CAD297": {
+    "original_shape": [
+      256,
+      256,
+      36
+    ],
+    "bbox_start": [
+      0,
+      79,
+      0
+    ],
+    "bbox_stop": [
+      226,
+      220,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "CAD234": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      0,
+      75,
+      0
+    ],
+    "bbox_stop": [
+      256,
+      246,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "CAD224": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      0,
+      49,
+      0
+    ],
+    "bbox_stop": [
+      234,
+      195,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "AHN75": {
+    "original_shape": [
+      256,
+      208,
+      33
+    ],
+    "bbox_start": [
+      38,
+      44,
+      6
+    ],
+    "bbox_stop": [
+      210,
+      152,
+      33
+    ],
+    "cyst_fits": true
+  },
+  "CAD167": {
+    "original_shape": [
+      256,
+      256,
+      24
+    ],
+    "bbox_start": [
+      0,
+      67,
+      0
+    ],
+    "bbox_stop": [
+      252,
+      225,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "NU134": {
+    "original_shape": [
+      320,
+      270,
+      38
+    ],
+    "bbox_start": [
+      64,
+      57,
+      14
+    ],
+    "bbox_stop": [
+      292,
+      199,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "MCA30": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      108,
+      136,
+      8
+    ],
+    "bbox_stop": [
+      436,
+      341,
+      31
+    ],
+    "cyst_fits": true
+  },
+  "NU76": {
+    "original_shape": [
+      320,
+      250,
+      32
+    ],
+    "bbox_start": [
+      42,
+      20,
+      2
+    ],
+    "bbox_stop": [
+      270,
+      162,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "CAD170": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      12,
+      76,
+      0
+    ],
+    "bbox_stop": [
+      246,
+      222,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "NU60": {
+    "original_shape": [
+      320,
+      290,
+      50
+    ],
+    "bbox_start": [
+      75,
+      77,
+      5
+    ],
+    "bbox_stop": [
+      303,
+      219,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "EMC009": {
+    "original_shape": [
+      512,
+      512,
+      34
+    ],
+    "bbox_start": [
+      69,
+      131,
+      0
+    ],
+    "bbox_stop": [
+      397,
+      336,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "IU12": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      68,
+      53,
+      6
+    ],
+    "bbox_stop": [
+      296,
+      195,
+      28
+    ],
+    "cyst_fits": true
+  },
+  "IU31": {
+    "original_shape": [
+      320,
+      260,
+      37
+    ],
+    "bbox_start": [
+      40,
+      43,
+      7
+    ],
+    "bbox_stop": [
+      268,
+      185,
+      29
+    ],
+    "cyst_fits": true
+  },
+  "CAD310": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      44,
+      67,
+      11
+    ],
+    "bbox_stop": [
+      226,
+      219,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "NYU0127": {
+    "original_shape": [
+      256,
+      256,
+      49
+    ],
+    "bbox_start": [
+      41,
+      64,
+      13
+    ],
+    "bbox_stop": [
+      216,
+      173,
+      49
+    ],
+    "cyst_fits": true
+  },
+  "MCF26": {
+    "original_shape": [
+      320,
+      320,
+      32
+    ],
+    "bbox_start": [
+      33,
+      64,
+      0
+    ],
+    "bbox_stop": [
+      315,
+      241,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "AHN64": {
+    "original_shape": [
+      320,
+      320,
+      27
+    ],
+    "bbox_start": [
+      44,
+      74,
+      5
+    ],
+    "bbox_stop": [
+      272,
+      216,
+      26
+    ],
+    "cyst_fits": true
+  },
+  "CAD232": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      0,
+      66,
+      0
+    ],
+    "bbox_stop": [
+      234,
+      212,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "CAD160": {
+    "original_shape": [
+      256,
+      256,
+      36
+    ],
+    "bbox_start": [
+      13,
+      70,
+      0
+    ],
+    "bbox_stop": [
+      239,
+      211,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "MCF38": {
+    "original_shape": [
+      320,
+      320,
+      33
+    ],
+    "bbox_start": [
+      38,
+      24,
+      0
+    ],
+    "bbox_stop": [
+      320,
+      201,
+      33
+    ],
+    "cyst_fits": true
+  },
+  "NYU0065": {
+    "original_shape": [
+      256,
+      256,
+      56
+    ],
+    "bbox_start": [
+      38,
+      51,
+      13
+    ],
+    "bbox_stop": [
+      256,
+      188,
+      49
+    ],
+    "cyst_fits": true
+  },
+  "NYU0166": {
+    "original_shape": [
+      320,
+      290,
+      36
+    ],
+    "bbox_start": [
+      60,
+      48,
+      9
+    ],
+    "bbox_stop": [
+      281,
+      186,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "IU52": {
+    "original_shape": [
+      512,
+      512,
+      40
+    ],
+    "bbox_start": [
+      105,
+      133,
+      9
+    ],
+    "bbox_stop": [
+      437,
+      340,
+      33
+    ],
+    "cyst_fits": true
+  },
+  "NYU0010": {
+    "original_shape": [
+      320,
+      320,
+      46
+    ],
+    "bbox_start": [
+      37,
+      74,
+      8
+    ],
+    "bbox_stop": [
+      271,
+      220,
+      35
+    ],
+    "cyst_fits": true
+  },
+  "EMC047": {
+    "original_shape": [
+      512,
+      512,
+      39
+    ],
+    "bbox_start": [
+      126,
+      156,
+      4
+    ],
+    "bbox_stop": [
+      399,
+      327,
+      28
+    ],
+    "cyst_fits": true
+  },
+  "MCA15": {
+    "original_shape": [
+      512,
+      512,
+      56
+    ],
+    "bbox_start": [
+      28,
+      106,
+      23
+    ],
+    "bbox_stop": [
+      356,
+      311,
+      50
+    ],
+    "cyst_fits": true
+  },
+  "CAD227": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      22,
+      61,
+      0
+    ],
+    "bbox_stop": [
+      256,
+      207,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "CAD162": {
+    "original_shape": [
+      256,
+      256,
+      26
+    ],
+    "bbox_start": [
+      13,
+      68,
+      0
+    ],
+    "bbox_stop": [
+      231,
+      205,
+      26
+    ],
+    "cyst_fits": true
+  },
+  "NYU0054": {
+    "original_shape": [
+      320,
+      320,
+      41
+    ],
+    "bbox_start": [
+      62,
+      57,
+      10
+    ],
+    "bbox_stop": [
+      296,
+      203,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "NYU0151": {
+    "original_shape": [
+      320,
+      320,
+      45
+    ],
+    "bbox_start": [
+      51,
+      49,
+      9
+    ],
+    "bbox_stop": [
+      285,
+      195,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "CAD178": {
+    "original_shape": [
+      256,
+      256,
+      33
+    ],
+    "bbox_start": [
+      9,
+      93,
+      0
+    ],
+    "bbox_stop": [
+      243,
+      239,
+      33
+    ],
+    "cyst_fits": true
+  },
+  "NYU0094": {
+    "original_shape": [
+      256,
+      224,
+      56
+    ],
+    "bbox_start": [
+      46,
+      57,
+      16
+    ],
+    "bbox_stop": [
+      218,
+      165,
+      56
+    ],
+    "cyst_fits": true
+  },
+  "CAD255": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      0,
+      54,
+      0
+    ],
+    "bbox_stop": [
+      256,
+      218,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NU15": {
+    "original_shape": [
+      320,
+      280,
+      52
+    ],
+    "bbox_start": [
+      76,
+      49,
+      4
+    ],
+    "bbox_stop": [
+      281,
+      177,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "EMC040": {
+    "original_shape": [
+      256,
+      256,
+      24
+    ],
+    "bbox_start": [
+      45,
+      54,
+      0
+    ],
+    "bbox_stop": [
+      217,
+      162,
+      21
+    ],
+    "cyst_fits": true
+  },
+  "MCF41": {
+    "original_shape": [
+      320,
+      320,
+      36
+    ],
+    "bbox_start": [
+      38,
+      55,
+      0
+    ],
+    "bbox_stop": [
+      320,
+      232,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "NYU0137": {
+    "original_shape": [
+      256,
+      208,
+      62
+    ],
+    "bbox_start": [
+      40,
+      27,
+      15
+    ],
+    "bbox_stop": [
+      242,
+      153,
+      51
+    ],
+    "cyst_fits": true
+  },
+  "EMC010": {
+    "original_shape": [
+      512,
+      512,
+      33
+    ],
+    "bbox_start": [
+      108,
+      159,
+      1
+    ],
+    "bbox_stop": [
+      444,
+      369,
+      22
+    ],
+    "cyst_fits": true
+  },
+  "NU73": {
+    "original_shape": [
+      256,
+      208,
+      60
+    ],
+    "bbox_start": [
+      51,
+      45,
+      11
+    ],
+    "bbox_stop": [
+      223,
+      153,
+      47
+    ],
+    "cyst_fits": true
+  },
+  "NYU0035": {
+    "original_shape": [
+      320,
+      240,
+      45
+    ],
+    "bbox_start": [
+      67,
+      36,
+      8
+    ],
+    "bbox_stop": [
+      283,
+      171,
+      41
+    ],
+    "cyst_fits": true
+  },
+  "CAD247": {
+    "original_shape": [
+      256,
+      256,
+      44
+    ],
+    "bbox_start": [
+      0,
+      70,
+      7
+    ],
+    "bbox_stop": [
+      193,
+      190,
+      43
+    ],
+    "cyst_fits": true
+  },
+  "IU36": {
+    "original_shape": [
+      512,
+      416,
+      45
+    ],
+    "bbox_start": [
+      90,
+      54,
+      9
+    ],
+    "bbox_stop": [
+      454,
+      282,
+      33
+    ],
+    "cyst_fits": true
+  },
+  "EMC045": {
+    "original_shape": [
+      512,
+      384,
+      30
+    ],
+    "bbox_start": [
+      98,
+      57,
+      0
+    ],
+    "bbox_stop": [
+      443,
+      273,
+      22
+    ],
+    "cyst_fits": true
+  },
+  "NU155": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      36,
+      35,
+      0
+    ],
+    "bbox_stop": [
+      235,
+      159,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NU64": {
+    "original_shape": [
+      256,
+      192,
+      50
+    ],
+    "bbox_start": [
+      45,
+      33,
+      3
+    ],
+    "bbox_stop": [
+      213,
+      138,
+      35
+    ],
+    "cyst_fits": true
+  },
+  "CAD294": {
+    "original_shape": [
+      256,
+      256,
+      36
+    ],
+    "bbox_start": [
+      30,
+      80,
+      0
+    ],
+    "bbox_stop": [
+      256,
+      221,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "NYU0049": {
+    "original_shape": [
+      320,
+      320,
+      37
+    ],
+    "bbox_start": [
+      55,
+      86,
+      8
+    ],
+    "bbox_stop": [
+      289,
+      232,
+      35
+    ],
+    "cyst_fits": true
+  },
+  "NYU0029": {
+    "original_shape": [
+      512,
+      512,
+      60
+    ],
+    "bbox_start": [
+      90,
+      132,
+      12
+    ],
+    "bbox_stop": [
+      402,
+      327,
+      52
+    ],
+    "cyst_fits": true
+  },
+  "EMC068": {
+    "original_shape": [
+      256,
+      256,
+      25
+    ],
+    "bbox_start": [
+      76,
+      64,
+      2
+    ],
+    "bbox_stop": [
+      234,
+      163,
+      20
+    ],
+    "cyst_fits": true
+  },
+  "NU190": {
+    "original_shape": [
+      384,
+      288,
+      56
+    ],
+    "bbox_start": [
+      77,
+      57,
+      0
+    ],
+    "bbox_stop": [
+      350,
+      228,
+      44
+    ],
+    "cyst_fits": true
+  },
+  "CAD288": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      11,
+      75,
+      0
+    ],
+    "bbox_stop": [
+      245,
+      221,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "IU39": {
+    "original_shape": [
+      320,
+      250,
+      30
+    ],
+    "bbox_start": [
+      61,
+      48,
+      0
+    ],
+    "bbox_stop": [
+      277,
+      183,
+      22
+    ],
+    "cyst_fits": true
+  },
+  "EMC012": {
+    "original_shape": [
+      512,
+      512,
+      42
+    ],
+    "bbox_start": [
+      108,
+      144,
+      4
+    ],
+    "bbox_stop": [
+      399,
+      326,
+      31
+    ],
+    "cyst_fits": true
+  },
+  "CAD174": {
+    "original_shape": [
+      256,
+      256,
+      40
+    ],
+    "bbox_start": [
+      1,
+      61,
+      0
+    ],
+    "bbox_stop": [
+      253,
+      219,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "NYU0112": {
+    "original_shape": [
+      256,
+      256,
+      60
+    ],
+    "bbox_start": [
+      65,
+      68,
+      15
+    ],
+    "bbox_stop": [
+      229,
+      170,
+      51
+    ],
+    "cyst_fits": true
+  },
+  "NYU0095": {
+    "original_shape": [
+      320,
+      290,
+      41
+    ],
+    "bbox_start": [
+      46,
+      49,
+      9
+    ],
+    "bbox_stop": [
+      264,
+      186,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "CAD230": {
+    "original_shape": [
+      256,
+      256,
+      29
+    ],
+    "bbox_start": [
+      10,
+      50,
+      0
+    ],
+    "bbox_stop": [
+      244,
+      196,
+      29
+    ],
+    "cyst_fits": true
+  },
+  "NU06": {
+    "original_shape": [
+      320,
+      290,
+      48
+    ],
+    "bbox_start": [
+      52,
+      63,
+      0
+    ],
+    "bbox_stop": [
+      280,
+      205,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "MCA124": {
+    "original_shape": [
+      512,
+      512,
+      33
+    ],
+    "bbox_start": [
+      89,
+      114,
+      9
+    ],
+    "bbox_stop": [
+      453,
+      342,
+      27
+    ],
+    "cyst_fits": true
+  },
+  "IU2": {
+    "original_shape": [
+      512,
+      416,
+      36
+    ],
+    "bbox_start": [
+      88,
+      84,
+      9
+    ],
+    "bbox_stop": [
+      452,
+      312,
+      33
+    ],
+    "cyst_fits": true
+  },
+  "EMC030": {
+    "original_shape": [
+      512,
+      512,
+      35
+    ],
+    "bbox_start": [
+      88,
+      127,
+      0
+    ],
+    "bbox_stop": [
+      416,
+      332,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "NYU0142": {
+    "original_shape": [
+      320,
+      320,
+      37
+    ],
+    "bbox_start": [
+      67,
+      83,
+      7
+    ],
+    "bbox_stop": [
+      301,
+      229,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "CAD238": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      16,
+      68,
+      0
+    ],
+    "bbox_stop": [
+      250,
+      214,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "CAD233": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      9,
+      62,
+      0
+    ],
+    "bbox_stop": [
+      243,
+      239,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NU59": {
+    "original_shape": [
+      320,
+      310,
+      58
+    ],
+    "bbox_start": [
+      68,
+      72,
+      10
+    ],
+    "bbox_stop": [
+      273,
+      200,
+      42
+    ],
+    "cyst_fits": true
+  },
+  "NU189": {
+    "original_shape": [
+      320,
+      280,
+      50
+    ],
+    "bbox_start": [
+      57,
+      56,
+      6
+    ],
+    "bbox_stop": [
+      278,
+      194,
+      38
+    ],
+    "cyst_fits": true
+  },
+  "IU45": {
+    "original_shape": [
+      320,
+      260,
+      35
+    ],
+    "bbox_start": [
+      55,
+      62,
+      6
+    ],
+    "bbox_stop": [
+      283,
+      204,
+      28
+    ],
+    "cyst_fits": true
+  },
+  "NYU0168": {
+    "original_shape": [
+      256,
+      256,
+      66
+    ],
+    "bbox_start": [
+      45,
+      65,
+      17
+    ],
+    "bbox_stop": [
+      209,
+      167,
+      57
+    ],
+    "cyst_fits": true
+  },
+  "CAD295": {
+    "original_shape": [
+      256,
+      256,
+      44
+    ],
+    "bbox_start": [
+      0,
+      89,
+      6
+    ],
+    "bbox_stop": [
+      226,
+      230,
+      42
+    ],
+    "cyst_fits": true
+  },
+  "NU138": {
+    "original_shape": [
+      320,
+      260,
+      55
+    ],
+    "bbox_start": [
+      44,
+      52,
+      11
+    ],
+    "bbox_stop": [
+      249,
+      180,
+      38
+    ],
+    "cyst_fits": true
+  },
+  "IU1": {
+    "original_shape": [
+      352,
+      352,
+      33
+    ],
+    "bbox_start": [
+      76,
+      95,
+      3
+    ],
+    "bbox_stop": [
+      304,
+      238,
+      23
+    ],
+    "cyst_fits": true
+  },
+  "IU37": {
+    "original_shape": [
+      512,
+      416,
+      45
+    ],
+    "bbox_start": [
+      125,
+      70,
+      12
+    ],
+    "bbox_stop": [
+      453,
+      275,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "NU102": {
+    "original_shape": [
+      512,
+      352,
+      35
+    ],
+    "bbox_start": [
+      17,
+      27,
+      0
+    ],
+    "bbox_stop": [
+      427,
+      283,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "IU21": {
+    "original_shape": [
+      512,
+      416,
+      36
+    ],
+    "bbox_start": [
+      25,
+      59,
+      3
+    ],
+    "bbox_stop": [
+      389,
+      287,
+      27
+    ],
+    "cyst_fits": true
+  },
+  "AHN77": {
+    "original_shape": [
+      320,
+      320,
+      27
+    ],
+    "bbox_start": [
+      52,
+      59,
+      6
+    ],
+    "bbox_stop": [
+      280,
+      201,
+      27
+    ],
+    "cyst_fits": true
+  },
+  "EMC076": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      75,
+      101,
+      0
+    ],
+    "bbox_stop": [
+      439,
+      329,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "NYU0131": {
+    "original_shape": [
+      256,
+      192,
+      39
+    ],
+    "bbox_start": [
+      56,
+      24,
+      0
+    ],
+    "bbox_stop": [
+      208,
+      119,
+      33
+    ],
+    "cyst_fits": true
+  },
+  "NU110": {
+    "original_shape": [
+      256,
+      256,
+      45
+    ],
+    "bbox_start": [
+      42,
+      61,
+      0
+    ],
+    "bbox_stop": [
+      235,
+      181,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "NU142": {
+    "original_shape": [
+      320,
+      250,
+      40
+    ],
+    "bbox_start": [
+      57,
+      41,
+      4
+    ],
+    "bbox_stop": [
+      273,
+      176,
+      28
+    ],
+    "cyst_fits": true
+  },
+  "EMC121": {
+    "original_shape": [
+      512,
+      512,
+      37
+    ],
+    "bbox_start": [
+      123,
+      153,
+      4
+    ],
+    "bbox_stop": [
+      421,
+      339,
+      28
+    ],
+    "cyst_fits": true
+  },
+  "AHN16": {
+    "original_shape": [
+      320,
+      320,
+      27
+    ],
+    "bbox_start": [
+      48,
+      89,
+      4
+    ],
+    "bbox_stop": [
+      276,
+      231,
+      25
+    ],
+    "cyst_fits": true
+  },
+  "MCF30": {
+    "original_shape": [
+      320,
+      320,
+      32
+    ],
+    "bbox_start": [
+      17,
+      31,
+      0
+    ],
+    "bbox_stop": [
+      299,
+      208,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "MCA45": {
+    "original_shape": [
+      512,
+      512,
+      39
+    ],
+    "bbox_start": [
+      64,
+      128,
+      8
+    ],
+    "bbox_stop": [
+      418,
+      349,
+      31
+    ],
+    "cyst_fits": true
+  },
+  "CAD286": {
+    "original_shape": [
+      256,
+      256,
+      35
+    ],
+    "bbox_start": [
+      15,
+      85,
+      0
+    ],
+    "bbox_stop": [
+      233,
+      222,
+      35
+    ],
+    "cyst_fits": true
+  },
+  "NYU0096": {
+    "original_shape": [
+      320,
+      260,
+      43
+    ],
+    "bbox_start": [
+      65,
+      39,
+      10
+    ],
+    "bbox_stop": [
+      299,
+      185,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "NU26": {
+    "original_shape": [
+      320,
+      260,
+      45
+    ],
+    "bbox_start": [
+      74,
+      59,
+      10
+    ],
+    "bbox_stop": [
+      279,
+      187,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "CAD242": {
+    "original_shape": [
+      256,
+      256,
+      48
+    ],
+    "bbox_start": [
+      18,
+      81,
+      12
+    ],
+    "bbox_stop": [
+      252,
+      237,
+      48
+    ],
+    "cyst_fits": true
+  },
+  "CAD205": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      22,
+      46,
+      0
+    ],
+    "bbox_stop": [
+      256,
+      237,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "EMC065": {
+    "original_shape": [
+      512,
+      512,
+      42
+    ],
+    "bbox_start": [
+      108,
+      145,
+      5
+    ],
+    "bbox_stop": [
+      399,
+      327,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "AHN54": {
+    "original_shape": [
+      320,
+      320,
+      27
+    ],
+    "bbox_start": [
+      54,
+      65,
+      6
+    ],
+    "bbox_stop": [
+      282,
+      207,
+      27
+    ],
+    "cyst_fits": true
+  },
+  "NYU0130": {
+    "original_shape": [
+      320,
+      320,
+      50
+    ],
+    "bbox_start": [
+      93,
+      83,
+      12
+    ],
+    "bbox_stop": [
+      275,
+      197,
+      39
+    ],
+    "cyst_fits": true
+  },
+  "CAD102": {
+    "original_shape": [
+      256,
+      256,
+      35
+    ],
+    "bbox_start": [
+      9,
+      76,
+      0
+    ],
+    "bbox_stop": [
+      227,
+      213,
+      35
+    ],
+    "cyst_fits": true
+  },
+  "NU63": {
+    "original_shape": [
+      320,
+      250,
+      44
+    ],
+    "bbox_start": [
+      68,
+      52,
+      9
+    ],
+    "bbox_stop": [
+      284,
+      187,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "IU35": {
+    "original_shape": [
+      336,
+      336,
+      28
+    ],
+    "bbox_start": [
+      54,
+      81,
+      6
+    ],
+    "bbox_stop": [
+      277,
+      221,
+      26
+    ],
+    "cyst_fits": true
+  },
+  "NYU0123": {
+    "original_shape": [
+      320,
+      244,
+      30
+    ],
+    "bbox_start": [
+      32,
+      23,
+      5
+    ],
+    "bbox_stop": [
+      288,
+      183,
+      26
+    ],
+    "cyst_fits": true
+  },
+  "MCA126": {
+    "original_shape": [
+      512,
+      512,
+      40
+    ],
+    "bbox_start": [
+      81,
+      120,
+      12
+    ],
+    "bbox_stop": [
+      409,
+      325,
+      35
+    ],
+    "cyst_fits": true
+  },
+  "NU66": {
+    "original_shape": [
+      512,
+      416,
+      48
+    ],
+    "bbox_start": [
+      97,
+      81,
+      3
+    ],
+    "bbox_stop": [
+      433,
+      291,
+      35
+    ],
+    "cyst_fits": true
+  },
+  "MCF25": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      145,
+      143,
+      2
+    ],
+    "bbox_stop": [
+      473,
+      348,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "NU88": {
+    "original_shape": [
+      320,
+      320,
+      54
+    ],
+    "bbox_start": [
+      68,
+      81,
+      7
+    ],
+    "bbox_stop": [
+      284,
+      216,
+      39
+    ],
+    "cyst_fits": true
+  },
+  "EMC011": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      74,
+      124,
+      0
+    ],
+    "bbox_stop": [
+      402,
+      329,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "CAD316": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      20,
+      81,
+      0
+    ],
+    "bbox_stop": [
+      254,
+      227,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "NYU0165": {
+    "original_shape": [
+      320,
+      320,
+      41
+    ],
+    "bbox_start": [
+      57,
+      61,
+      5
+    ],
+    "bbox_stop": [
+      309,
+      219,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "AHN05": {
+    "original_shape": [
+      256,
+      224,
+      40
+    ],
+    "bbox_start": [
+      51,
+      34,
+      10
+    ],
+    "bbox_stop": [
+      238,
+      151,
+      35
+    ],
+    "cyst_fits": true
+  },
+  "CAD291": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      18,
+      85,
+      0
+    ],
+    "bbox_stop": [
+      236,
+      222,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NU120": {
+    "original_shape": [
+      320,
+      320,
+      52
+    ],
+    "bbox_start": [
+      56,
+      98,
+      3
+    ],
+    "bbox_stop": [
+      272,
+      233,
+      35
+    ],
+    "cyst_fits": true
+  },
+  "EMC157": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      112,
+      148,
+      0
+    ],
+    "bbox_stop": [
+      424,
+      343,
+      24
+    ],
+    "cyst_fits": true
+  },
+  "NYU0136": {
+    "original_shape": [
+      256,
+      256,
+      55
+    ],
+    "bbox_start": [
+      56,
+      64,
+      11
+    ],
+    "bbox_stop": [
+      231,
+      173,
+      47
+    ],
+    "cyst_fits": true
+  },
+  "IU59": {
+    "original_shape": [
+      512,
+      384,
+      35
+    ],
+    "bbox_start": [
+      75,
+      76,
+      4
+    ],
+    "bbox_stop": [
+      449,
+      310,
+      28
+    ],
+    "cyst_fits": true
+  },
+  "NYU0152": {
+    "original_shape": [
+      256,
+      256,
+      54
+    ],
+    "bbox_start": [
+      52,
+      62,
+      17
+    ],
+    "bbox_stop": [
+      239,
+      179,
+      53
+    ],
+    "cyst_fits": true
+  },
+  "CAD159": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      16,
+      61,
+      0
+    ],
+    "bbox_stop": [
+      234,
+      198,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "EMC087": {
+    "original_shape": [
+      384,
+      384,
+      35
+    ],
+    "bbox_start": [
+      34,
+      106,
+      3
+    ],
+    "bbox_stop": [
+      296,
+      270,
+      27
+    ],
+    "cyst_fits": true
+  },
+  "NYU0058": {
+    "original_shape": [
+      320,
+      320,
+      50
+    ],
+    "bbox_start": [
+      73,
+      100,
+      11
+    ],
+    "bbox_stop": [
+      289,
+      235,
+      44
+    ],
+    "cyst_fits": true
+  },
+  "NU115": {
+    "original_shape": [
+      384,
+      312,
+      44
+    ],
+    "bbox_start": [
+      68,
+      63,
+      2
+    ],
+    "bbox_stop": [
+      327,
+      225,
+      29
+    ],
+    "cyst_fits": true
+  },
+  "MCA24": {
+    "original_shape": [
+      512,
+      512,
+      30
+    ],
+    "bbox_start": [
+      94,
+      122,
+      4
+    ],
+    "bbox_stop": [
+      422,
+      327,
+      27
+    ],
+    "cyst_fits": true
+  },
+  "IU43": {
+    "original_shape": [
+      512,
+      416,
+      36
+    ],
+    "bbox_start": [
+      98,
+      34,
+      2
+    ],
+    "bbox_stop": [
+      462,
+      262,
+      26
+    ],
+    "cyst_fits": true
+  },
+  "CAD239": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      8,
+      75,
+      0
+    ],
+    "bbox_stop": [
+      242,
+      221,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "CAD289": {
+    "original_shape": [
+      256,
+      256,
+      58
+    ],
+    "bbox_start": [
+      23,
+      80,
+      12
+    ],
+    "bbox_stop": [
+      216,
+      200,
+      48
+    ],
+    "cyst_fits": true
+  },
+  "NU157": {
+    "original_shape": [
+      512,
+      416,
+      50
+    ],
+    "bbox_start": [
+      116,
+      104,
+      2
+    ],
+    "bbox_stop": [
+      444,
+      309,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "NYU0104": {
+    "original_shape": [
+      320,
+      320,
+      45
+    ],
+    "bbox_start": [
+      57,
+      70,
+      12
+    ],
+    "bbox_stop": [
+      291,
+      216,
+      39
+    ],
+    "cyst_fits": true
+  },
+  "CAD235": {
+    "original_shape": [
+      256,
+      256,
+      34
+    ],
+    "bbox_start": [
+      0,
+      52,
+      0
+    ],
+    "bbox_stop": [
+      234,
+      198,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "CAD113": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      22,
+      61,
+      0
+    ],
+    "bbox_stop": [
+      256,
+      256,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "CAD128": {
+    "original_shape": [
+      256,
+      256,
+      35
+    ],
+    "bbox_start": [
+      17,
+      56,
+      0
+    ],
+    "bbox_stop": [
+      251,
+      236,
+      35
+    ],
+    "cyst_fits": true
+  },
+  "EMC014": {
+    "original_shape": [
+      256,
+      192,
+      27
+    ],
+    "bbox_start": [
+      49,
+      28,
+      6
+    ],
+    "bbox_stop": [
+      236,
+      145,
+      21
+    ],
+    "cyst_fits": true
+  },
+  "NU79": {
+    "original_shape": [
+      320,
+      280,
+      54
+    ],
+    "bbox_start": [
+      68,
+      74,
+      10
+    ],
+    "bbox_stop": [
+      289,
+      212,
+      42
+    ],
+    "cyst_fits": true
+  },
+  "MCA75": {
+    "original_shape": [
+      512,
+      512,
+      48
+    ],
+    "bbox_start": [
+      97,
+      113,
+      18
+    ],
+    "bbox_stop": [
+      425,
+      318,
+      41
+    ],
+    "cyst_fits": true
+  },
+  "EMC097": {
+    "original_shape": [
+      528,
+      528,
+      25
+    ],
+    "bbox_start": [
+      139,
+      106,
+      0
+    ],
+    "bbox_stop": [
+      499,
+      331,
+      20
+    ],
+    "cyst_fits": true
+  },
+  "CAD249": {
+    "original_shape": [
+      256,
+      256,
+      38
+    ],
+    "bbox_start": [
+      9,
+      72,
+      0
+    ],
+    "bbox_stop": [
+      243,
+      218,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "NYU0118": {
+    "original_shape": [
+      512,
+      480,
+      47
+    ],
+    "bbox_start": [
+      111,
+      113,
+      0
+    ],
+    "bbox_stop": [
+      439,
+      318,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "MCF24": {
+    "original_shape": [
+      320,
+      320,
+      32
+    ],
+    "bbox_start": [
+      8,
+      61,
+      0
+    ],
+    "bbox_stop": [
+      290,
+      238,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "MCF12": {
+    "original_shape": [
+      320,
+      320,
+      34
+    ],
+    "bbox_start": [
+      47,
+      56,
+      0
+    ],
+    "bbox_stop": [
+      320,
+      227,
+      34
+    ],
+    "cyst_fits": true
+  },
+  "IU13": {
+    "original_shape": [
+      512,
+      512,
+      45
+    ],
+    "bbox_start": [
+      99,
+      108,
+      6
+    ],
+    "bbox_stop": [
+      431,
+      315,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "IU66": {
+    "original_shape": [
+      512,
+      512,
+      38
+    ],
+    "bbox_start": [
+      85,
+      133,
+      4
+    ],
+    "bbox_stop": [
+      417,
+      340,
+      28
+    ],
+    "cyst_fits": true
+  },
+  "NYU0045": {
+    "original_shape": [
+      320,
+      320,
+      33
+    ],
+    "bbox_start": [
+      48,
+      62,
+      5
+    ],
+    "bbox_stop": [
+      300,
+      220,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "CAD151": {
+    "original_shape": [
+      256,
+      256,
+      44
+    ],
+    "bbox_start": [
+      13,
+      64,
+      8
+    ],
+    "bbox_stop": [
+      239,
+      205,
+      44
+    ],
+    "cyst_fits": true
+  },
+  "CAD246": {
+    "original_shape": [
+      256,
+      256,
+      37
+    ],
+    "bbox_start": [
+      0,
+      74,
+      1
+    ],
+    "bbox_stop": [
+      234,
+      220,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "AHN48": {
+    "original_shape": [
+      512,
+      512,
+      36
+    ],
+    "bbox_start": [
+      81,
+      130,
+      7
+    ],
+    "bbox_stop": [
+      455,
+      364,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "NU71": {
+    "original_shape": [
+      256,
+      208,
+      55
+    ],
+    "bbox_start": [
+      52,
+      62,
+      8
+    ],
+    "bbox_stop": [
+      216,
+      164,
+      40
+    ],
+    "cyst_fits": true
+  },
+  "NYU0133": {
+    "original_shape": [
+      512,
+      512,
+      60
+    ],
+    "bbox_start": [
+      142,
+      128,
+      8
+    ],
+    "bbox_stop": [
+      440,
+      314,
+      44
+    ],
+    "cyst_fits": true
+  },
+  "EMC077": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      127,
+      153,
+      0
+    ],
+    "bbox_stop": [
+      400,
+      324,
+      26
+    ],
+    "cyst_fits": true
+  },
+  "NU184": {
+    "original_shape": [
+      320,
+      296,
+      54
+    ],
+    "bbox_start": [
+      69,
+      68,
+      10
+    ],
+    "bbox_stop": [
+      285,
+      203,
+      42
+    ],
+    "cyst_fits": true
+  },
+  "EMC043": {
+    "original_shape": [
+      512,
+      352,
+      24
+    ],
+    "bbox_start": [
+      59,
+      47,
+      0
+    ],
+    "bbox_stop": [
+      423,
+      275,
+      18
+    ],
+    "cyst_fits": true
+  },
+  "NU164": {
+    "original_shape": [
+      512,
+      512,
+      61
+    ],
+    "bbox_start": [
+      127,
+      124,
+      16
+    ],
+    "bbox_stop": [
+      481,
+      345,
+      48
+    ],
+    "cyst_fits": true
+  },
+  "NYU0076": {
+    "original_shape": [
+      320,
+      270,
+      40
+    ],
+    "bbox_start": [
+      71,
+      30,
+      5
+    ],
+    "bbox_stop": [
+      305,
+      176,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "NYU0025": {
+    "original_shape": [
+      320,
+      320,
+      46
+    ],
+    "bbox_start": [
+      47,
+      42,
+      14
+    ],
+    "bbox_stop": [
+      281,
+      188,
+      41
+    ],
+    "cyst_fits": true
+  },
+  "CAD110": {
+    "original_shape": [
+      256,
+      256,
+      33
+    ],
+    "bbox_start": [
+      29,
+      78,
+      0
+    ],
+    "bbox_stop": [
+      247,
+      215,
+      33
+    ],
+    "cyst_fits": true
+  },
+  "NYU0064": {
+    "original_shape": [
+      320,
+      244,
+      26
+    ],
+    "bbox_start": [
+      75,
+      25,
+      4
+    ],
+    "bbox_stop": [
+      280,
+      153,
+      25
+    ],
+    "cyst_fits": true
+  },
+  "NU28": {
+    "original_shape": [
+      320,
+      260,
+      45
+    ],
+    "bbox_start": [
+      62,
+      52,
+      5
+    ],
+    "bbox_stop": [
+      278,
+      187,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "MCA10": {
+    "original_shape": [
+      512,
+      512,
+      28
+    ],
+    "bbox_start": [
+      65,
+      124,
+      4
+    ],
+    "bbox_stop": [
+      429,
+      352,
+      22
+    ],
+    "cyst_fits": true
+  },
+  "IU76": {
+    "original_shape": [
+      512,
+      416,
+      36
+    ],
+    "bbox_start": [
+      114,
+      61,
+      7
+    ],
+    "bbox_stop": [
+      478,
+      289,
+      31
+    ],
+    "cyst_fits": true
+  },
+  "NU188": {
+    "original_shape": [
+      320,
+      220,
+      45
+    ],
+    "bbox_start": [
+      75,
+      47,
+      12
+    ],
+    "bbox_stop": [
+      280,
+      175,
+      39
+    ],
+    "cyst_fits": true
+  },
+  "NU141": {
+    "original_shape": [
+      512,
+      512,
+      56
+    ],
+    "bbox_start": [
+      61,
+      85,
+      29
+    ],
+    "bbox_stop": [
+      484,
+      349,
+      52
+    ],
+    "cyst_fits": true
+  },
+  "NYU0082": {
+    "original_shape": [
+      320,
+      320,
+      40
+    ],
+    "bbox_start": [
+      67,
+      50,
+      6
+    ],
+    "bbox_stop": [
+      301,
+      196,
+      33
+    ],
+    "cyst_fits": true
+  },
+  "NU116": {
+    "original_shape": [
+      256,
+      256,
+      48
+    ],
+    "bbox_start": [
+      49,
+      57,
+      5
+    ],
+    "bbox_stop": [
+      226,
+      168,
+      37
+    ],
+    "cyst_fits": true
+  },
+  "CAD222": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      0,
+      72,
+      0
+    ],
+    "bbox_stop": [
+      234,
+      218,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "IU61": {
+    "original_shape": [
+      512,
+      416,
+      40
+    ],
+    "bbox_start": [
+      93,
+      66,
+      7
+    ],
+    "bbox_stop": [
+      457,
+      294,
+      31
+    ],
+    "cyst_fits": true
+  },
+  "CAD218": {
+    "original_shape": [
+      256,
+      256,
+      36
+    ],
+    "bbox_start": [
+      27,
+      84,
+      4
+    ],
+    "bbox_stop": [
+      245,
+      221,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "NU03": {
+    "original_shape": [
+      320,
+      320,
+      48
+    ],
+    "bbox_start": [
+      53,
+      73,
+      0
+    ],
+    "bbox_stop": [
+      287,
+      219,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "MCF05": {
+    "original_shape": [
+      320,
+      320,
+      38
+    ],
+    "bbox_start": [
+      29,
+      40,
+      2
+    ],
+    "bbox_stop": [
+      311,
+      217,
+      38
+    ],
+    "cyst_fits": true
+  },
+  "NU150": {
+    "original_shape": [
+      320,
+      260,
+      36
+    ],
+    "bbox_start": [
+      75,
+      41,
+      6
+    ],
+    "bbox_stop": [
+      291,
+      176,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "NYU0097": {
+    "original_shape": [
+      256,
+      256,
+      45
+    ],
+    "bbox_start": [
+      40,
+      63,
+      9
+    ],
+    "bbox_stop": [
+      227,
+      180,
+      45
+    ],
+    "cyst_fits": true
+  },
+  "CAD262": {
+    "original_shape": [
+      256,
+      256,
+      36
+    ],
+    "bbox_start": [
+      0,
+      60,
+      0
+    ],
+    "bbox_stop": [
+      234,
+      206,
+      36
+    ],
+    "cyst_fits": true
+  },
+  "NU152": {
+    "original_shape": [
+      512,
+      512,
+      32
+    ],
+    "bbox_start": [
+      95,
+      122,
+      0
+    ],
+    "bbox_stop": [
+      423,
+      327,
+      23
+    ],
+    "cyst_fits": true
+  },
+  "CAD141": {
+    "original_shape": [
+      256,
+      256,
+      30
+    ],
+    "bbox_start": [
+      0,
+      35,
+      0
+    ],
+    "bbox_stop": [
+      234,
+      226,
+      30
+    ],
+    "cyst_fits": true
+  },
+  "MCF27": {
+    "original_shape": [
+      320,
+      320,
+      40
+    ],
+    "bbox_start": [
+      21,
+      55,
+      3
+    ],
+    "bbox_stop": [
+      303,
+      232,
+      39
+    ],
+    "cyst_fits": false
+  },
+  "NU166": {
+    "original_shape": [
+      320,
+      270,
+      51
+    ],
+    "bbox_start": [
+      36,
+      15,
+      2
+    ],
+    "bbox_stop": [
+      309,
+      186,
+      35
+    ],
+    "cyst_fits": true
+  },
+  "CAD241": {
+    "original_shape": [
+      256,
+      256,
+      32
+    ],
+    "bbox_start": [
+      4,
+      69,
+      0
+    ],
+    "bbox_stop": [
+      256,
+      227,
+      32
+    ],
+    "cyst_fits": true
+  },
+  "NYU0023": {
+    "original_shape": [
+      320,
+      220,
+      40
+    ],
+    "bbox_start": [
+      58,
+      18,
+      12
+    ],
+    "bbox_stop": [
+      292,
+      164,
+      39
+    ],
+    "cyst_fits": true
+  },
+  "NU154": {
+    "original_shape": [
+      512,
+      512,
+      50
+    ],
+    "bbox_start": [
+      86,
+      131,
+      10
+    ],
+    "bbox_stop": [
+      472,
+      372,
+      42
+    ],
+    "cyst_fits": true
+  }
+}
