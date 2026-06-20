@@ -59,6 +59,13 @@ def parse_args() -> argparse.Namespace:
                    help="Network type: vnet | unet_2d | unet_3d | unetr")
     p.add_argument("--exp", default="baseline",
                    help="Experiment name (used for checkpoint subdirectory)")
+    p.add_argument("--fold", type=int, default=None,
+                   help="5-fold CV fold index. When set, train/val come from "
+                        "comparison/splits/fold{fold}_{train,val}.txt and "
+                        "checkpoints go to <checkpoint_dir>/<exp>/fold{fold}/.")
+    p.add_argument("--splits-dir", default=None,
+                   help="Directory holding fold{k}_{train,val}.txt "
+                        "(default: comparison/splits next to this script).")
     p.add_argument("--max-epoch", type=int, default=80)
     p.add_argument("--batchsize", type=int, default=4)
     p.add_argument("--base-lr", type=float, default=0.01)
@@ -115,9 +122,22 @@ def main() -> None:
     set_seed(args.seed)
 
     # Resolve paths
-    train_txt = Path(cfg["data"]["train_txt"])
-    val_txt   = Path(cfg["data"]["val_txt"])
-    ckpt_dir  = Path(cfg["comparison"]["checkpoint_dir"]) / args.exp
+    if args.fold is not None:
+        splits_dir = Path(args.splits_dir) if args.splits_dir else (
+            Path(__file__).parent / "splits"
+        )
+        train_txt = splits_dir / f"fold{args.fold}_train.txt"
+        val_txt   = splits_dir / f"fold{args.fold}_val.txt"
+        if not train_txt.exists() or not val_txt.exists():
+            raise SystemExit(
+                f"Fold splits not found: {train_txt} / {val_txt}. "
+                "Run comparison/make_cv_splits.py first."
+            )
+        ckpt_dir = Path(cfg["comparison"]["checkpoint_dir"]) / args.exp / f"fold{args.fold}"
+    else:
+        train_txt = Path(cfg["data"]["train_txt"])
+        val_txt   = Path(cfg["data"]["val_txt"])
+        ckpt_dir  = Path(cfg["comparison"]["checkpoint_dir"]) / args.exp
     ckpt_dir.mkdir(parents=True, exist_ok=True)
 
     patch_size = args.patch_size or (
@@ -133,7 +153,9 @@ def main() -> None:
             logging.StreamHandler(),
         ],
     )
-    logging.info(f"Experiment: {args.exp} | mode: {args.mode} | model: {args.model}")
+    logging.info(f"Experiment: {args.exp} | mode: {args.mode} | model: {args.model} "
+                 f"| fold: {args.fold}")
+    logging.info(f"train_txt: {train_txt}  val_txt: {val_txt}")
     logging.info(f"Patch size: {patch_size} | batch: {args.batchsize} | lr: {args.base_lr}")
 
     # Build datasets
@@ -180,8 +202,11 @@ def main() -> None:
             labels = batch["label"].cuda().long()
 
             outputs = model(images)
+            outputs = outputs[0] if isinstance(outputs, (tuple, list)) else outputs
             loss_ce   = ce_loss(outputs, labels)
-            loss_dice = dice_loss(outputs, labels, softmax=True)
+            # DiceLoss._one_hot_encoder cats along dim=1, so the target needs an
+            # explicit channel dim [B,1,...]; CE keeps the [B,...] target.
+            loss_dice = dice_loss(outputs, labels.unsqueeze(1), softmax=True)
             loss = 0.5 * (loss_ce + loss_dice)
 
             optimizer.zero_grad()
@@ -213,7 +238,9 @@ def main() -> None:
                 for batch in val_loader:
                     images = batch["image"].cuda().float()
                     labels = batch["label"].numpy()
-                    preds = torch.argmax(torch.softmax(model(images), dim=1), dim=1)
+                    logits = model(images)
+                    logits = logits[0] if isinstance(logits, (tuple, list)) else logits
+                    preds = torch.argmax(torch.softmax(logits, dim=1), dim=1)
                     preds = preds.cpu().numpy()
                     for pred, gt in zip(preds, labels):
                         if gt.sum() > 0:
